@@ -1,0 +1,40 @@
+page-otp-popup {
+    ion-content{
+        border-radius: 5px;
+        .scroll-content{
+            padding: 10px 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+        }
+        h4{
+            font : {
+                size :1.8rem;
+                weight:500;
+            }
+            color:rgb(83,181,72);
+        }
+        .otp-block{
+            button{
+                text-transform: capitalize;
+                font : {
+                    size :1.2rem;
+                }
+                color:rgb(0,6,255);
+            }
+        }
+        .otp-msg{
+            p{
+                color:rgb(96,96,96);
+                font : {
+                    size: 1.3rem;
+                    weight:500;
+                }
+            }
+        }
+        .item-block .item-inner{
+            border-bottom-color:rgb(166,166,166);
+        }
+    }
+}

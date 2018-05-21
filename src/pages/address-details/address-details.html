@@ -1,0 +1,90 @@
+<ion-header mode="md">
+    <ion-navbar>
+        <ion-title>Address Details 2/5</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form>
+        <ion-list mode="ios">
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Address 1</ion-label>
+                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-textarea>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Address 2</ion-label>
+                    <ion-textarea value="Western Express Highway, Goregaon East,"></ion-textarea>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Place of Birth</ion-label>
+                    <ion-select name="birthPlace" [selectOptions]="selectOptions">
+                        <ion-option value="Nagpur" selected>Nagpur</ion-option>
+                        <ion-option value="Kanpur">Kanpur</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="custom-select mb">
+                <ion-item mode="ios">
+                    <ion-label floating class="custom-float-text">City</ion-label>
+                    <!-- <ion-checkbox>Mumbai</ion-checkbox> -->
+                    <!-- <p (click)="openModal()">Mumbai -->
+                    <ion-label class="custom-text" (click)="openModal()">Mumbai
+                        <!-- <ion-option value="Mumbai" selected>Mumbai</ion-option>
+                        <ion-option value="Nasik">Nasik</ion-option> -->
+                    </ion-label>
+                    <!-- </p> -->
+                </ion-item>
+                <div class="custom-select-icon">
+                    <div class="custom-select-icon-inner"></div>
+                </div>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>State</ion-label>
+                    <ion-select name="state" [selectOptions]="selectOptions2">
+                        <ion-option value="Maharashtra" selected>Maharashtra</ion-option>
+                        <ion-option value="Gujarat">Gujarat</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <ion-row>
+                <ion-col col-4>
+                    <div class="mb-0">
+                        <ion-item mode="ios">
+                            <ion-label floating>Pincode</ion-label>
+                            <ion-input type="tel" name="pincode" value="400063"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+                <ion-col col-8>
+                    <div class="mb-0">
+                        <ion-item mode="ios">
+                            <ion-label floating>Country</ion-label>
+                            <ion-select name="country" [selectOptions]="selectOptions3">
+                                <ion-option value="India" selected>India</ion-option>
+                                <ion-option value="USA">USA</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <div class="hideDetails">
+                <ion-item mode="md" no-lines>
+                    <ion-label name="family">Permanent address same as per correspondence address</ion-label>
+                    <ion-checkbox mode="md"></ion-checkbox>
+                </ion-item>
+            </div>
+        </ion-list>
+
+    </form>
+    <div class="footer-action-btn">
+        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+            CONTINUE
+        </button>
+    </div>
+</ion-content>

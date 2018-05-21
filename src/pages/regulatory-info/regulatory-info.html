@@ -1,0 +1,88 @@
+<ion-header mode="md">
+    <ion-navbar>
+        <ion-title>Regulatory Info 4/5</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form>
+        <ion-list mode="ios">
+            <ion-label class="holder">Applicant FATCA Info</ion-label>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Birth Country</ion-label>
+                    <ion-select name="birthPlace" [selectOptions]="selectOptions">
+                        <ion-option value="India" selected>India</ion-option>
+                        <ion-option value="USA">USA</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Tax Resident Outside India?</ion-label>
+                    <ion-select name="outsideInida" [selectOptions]="selectOptions1">
+                        <ion-option value="Yes">Yes</ion-option>
+                        <ion-option value="No" selected>No</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Political Exposure</ion-label>
+                    <ion-select name="exposure" [selectOptions]="selectOptions2">
+                        <ion-option value="Not Applicable" selected>Not Applicable</ion-option>
+                        <ion-option value="No">No</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Gross Annual Income</ion-label>
+                    <ion-select name="income" [selectOptions]="selectOptions3">
+                        <ion-option value="5L TO 10L" selected>5L TO 10L</ion-option>
+                        <ion-option value="Below 5L">Below 5L</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Source of Wealth</ion-label>
+                    <ion-select name="income" [selectOptions]="selectOptions4">
+                        <ion-option value="Salary" selected>Salary</ion-option>
+                        <ion-option value="Bussiness">Bussiness</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>ID Source (Given for KYC)</ion-label>
+                    <ion-select name="id" [selectOptions]="selectOptions5">
+                        <ion-option value="PAN Card" selected>PAN Card</ion-option>
+                        <ion-option value="Aadhar Card">Aadhar Card</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Occupation</ion-label>
+                    <ion-select name="occupation" [selectOptions]="selectOptions6">
+                        <ion-option value="Priate Sector Service" selected>Priate Sector Service</ion-option>
+                        <ion-option value="Aadhar Card">Government Sector</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="hideDetails">
+                <ion-item mode="md" no-lines>
+                    <ion-label name="resident">I am not a US & Canada Resident</ion-label>
+                    <ion-checkbox mode="md" for="resident"></ion-checkbox>
+                </ion-item>
+            </div>
+        </ion-list>
+
+    </form>
+    <div class="footer-action-btn">
+        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+            CONTINUE
+        </button>
+    </div>
+</ion-content>

@@ -1,0 +1,25 @@
+page-add-investor {
+    ion-content{
+        .scroll-content{
+                display: flex;
+                flex-flow: column nowrap;
+                width: 100%;
+                background: map-get($colors,contentBg);
+                background-image: url(../assets/imgs/add-investor.png);
+                flex: 1 0 auto;
+                background-position: 0 -63px;
+                background-repeat: no-repeat;
+                background-size: 98% 111%;
+            .add-investor{
+                
+            }
+            .add-investor-btn{
+                padding: 16px;
+                flex: 0 1 auto;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+    }
+}

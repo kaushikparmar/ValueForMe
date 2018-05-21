@@ -1,0 +1,73 @@
+page-download-pdf-popup {
+    ion-content{
+            border-radius: 5px;
+            .scroll-content{
+                padding: 10px 51px 20px;
+                text-align: center;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-between;
+            }
+            h4{
+                font : {
+                    size :1.8rem;
+                    weight:500;
+                }
+                color:rgb(83,181,72);
+            }
+            .otp-msg{
+                p{
+                    color:rgb(96,96,96);
+                    font : {
+                        size: 1.3rem;
+                        weight:500;
+                    }
+                    margin: 0 0 15px;
+                }
+            }
+            .download-pdf{
+                display: flex;
+                div{
+                    width: 180px;
+                    margin:auto;
+                    box-shadow: 0 0.3px 1.7px 0 rgb(137,137,137);
+                    background: #fff;
+                    height: 130px;
+                    border-radius: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    img{
+                        width: 40px;
+                        margin-bottom: 30px;
+                    }
+                    ion-label{
+                        color:rgb(96,96,96);
+                        font : {
+                            size : 1.4rem;
+                        }
+                        position: absolute;
+                        bottom: 14%;
+                        margin:0;
+                    }
+                }
+            }
+            .pdf-info{
+                h5{
+                    font : {
+                        size :1.5rem;
+                        weight:500;
+                    }
+                    color:#000;
+                }
+                ion-label{
+                    color:rgb(96,96,96);
+                    font : {
+                        size : 1.2rem;
+                    }
+                }   
+            }
+        }
+        
+}

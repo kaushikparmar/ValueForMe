@@ -1,0 +1,41 @@
+<ion-header mode="md">
+  <ion-navbar>
+    <ion-title>Your Details 5/5</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <div class="download-container">
+      <div class="pdf-section" (click)="downloadPdf()">
+        <div class="pdf">
+          <img src="./assets/imgs/pdf.png" alt="pdf">
+          <ion-label>Download PDF</ion-label>
+        </div>
+      </div>
+      <div class="pdf-info">
+        <h5>Generated IIN: 5011213559</h5>
+        <ion-label>Download PDF for IIN Details</ion-label>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="upload-container">
+      <ion-label class="upload-text">Upload:</ion-label>
+      <div class="pdf-section">
+        <div class="pdf">
+          <img src="./assets/imgs/upload-pdf.png" alt="pdf">
+          <ion-label>Upload IIN Form1
+              (Max 5MB)</ion-label>
+        </div>
+      </div>
+      <div class="pdf-info">
+        <ion-label>*Kindly upload tiff or pdf files only</ion-label>
+      </div>
+    </div>
+  </form>
+  <div class="footer-action-btn">
+    <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+      UPLOAD FILES
+    </button>
+  </div>
+</ion-content>

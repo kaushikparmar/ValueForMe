@@ -1,0 +1,79 @@
+page-investor-info {
+    ion-content{
+        .scroll-content{
+            display: flex;
+            flex-flow: column nowrap;
+            width: 100%;
+            background: map-get($colors,contentBg);
+            ion-list{
+                .mb{
+                    margin-bottom: 30px;
+                }
+                .mb-0{
+                    margin-bottom: 0;
+                }
+                ion-item{
+                    background: map-get($colors,contentBg);
+                }
+                ion-select.select{
+                    padding-top:0;
+                    padding-bottom:6px;
+                }
+                // .item.item-input-has-value ion-label,
+                // .item.input-has-value ion-label{
+                //     font-size:1.4rem;
+                //     width: 100%;
+                // }
+                .item-ios.item-label-floating .text-input{
+                    margin-top: 0px;
+                    margin-bottom: 6px;
+                }
+                input,.datetime-text,.select-text,.upload-text{
+                    color:#000;
+                    font-weight: 500;
+                    font-size: 1.6rem;
+                }
+                .dob{
+                    position: relative;
+                    img{
+                        position: absolute;
+                        right: 0;
+                        bottom: 0.8em;
+                    }
+                    ion-datetime.datetime{
+                        padding: 0px 8px 6px 0px;
+                    }
+                }
+                .upload-container{
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    div{
+                        width: 130px;
+                        box-shadow: 0 0.3px 1.7px 0 rgb(137,137,137);
+                        background: #fff;
+                        height: 145px;
+                        border-radius: 25px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: relative;
+                        img{
+                            width: 65px;
+                            margin-bottom: 35px;
+                        }
+                        ion-label{
+                            color:rgb(96,96,96);
+                            font : {
+                                size : 1.4rem;
+                            }
+                            position: absolute;
+                            bottom: 20%;
+                            margin:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

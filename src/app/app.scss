@@ -1,0 +1,189 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+/******************global varisbles*******************/
+// $myriadProRegular:myriadProRegular,sans-serif;
+// $myriadProBoldCond:myriadProBoldCond,sans-serif;
+
+// $robotoCondensed:robotoCondensed,sans-serif;
+// $robotoCondensedRegular:robotoCondensedRegular,sans-serif;
+// $robotoCondensedBold:robotoCondensedBold,sans-serif;
+// $robotoMedium:robotoMedium,sans-serif;
+// $robotoRegular:robotoRegular,sans-serif;
+/******************global varisbles*******************/
+
+// gloabal css
+.input-cover{
+    position: static;
+}
+button.bar-button{
+    font : {
+        size : 2.4rem;
+    }
+}
+button.back-button-md{
+    margin: 0;
+    padding: 0;
+    min-width: 25px;
+    ion-icon{
+        font-size: 3.4rem;
+        font-weight: lighter;
+    }
+}
+ion-navbar ion-title .toolbar-title-md{
+    padding: 0;
+}
+ion-header ion-icon.back-button-icon.icon {
+    color: map-get($colors, light);
+}
+ion-header button.bar-button {
+    color: map-get($colors, light);
+}
+.label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input {
+    margin-left: 0px;
+    width: 100% ;
+}
+
+.scroll-content{
+    padding-bottom:0;
+    //all pages global styling
+    .action-btn{
+        background: linear-gradient(rgb(25,123,192),rgb(0,63,107));
+        text-transform: uppercase;
+        height: 40px;
+        color:#fff;
+        font : {
+            size : 1.4rem;
+            weight:500;
+        }
+        box-shadow: 0px 0.7px 2.7px 0 rgb(137,137,137);
+        &.activated{
+            background: linear-gradient(rgb(25,123,192),rgb(0,63,107));
+            color:#fff;
+        }
+    } 
+    .list-ios > .item-block:first-child{
+        border-top:0;
+    }
+    form{
+        flex: 1 0 auto;
+    }
+    .footer-action-btn{
+        flex:0 1 auto;
+    }
+}
+ion-navbar{
+    .toolbar-background{
+        background:map-get($colors, primary);
+    }
+    ion-title.title-ios{
+        padding:0 35px 1px;
+        .toolbar-title{
+            text-align: left;
+        }
+    }
+    ion-title{
+        .toolbar-title{
+            color:map-get($colors, light );
+            font-size: 1.6rem;
+        }
+    }
+}
+
+
+
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.item-input-has-focus .item-inner,
+.item-md.item-input.input-has-focus .item-inner{
+    box-shadow:none;
+    width: 100%;
+}
+.item-md.item-input.item-input-has-focus ion-label[floating],
+.item-md.item-input.input-has-focus ion-label[floating]{
+    color:map-get($colors,primary);
+    width: 100%;
+}
+.item.item-input-has-value ion-label[floating],
+.item.input-has-value ion-label[floating]{
+    width: 100%;
+}
+.item.item-input-has-value ion-label,
+.item.input-has-value ion-label{
+    color:rgb(96,96,96);
+}
+.list-ios .item-block .item-inner{
+    border-bottom:0.55px solid rgb(195,195,195);
+    padding-right: 0;
+}
+.item-ios{
+    padding-left: 0;
+}
+ion-select.select .select-icon .select-icon-inner{
+    color:#000;
+}
+ion-checkbox.checkbox .checkbox-icon{
+    border:0.7px solid rgb(195,195,195);
+}
+ion-checkbox.checkbox .checkbox-checked{
+    background: #fff;
+}
+ion-checkbox.checkbox .checkbox-checked .checkbox-inner{
+    border-color: rgb(96,96,96);
+    top:2px;
+}
+// global css end
+
+
+//otp modal
+ion-modal.otpModal{
+    background: rgba(0,0,0,0.8);
+    .modal-wrapper{
+        .ion-page {
+            top:0;
+            left:0;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            width: 90%;
+            height: 60%;
+        }
+    }    
+}
+
+
+//modal dimsiss global css
+button.dismiss{
+    height: 34px;
+    width:34px;
+    border-radius: 50%;
+    padding:6px;
+    position: absolute;
+    top: 0;
+    right:0;
+    background: map-get($colors,danger);
+    &.activated{
+        background: map-get($colors,danger);
+    }
+}
+//checkbox
+.item-md{
+    padding-left: 0;
+}
+.item.item-md .checkbox-md{
+    margin-right:11px;
+}

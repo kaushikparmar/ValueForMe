@@ -1,0 +1,60 @@
+<ion-header mode="md">
+  <ion-navbar>
+    <ion-title>Nominee Details 3/5</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-list mode="ios">
+      <ion-label class="holder">Nominee 1 Details</ion-label>
+      <div class="mb">
+        <ion-item mode="ios">
+          <ion-label floating>Nominee 1 Name</ion-label>
+          <ion-input type="text" name="Nominee" value="Govind Kondhe"></ion-input>
+        </ion-item>
+      </div>
+      <div class="custom-select mb">
+        <ion-item mode="ios">
+          <ion-label floating>Nominee 1 Relationship</ion-label>
+          <ion-select name="place" [selectOptions]="selectOptions">
+            <ion-option value="Wife" selected>Wife</ion-option>
+            <ion-option value="Husband">Husband</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="custom-select mb">
+        <ion-item mode="ios">
+          <ion-label floating>Select Nominee Type</ion-label>
+          <ion-select name="place" [selectOptions]="selectOptions1">
+            <ion-option value="Minor" selected>Minor</ion-option>
+            <ion-option value="Major">Major</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="dob mb">
+        <ion-item mode="ios">
+          <ion-label floating>Nominee 1 Date of Birth</ion-label>
+          <ion-datetime #datePicker displayFormat="DD MMM, YYYY"></ion-datetime>
+        </ion-item>
+        <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged()">
+      </div>
+      <div class="mb">
+        <ion-item mode="ios">
+          <ion-label floating>Nominee Percentage</ion-label>
+          <ion-input type="tel" name="percentage" value="100"></ion-input>
+        </ion-item>
+      </div>
+      <div class="add-holder">
+        <button ion-button clear outline mode="md">
+          + Add another Nominee
+        </button>
+      </div>
+    </ion-list>
+  </form>
+  <div class="footer-action-btn">
+    <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+      CONTINUE
+    </button>
+  </div>
+</ion-content>

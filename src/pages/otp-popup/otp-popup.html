@@ -1,0 +1,25 @@
+<ion-content>   
+    <button ion-button (click)="dismiss()" class="dismiss">
+        <ion-icon name="close"></ion-icon>
+    </button>
+    <h4 text-center>Enter OTP</h4>
+    <div class="otp-msg">
+        <p>
+            A One time OTP has been 
+            sent your mobile number
+        </p>
+    </div>
+    <div class="otp-block" text-center>
+        <ion-item mode="ios">
+            <ion-input type="tel" name="otp"></ion-input>  
+          </ion-item>
+          <button ion-button clear outline mode="md">
+            Resend OTP
+          </button>
+    </div>
+    <div class="send-otp-btn">
+        <button ion-button round block class="action-btn" mode="md" (click)="dismiss()">
+            SUBMIT
+      </button>
+    </div> 
+</ion-content>

@@ -1,0 +1,84 @@
+page-bank-details {
+    ion-content{
+        .scroll-content{
+            display: flex;
+            flex-flow: column nowrap;
+            width: 100%;
+            background: map-get($colors,contentBg);
+            ion-list{
+                .mb{
+                    margin-bottom: 30px;
+                }
+                .mb-0{
+                    margin-bottom: 0;
+                }
+                ion-item{
+                    background: map-get($colors,contentBg);
+                }
+                ion-select.select{
+                    padding-top:0;
+                    padding-bottom:6px;
+                }
+                // .item.item-input-has-value ion-label,
+                // .item.input-has-value ion-label{
+                //     font-size:1.4rem;
+                //     width: 100%;
+                // }
+                .item-ios.item-label-floating .text-input{
+                    margin-top: 0px;
+                    margin-bottom: 6px;
+                }
+                input,.select-text,textarea.text-input,.custom-text{
+                    color:#000;
+                    font-weight: 500;
+                    font-size: 1.6rem;
+                }
+                .custom-select{
+                    position: relative;
+                    .custom-text{
+                        margin-top:0;
+                        margin-bottom:6px;
+                    }
+                    .custom-float-text{
+                        font-size: 1.4rem;
+                        width: 100%;
+                        transform: translate3d(0, 0, 0) scale(0.8);
+                        color: #606060;
+                    }
+                    .custom-select-icon{
+                        position: absolute;
+                        right: 20px;
+                        bottom: 16px;
+                        .custom-select-icon-inner{
+                            left: 5px;
+                            top: 50%;
+                            margin-top: -2px;
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            border-top: 5px solid;
+                            border-right: 5px solid transparent;
+                            border-left: 5px solid transparent;
+                            pointer-events: none;
+                            color:#000;
+                        }
+                    }
+                }
+                .hideDetails{
+                    ion-label{
+                        color:rgb(96,96,96);
+                        font : {
+                            size : 1.3rem;
+                            weight:500;
+                        }
+                        text-overflow: initial;
+                        white-space: initial;
+                    }
+                    ion-checkbox{
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

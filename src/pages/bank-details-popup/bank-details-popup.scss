@@ -1,0 +1,52 @@
+page-bank-details-popup {
+    ion-content{
+        border-radius: 5px;
+        .scroll-content{
+            padding: 10px 15px 20px;
+            text-align: center;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+        }
+        h4{
+            font : {
+                size :1.8rem;
+            }
+            color:rgb(83,181,72);
+        }
+        .bank{
+            border: 0.7px solid rgb(96,96,96);
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            img{
+                margin: auto;
+                width: 45%;
+            }
+        }
+        .bank-name{
+            margin:8px 0;
+            color:rgb(96,96,96);
+            font : {
+                size : 1.4rem;
+            }
+            text-overflow: initial;
+            white-space: initial;
+        }
+        .view-all{
+            // margin-top: -8px;
+            button{
+                text-transform: capitalize;
+                font : {
+                    size :1.4rem;
+                }
+                color:rgb(0,6,255);
+            }
+        }
+    }
+    
+}

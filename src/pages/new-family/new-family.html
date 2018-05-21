@@ -1,0 +1,92 @@
+<ion-header mode="md">
+  <ion-navbar>
+    <ion-title>Your Details 1/5</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-list mode="ios">
+      <div class="mb=0">
+        <ion-item mode="ios">
+          <ion-label floating>Enter Family</ion-label>
+          <ion-input type="text" name="family" value="Pradip Malpute"></ion-input>
+        </ion-item>
+      </div>
+      <div class="add-family">
+        <ion-item mode="md" no-lines>
+          <ion-label name="family" text-right>New Family</ion-label>
+          <ion-checkbox mode="md" item-end for="family"></ion-checkbox>
+        </ion-item>
+      </div>
+      <div class="proper-panNo mb">
+        <ion-item mode="ios">
+          <ion-label floating>Investor PAN No.</ion-label>
+          <ion-input type="tel" name="investorPan" value="123456ABC"></ion-input>
+        </ion-item>
+        <ion-icon name="ios-checkmark-outline"></ion-icon>
+      </div>
+      <div class="mb">
+        <ion-item mode="ios">
+          <ion-label floating>Aadhar No.</ion-label>
+          <ion-input type="tel" name="aadharNo" value="424768694782"></ion-input>
+        </ion-item>
+      </div>
+      <div class="intl-tel-input mb">
+        <div class="country-code">
+          <ion-item mode="ios">
+            <ion-label floating>Mobile No.</ion-label>
+            <ion-select name="code" [selectOptions]="selectOptions1">
+              <ion-option value="+91" selected>+91</ion-option>
+              <ion-option value="+01">+01</ion-option>
+            </ion-select>
+          </ion-item>
+          <img src="./assets/imgs/india-flag.png" alt="flag">
+        </div>
+        <div class="member-no">
+          <ion-item mode="ios">
+            <ion-input type="tel" mode="ios" name="mobileNo" value="424768694782"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <!-- <ngx-intl-tel-input [(value)]="8733083855"></ngx-intl-tel-input> -->
+      <div class="check-nri mb">
+        <ion-label>Are you a NRI?</ion-label>
+        <div class="switch">
+          <input type="radio" class="switch-input" name="toggle" value="yes" id="yes">
+          <label for="yes" class="switch-label switch-label-off">Yes</label>
+          <input type="radio" class="switch-input" name="toggle" value="no" id="no" checked>
+          <label for="no" class="switch-label switch-label-on">No</label>
+          <span class="switch-selection"></span>
+        </div>
+      </div>
+      <div class="mb">
+        <ion-item mode="ios">
+          <ion-label floating>Email ID</ion-label>
+          <ion-input type="email" name="email" value="pradip.malpute@gmail.com"></ion-input>
+        </ion-item>
+      </div>
+      <div class="member-detail mb">
+        <div class="member-title">
+          <ion-item mode="ios">
+            <ion-select name="title" [selectOptions]="selectOptions">
+              <ion-option value="Mr." selected>Mr.</ion-option>
+              <ion-option value="Mrs.">Mrs.</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="member-name">
+          <ion-item mode="ios">
+            <ion-label floating>Name as in KYC</ion-label>
+            <ion-input type="text" name="memberName" value="Ravindra Salunkhe"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+    </ion-list>
+  </form>
+  <div class="send-otp-btn">
+    <button ion-button round block class="action-btn" mode="md" (click)="sendOTP()">
+      SEND OTP
+    </button>
+  </div>
+</ion-content>

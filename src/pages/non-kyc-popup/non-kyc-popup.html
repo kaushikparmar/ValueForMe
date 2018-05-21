@@ -1,0 +1,28 @@
+<ion-header>
+        <button ion-button (click)="dismiss()" class="dismiss">
+                <ion-icon name="close"></ion-icon>
+            </button>
+</ion-header>
+<ion-content>
+    <h4 text-center>Enter OTP</h4>
+    <div class="otp-block" text-center>
+        <ion-item mode="ios">
+            <ion-input type="tel" name="otp"></ion-input>  
+          </ion-item>
+          <button ion-button clear outline mode="md">
+            Try Resend OTP
+          </button>
+    </div>
+    <div class="otp-msg">
+        <p>
+            I have by agree and acknowledge 
+            towards fetching of my KYC Details 
+            form KRA for opening account.
+        </p>
+    </div>
+    <div class="send-otp-btn">
+        <button ion-button round block class="action-btn" mode="md" (click)="openOTP()">
+            SUBMIT
+      </button>
+    </div> 
+</ion-content>
