@@ -19,6 +19,19 @@ page-bank-details {
                     padding-top:0;
                     padding-bottom:6px;
                 }
+                .error-block{
+                    min-height: 20px;
+                    ion-label{
+                        margin:0;
+                    }
+                    .error{
+                        color:red;
+                        font : {
+                            size : 1.2rem;
+                        }
+                    }
+                }
+
                 // .item.item-input-has-value ion-label,
                 // .item.input-has-value ion-label{
                 //     font-size:1.4rem;
@@ -40,7 +53,7 @@ page-bank-details {
                         margin-bottom:6px;
                     }
                     .custom-float-text{
-                        font-size: 1.4rem;
+                        // font-size: 1.4rem;
                         width: 100%;
                         transform: translate3d(0, 0, 0) scale(0.8);
                         color: #606060;

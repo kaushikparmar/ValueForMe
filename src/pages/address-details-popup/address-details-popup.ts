@@ -19,6 +19,10 @@ export class AddressDetailsPopupPage {
   ionViewDidLoad() {
     this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
   }
+  public selectCity(city): void {
+    this.viewCtrl.dismiss(city);
+  }
+  
   public dismiss(): void {
     this.viewCtrl.dismiss();
   }

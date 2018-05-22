@@ -6,8 +6,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
   selector: 'page-your-details',
   templateUrl: 'your-details.html',
 })
-export class YourDetailsPage {
-
+export class YourDetailsPage{
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,   
@@ -15,7 +14,7 @@ export class YourDetailsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad YourDetailsPage');
+       // console.log('ionViewDidLoad YourDetailsPage');
   }
   downloadPdf(){
       let completeModal=this.modalCtrl.create('DownloadPdfPopupPage');

@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-    <form>
+    <form novalidate [formGroup]="bankDetails">
         <ion-list mode="ios">
             <div class="custom-select mb">
                 <ion-item mode="ios">
                     <ion-label floating class="custom-float-text">Select Bank</ion-label>
-                    <ion-label class="custom-text" (click)="openModal()">ICICI Bank LTD.
+                    <ion-label class="custom-text" (click)="openModal()">{{defaultBank}}
                     </ion-label>
                 </ion-item>
                 <div class="custom-select-icon">
@@ -47,13 +47,32 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Account Number</ion-label>
-                    <ion-input type="tel" value="412739865024"></ion-input>
+                    <ion-input type="tel" name="accountNo" [(ngModel)]="accountNo" 
+                        formControlName="accountNumber" 
+                        value="{{accountNo}}" ></ion-input>
+                </ion-item>
+                <ion-item class="error-block" no-lines>
+                        <!-- *ngIf="( bankDetails.get('accountNumber').hasError('required') ) && bankDetails.get('accountNumber').touched" -->
+                    <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('required') && bankDetails.get('accountNumber').touched">
+                        Account Number is required
+                    </div>
+                    <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('maxLength')">
+                        Account Number should not be 14 digits long.
+                    </div>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Re-enter Account Number</ion-label>
-                    <ion-input type="tel" value="412739865024"></ion-input>
+                    <ion-input type="tel" name="reAccountNo" [(ngModel)]="reAccountNo" value="{{reAccountNo}}" formControlName="re_accountNumber"></ion-input>
+                </ion-item>
+                <ion-item class="error-block" no-lines *ngIf="( bankDetails.get('re_accountNumber').hasError('equalTo') || bankDetails.get('re_accountNumber').hasError('required') ) && bankDetails.get('re_accountNumber').touched">
+                    <div class="error" *ngIf="bankDetails.get('re_accountNumber').hasError('required') && bankDetails.get('re_accountNumber').touched">
+                        Re Account Number is required.
+                    </div>
+                    <div class="error" *ngIf="bankDetails.get('re_accountNumber').hasError('equalTo') && bankDetails.get('re_accountNumber').touched">
+                        Account Number Mismatch
+                    </div>
                 </ion-item>
             </div>
         </ion-list>

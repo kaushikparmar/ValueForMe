@@ -8,6 +8,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
   templateUrl: 'address-details.html',
 })
 export class AddressDetailsPage {
+  public defaultCity = "Mumbai";
   public selectOptions = {
     title: 'Select Birth Place'
   };
@@ -32,7 +33,14 @@ export class AddressDetailsPage {
   openModal(){
     let openModal=this.modalCtrl.create('AddressDetailsPopupPage');
     openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined){
+        this.defaultCity = data;
+      }
+    });
   }
+
+
   nextPage(){
     this.navCtrl.push('HoldingDetailsPage');
   }

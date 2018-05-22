@@ -19,6 +19,10 @@ export class BankDetailsPopupPage {
   ionViewDidLoad() {
     this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
   }
+  public selectBank(bank): void {
+    this.viewCtrl.dismiss(bank);
+  }
+
   public dismiss(): void {
     this.viewCtrl.dismiss();
   }
