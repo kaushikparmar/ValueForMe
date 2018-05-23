@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'CorrespondenceAddressPage';
+  rootPage:any = 'AddInvestorPage';
 
   constructor(private platform: Platform, private statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
