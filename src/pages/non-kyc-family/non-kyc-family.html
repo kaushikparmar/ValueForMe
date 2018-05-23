@@ -5,23 +5,20 @@
 </ion-header>
 
 <ion-content padding>
-  <form>
+  <form #investorForm="ngForm">
     <ion-list mode="ios">
-
-
       <div class="mb-0">
         <ion-item mode="ios">
           <ion-label floating>Enter Family</ion-label>
-          <ion-input type="text" name="family" 
-          (input)="onSearchInput($event)" [(ngModel)]="family" [formControl]="searchControl" value="Pradip Malpute"></ion-input>
+          <ion-input type="text" name="familyName" [(ngModel)]="currentMember.familyName" (ngModelChange)="onFamilyNameChanged()" value="Pradip Malpute"></ion-input>
         </ion-item>        
         <div *ngIf="searching" class="spinner-container">
           <ion-spinner mode="md"></ion-spinner>
         </div>
       </div>
       <div class="filteredNames" *ngIf="searchFlag">
-        <ion-label *ngFor="let family of familyName" (click)="setValue(family.name)">
-            {{family.name}}
+        <ion-label *ngFor="let member of familyMembers" (click)="setValue(member)">
+            {{member.familyName}}
         </ion-label>
       </div>
       <div *ngIf="noResult" class="noName">
@@ -33,7 +30,7 @@
       <div class="add-family">
         <ion-item mode="md">
           <ion-label text-right>New Family</ion-label>
-          <ion-checkbox item-end mode="md"></ion-checkbox>
+          <ion-checkbox item-end mode="md" name="isNewMember" [(ngModel)]="currentMember.isNewMember" (ngModelChange)="isNewMember(currentMember.isNewMember)"></ion-checkbox>
         </ion-item>
       </div>
 
@@ -41,20 +38,19 @@
       <div class="proper-panNo mb">
         <ion-item mode="ios">
           <ion-label floating>Investor PAN No.</ion-label>
-          <ion-input type="tel" name="investorPan" 
-          (input)="searchPan($event)" [(ngModel)]="investorPan" [formControl]="searchControl1" value="123456ABC"></ion-input>
+          <ion-input type="text" name="investorPan" [(ngModel)]="currentMember.pan_no" (ngModelChange)="investorPAN(currentMember.pan_no)"></ion-input>
         </ion-item>
-        <div *ngIf="panSearching" class="spinner-container">
+        <div *ngIf="panSearching" class="spinner-container pan-spinner">
             <ion-spinner mode="md"></ion-spinner>
         </div>
-        <ion-icon name="ios-close-outline" class="false" *ngIf="showFalseIcon"></ion-icon>
-        <ion-icon name="ios-checkmark-outline" *ngIf="showTrueIcon"></ion-icon>
+        <ion-icon name="ios-close-outline" class="false" *ngIf="isPANRight!==undefined && !isPANRight && currentMember.pan_no !== ''"></ion-icon>
+        <ion-icon name="ios-checkmark-outline" *ngIf="isPANRight!==undefined && isPANRight && currentMember.pan_no !== ''"></ion-icon>
       </div>
 
-      <div class="contact-no mb" *ngIf="showOtp">
+      <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
         <ion-item mode="ios">
           <ion-label floating>Contact</ion-label>
-          <ion-input type="tel" name="contact" value="424768694782"></ion-input>
+          <ion-input type="tel" name="contact" [(ngModel)]="currentMember.contact"></ion-input>
         </ion-item>
         <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
       </div>
@@ -62,7 +58,7 @@
       <div class="mb">
         <ion-item mode="ios">
           <ion-label floating>Aadhar No.</ion-label>
-          <ion-input type="tel" name="aadharNo" value="424768694782"></ion-input>
+          <ion-input type="tel" name="aadharNo" [(ngModel)]="currentMember.aadhar_no"></ion-input>
         </ion-item>
       </div>
 
@@ -70,7 +66,7 @@
         <div class="country-code">
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
-            <ion-select name="code" [selectOptions]="selectOptions1">
+            <ion-select name="code" [selectOptions]="selectOptions1" [disabled]="!currentMember?.isNRI">
               <ion-option value="+91" selected>+91</ion-option>
               <ion-option value="+01">+01</ion-option>
             </ion-select>
@@ -79,7 +75,7 @@
         </div>
         <div class="member-no">
           <ion-item mode="ios">
-            <ion-input type="tel" mode="ios" name="mobileNo" value="424768694782"></ion-input>
+            <ion-input type="tel" mode="ios" name="mobileNo" [(ngModel)]="currentMember.mobile"></ion-input>
           </ion-item>
         </div>
       </div>
@@ -87,9 +83,9 @@
       <div class="check-nri mb">
         <ion-label>Are you a NRI?</ion-label>
         <div class="switch">
-          <input type="radio" class="switch-input" name="toggle" value="yes" id="yes">
+          <input type="radio" class="switch-input" name="toggle" id="yes" [value]="true" [ngClass]="{'nri-checked':currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI">
           <label for="yes" class="switch-label switch-label-off">Yes</label>
-          <input type="radio" class="switch-input" name="toggle" value="no" id="no" checked>
+          <input type="radio" class="switch-input" name="toggle" id="no" [value]="false" [ngClass]="{'nri-checked': !currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI">
           <label for="no" class="switch-label switch-label-on">No</label>
           <span class="switch-selection"></span>
         </div>
@@ -97,13 +93,13 @@
       <div class="mb">
         <ion-item mode="ios">
           <ion-label floating>Email ID</ion-label>
-          <ion-input type="email" name="email" value="pradip.malpute@gmail.com"></ion-input>
+          <ion-input type="email" name="email" [(ngModel)]="currentMember.email"></ion-input>
         </ion-item>
       </div>
       <div class="member-detail mb">
         <div class="member-title">
           <ion-item mode="ios">
-            <ion-select name="title" [selectOptions]="selectOptions">
+            <ion-select name="title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title">
               <ion-option value="Mr." selected>Mr.</ion-option>
               <ion-option value="Mrs.">Mrs.</ion-option>
             </ion-select>
@@ -112,7 +108,7 @@
         <div class="member-name">
           <ion-item mode="ios">
             <ion-label floating>Name as in KYC</ion-label>
-            <ion-input type="text" name="memberName" value="Ravindra Salunkhe"></ion-input>
+            <ion-input type="text" name="memberName" [(ngModel)]="currentMember.name"></ion-input>
           </ion-item>
         </div>
       </div>
