@@ -1,4 +1,4 @@
-page-bank-details {
+page-correspondence-address {
     ion-content{
         .scroll-content{
             display: flex;
@@ -8,12 +8,6 @@ page-bank-details {
             ion-list{
                 .mb{
                     margin-bottom: 30px;
-                    position: relative;
-                }
-                .spinner-container{
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
                 }
                 .mb-0{
                     margin-bottom: 0;
@@ -25,16 +19,33 @@ page-bank-details {
                     padding-top:0;
                     padding-bottom:6px;
                 }
-                .error-block{
-                    min-height: 20px;
-                    ion-label{
-                        margin:0;
-                    }
-                }
-                .error{
-                    color:red;
+                .nri-text{
+                    color:rgb(14,97,155);
+                    margin:5px 0 25px;
                     font : {
                         size : 1.2rem;
+                        weight:500;
+                    }
+                }
+                .member-detail{
+                    display: flex;
+                    .member-title{
+                        width: 25%;
+                        ion-select{
+                            max-width: 100%;
+                            padding: 11px 11px 6px 0;
+                            height: 59px;
+                            display: flex;
+                            align-items: flex-end;
+                            .select-icon{
+                                position: absolute;
+                                right: 5px;
+                            }
+                        }
+                    }
+                    .member-name{
+                        width: 100%;
+                        margin-left:25px;
                     }
                 }
                 // .item.item-input-has-value ion-label,
@@ -42,6 +53,15 @@ page-bank-details {
                 //     font-size:1.4rem;
                 //     width: 100%;
                 // }
+                .header{
+                    color:rgb(96,96,96);
+                    font : {
+                        size : 1.6rem;
+                        weight:500;
+                    }
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
                 .item-ios.item-label-floating .text-input{
                     margin-top: 0px;
                     margin-bottom: 6px;
@@ -94,6 +114,22 @@ page-bank-details {
                     }
                     ion-checkbox{
                         margin-right: 10px;
+                    }
+                }
+                ion-row{
+                    ion-col{
+                        padding-bottom: 0;
+                    }
+                }
+                .custom-dropdown{
+                    ion-select.select{
+                        padding: 13px 0 6px;
+                        min-width: 100%;
+                        .select-icon{
+                            position: absolute;
+                            right: 10px;
+                            bottom: 8px;
+                        }
                     }
                 }
             }

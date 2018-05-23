@@ -1,0 +1,167 @@
+<ion-header mode="md">
+    <ion-navbar>
+        <ion-title>Address Details 2/5</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form>
+        <ion-list mode="ios">
+            <ion-label class="header">Investor Overseas Address</ion-label>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Place of Birth</ion-label>
+                    <ion-select name="place" [(ngModel)]="place"  (ionChange)="onPlaceChange()" [selectOptions]="selectOptions">
+                        <ion-option *ngFor="let place of location" [value]="place.placeName">{{place.placeName}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="mb mb-0">
+                <ion-item mode="ios">
+                    <ion-label floating>Address Line 1</ion-label>
+                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-textarea>
+                </ion-item>
+            </div>
+            <ion-label class="nri-text">Not mandatory for NRI
+                <span class="info"><img src="./assets/imgs/info.png"></span>
+              </ion-label>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Address Line 2</ion-label>
+                    <ion-textarea value="Western Express Highway, Goregaon East,"></ion-textarea>
+                </ion-item>
+            </div>
+            <div class="custom-select mb">
+                <ion-item mode="ios">
+                    <ion-label floating class="custom-float-text">City</ion-label>
+                    <ion-label class="custom-text" (click)="openModal()">{{defaultCity}}
+                    </ion-label>
+                </ion-item>
+                <div class="custom-select-icon">
+                    <div class="custom-select-icon-inner"></div>
+                </div>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>State</ion-label>
+                    <ion-select name="state" [(ngModel)]="state" [selectOptions]="selectOptions2">
+                        <ion-option [value]="state">{{state}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <ion-row>
+                <ion-col col-4>
+                    <div class="mb-0">
+                        <ion-item mode="ios">
+                            <ion-label floating>Pincode</ion-label>
+                            <ion-input type="tel" name="pincode" value="{{pincode}}"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+                <ion-col col-8>
+                    <div class="mb-0">
+                        <ion-item mode="ios">
+                            <ion-label floating>Country</ion-label>
+                            <ion-select name="country" [(ngModel)]="country" [selectOptions]="selectOptions3">
+                                <ion-option [value]="country">{{country}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+
+        <ion-list mode="ios">
+            <ion-label class="header">Investor Indian Address</ion-label>
+            <div class="mb mb-0">
+                <ion-item mode="ios">
+                    <ion-label floating>Address Line 1</ion-label>
+                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-textarea>
+                </ion-item>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Address Line 2</ion-label>
+                    <ion-textarea value="Western Express Highway, Goregaon East,"></ion-textarea>
+                </ion-item>
+            </div>
+            <div class="custom-select mb">
+                <ion-item mode="ios">
+                    <ion-label floating class="custom-float-text">City</ion-label>
+                    <ion-label class="custom-text" (click)="openModal()">{{defaultCity}}
+                    </ion-label>
+                </ion-item>
+                <div class="custom-select-icon">
+                    <div class="custom-select-icon-inner"></div>
+                </div>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>State</ion-label>
+                    <ion-select name="state" [(ngModel)]="state" [selectOptions]="selectOptions2">
+                        <ion-option [value]="state">{{state}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <ion-row class="mb">
+                <ion-col col-4>
+                    <div class="mb-0">
+                        <ion-item mode="ios">
+                            <ion-label floating>Pincode</ion-label>
+                            <ion-input type="tel" name="pincode" value="{{pincode}}"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+                <ion-col col-8>
+                    <div class="mb-0">
+                        <ion-item mode="ios">
+                            <ion-label floating>Country</ion-label>
+                            <ion-select name="country" [(ngModel)]="country" [selectOptions]="selectOptions3">
+                                <ion-option [value]="country">{{country}}</ion-option>
+                                <!-- <ion-option value="USA">USA</ion-option> -->
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <div class="mb custom-dropdown">
+                <ion-item mode="ios">
+                    <ion-select name="residential">
+                        <ion-option value="Residential/ Business">Residential/ Business</ion-option>
+                        <ion-option value="Residential">Residential</ion-option>
+                        <ion-option value="Business">Business</ion-option>
+                        <ion-option value="Registered Office">Registered Office</ion-option>
+                        <ion-option value="Unspecfied">Unspecfied</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="member-detail mb">
+                <div class="member-title">
+                  <ion-item mode="ios">
+                      <ion-select name="title" [selectOptions]="selectOptions4">
+                          <ion-option value="Mr." selected>Mr.</ion-option>
+                          <ion-option value="Mrs.">Mrs.</ion-option>
+                      </ion-select>
+                  </ion-item>
+                </div>
+               <div class="member-name">
+                  <ion-item mode="ios">
+                      <ion-label floating>Name as in KYC</ion-label>
+                      <ion-input type="text" name="memberName" value="Ravindra Salukhe"></ion-input>
+                  </ion-item>
+               </div>
+              </div>
+            <!-- <div class="hideDetails">
+                <ion-item mode="md" no-lines>
+                    <ion-label name="family">Permanent address same as per correspondence address</ion-label>
+                    <ion-checkbox mode="md"></ion-checkbox>
+                </ion-item>
+            </div> -->
+        </ion-list>
+    </form>
+    <div class="footer-action-btn">
+        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+            SAVE MY PROFILE
+        </button>
+    </div>
+</ion-content>

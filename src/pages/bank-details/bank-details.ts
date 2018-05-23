@@ -23,25 +23,73 @@ export class BankDetailsPage implements OnInit {
     public navParams: NavParams) {
       
   }
+
+  public accountDetails:any = [
+    {
+      'ifsc' : '23405394303',
+      'branchName' : 'MUMBAI-SERUL',
+      'branchAddress' : 'Coral Crest Co-Op Soc, Unit 14, Plot No3, Sector 23, Nerul East- 4000706.' 
+     }
+  ];
+  ifsc: any;
+  branchName : any;
+  branchAddress : any;
+  checkIfsc: boolean = false;
+  showError: boolean = false;
   ngOnInit() {
     this.bankDetails = new FormGroup({
-      accountNumber: new FormControl('', Validators.compose([Validators.required,Validators.minLength(14), Validators.maxLength(14)])),
-      re_accountNumber : new FormControl('', [Validators.required,this.equalto('accountNumber')])
-      });        
+      accountNumber: new FormControl('', [Validators.required,Validators.maxLength(15)]),
+      re_accountNumber : new FormControl('', [Validators.required,this.equalto('accountNumber')]),
+      ifsc: new FormControl(''),
+      branchName: new FormControl(''),
+      branchAddress: new FormControl('')
+    });        
   }
-
+  checkIFSC(){
+        this.checkIfsc = true;
+        let ifsc = this.bankDetails.get('ifsc').value;
+        setTimeout(() => {
+          this.checkIfsc = false;
+        },700);
+        this.showError = false;
+      for (let obj of this.accountDetails){
+          if(obj.ifsc === ifsc){
+            this.bankDetails.controls['branchName'].setValue(obj.branchName);
+            this.bankDetails.controls['branchAddress'].setValue(obj.branchAddress);
+            setTimeout(() => {
+              this.showError =false;
+            },700);
+          } else { 
+            this.bankDetails.controls['branchName'].setValue('');
+            this.bankDetails.controls['branchAddress'].setValue('');
+            setTimeout(() => {
+              this.showError = true;
+            },700);
+          }
+        }
+  }
   equalto(field_name): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} => {
     let input = control.value;
     let isValid=control.root.value[field_name]==input
+      if(!isValid) 
+        return { 'equalTo': {isValid} }
+        else 
+        return null;
+      };
+    }
+ checkLimit(max): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} => {
+    let input = control.value;
+    console.log(input);
+    let isValid=input.value && (isNaN(input.value) || input.value > max);
+    console.log(isValid);
     if(!isValid) 
-      return { 'equalTo': {isValid} }
+      return { 'range': {isValid} }
       else 
       return null;
     };
-    }
-
-
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BankDetailsPage');
   }

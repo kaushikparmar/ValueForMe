@@ -5,11 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http'; 
 import { MyApp } from './app.component';
-// import { FileTransfer } from '@ionic-native/file-transfer';
-// import { File } from '@ionic-native/file';
 import { DataProvider } from '../providers/data/data';
 import { DocumentViewer } from '@ionic-native/document-viewer';
-// import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 @NgModule({
   declarations: [
     MyApp
@@ -42,8 +40,6 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
   providers: [
     StatusBar,
     SplashScreen,
-    // File,
-    // FileTransfer,
     DocumentViewer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider

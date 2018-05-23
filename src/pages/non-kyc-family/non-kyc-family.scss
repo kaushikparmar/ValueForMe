@@ -68,6 +68,9 @@ page-non-kyc-family {
                     right: 0;
                     bottom: 0;
                 }
+                .pan-spinner{
+                    right:15px;
+                }
                 .proper-panNo{
                     position: relative;
                     ion-icon{
@@ -173,7 +176,7 @@ page-non-kyc-family {
                         .switch-input {
                             display: none;
                         }
-                        .switch-input:checked + .switch-label {
+                        .switch-input.nri-checked + .switch-label {
                             color:#fff;
                             -webkit-transition: 0.15s ease-out;
                             -moz-transition: 0.15s ease-out;
@@ -186,7 +189,7 @@ page-non-kyc-family {
                             -o-transition-property: color;
                             transition-property: color;
                           }
-                          .switch-input:checked + .switch-label-on ~ .switch-selection {
+                          .switch-input.nri-checked + .switch-label-on ~ .switch-selection {
                             left: 60px;
                           }
                           .switch-selection {
