@@ -22,22 +22,18 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Place of Birth</ion-label>
-                    <ion-select name="birthPlace" [selectOptions]="selectOptions">
-                        <ion-option value="Nagpur" selected>Nagpur</ion-option>
-                        <ion-option value="Kanpur">Kanpur</ion-option>
+                    <ion-select name="place" [(ngModel)]="place"  (ionChange)="onPlaceChange()" [selectOptions]="selectOptions">
+                        <!-- <ion-option value="Nagpur" selected>Nagpur</ion-option>
+                        <ion-option value="Kanpur">Kanpur</ion-option> -->
+                        <ion-option *ngFor="let place of location" [value]="place.placeName">{{place.placeName}}</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="custom-select mb">
                 <ion-item mode="ios">
                     <ion-label floating class="custom-float-text">City</ion-label>
-                    <!-- <ion-checkbox>Mumbai</ion-checkbox> -->
-                    <!-- <p (click)="openModal()">Mumbai -->
-                    <ion-label class="custom-text" (click)="openModal()">Mumbai
-                        <!-- <ion-option value="Mumbai" selected>Mumbai</ion-option>
-                        <ion-option value="Nasik">Nasik</ion-option> -->
+                    <ion-label class="custom-text" (click)="openModal()">{{defaultCity}}
                     </ion-label>
-                    <!-- </p> -->
                 </ion-item>
                 <div class="custom-select-icon">
                     <div class="custom-select-icon-inner"></div>
@@ -46,9 +42,8 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>State</ion-label>
-                    <ion-select name="state" [selectOptions]="selectOptions2">
-                        <ion-option value="Maharashtra" selected>Maharashtra</ion-option>
-                        <ion-option value="Gujarat">Gujarat</ion-option>
+                    <ion-select name="state" [(ngModel)]="state" [selectOptions]="selectOptions2">
+                        <ion-option [value]="state">{{state}}</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
@@ -57,7 +52,7 @@
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Pincode</ion-label>
-                            <ion-input type="tel" name="pincode" value="400063"></ion-input>
+                            <ion-input type="tel" name="pincode" value="{{pincode}}"></ion-input>
                         </ion-item>
                     </div>
                 </ion-col>
@@ -65,9 +60,9 @@
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Country</ion-label>
-                            <ion-select name="country" [selectOptions]="selectOptions3">
-                                <ion-option value="India" selected>India</ion-option>
-                                <ion-option value="USA">USA</ion-option>
+                            <ion-select name="country" [(ngModel)]="country" [selectOptions]="selectOptions3">
+                                <ion-option [value]="country">{{country}}</ion-option>
+                                <!-- <ion-option value="USA">USA</ion-option> -->
                             </ion-select>
                         </ion-item>
                     </div>

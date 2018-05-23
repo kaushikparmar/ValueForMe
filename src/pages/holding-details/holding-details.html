@@ -1,48 +1,48 @@
 <ion-header mode="md">
     <ion-navbar>
-      <ion-title>Holding Details 3/5</ion-title>
+        <ion-title>Holding Details 3/5</ion-title>
     </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-      <form>
-          <ion-list mode="ios">
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="jointHolderDetails">
+        <ion-list mode="ios">
             <div class="mb-0">
                 <ion-item mode="ios">
                     <ion-label floating>Enter Family</ion-label>
                     <ion-input type="text" name="family" value="Pradip Malpute"></ion-input>
-                  </ion-item>
+                </ion-item>
             </div>
             <ion-label class="holder">Join holder 1 Details</ion-label>
             <div class="proper-panNo mb">
-              <ion-item mode="ios">
-                <ion-label floating>Holder PAN No.</ion-label>
-                <ion-input type="tel" name="holderrPan" value="123456ABC"></ion-input>
-              </ion-item>
-              <ion-icon name="ios-checkmark-outline"></ion-icon>
+                <ion-item mode="ios">
+                    <ion-label floating>Holder PAN No.</ion-label>
+                    <ion-input type="tel" name="holderrPan" value="123456ABC"></ion-input>
+                </ion-item>
+                <ion-icon name="ios-checkmark-outline"></ion-icon>
             </div>
             <div class="mb">
-              <ion-item mode="ios">
-                <ion-label floating>Holder 1 Aadhar No.</ion-label>
-                <ion-input type="tel" name="aadharNo" value="424768694782"></ion-input>
-              </ion-item>
+                <ion-item mode="ios">
+                    <ion-label floating>Holder 1 Aadhar No.</ion-label>
+                    <ion-input type="tel" name="aadharNo" value="424768694782"></ion-input>
+                </ion-item>
             </div>
             <div class="member-detail mb">
                 <div class="member-title">
-                  <ion-item mode="ios">
-                      <ion-select name="title" [selectOptions]="selectOptions">
-                          <ion-option value="Mr." selected>Mr.</ion-option>
-                          <ion-option value="Mrs.">Mrs.</ion-option>
-                      </ion-select>
-                  </ion-item>
+                    <ion-item mode="ios">
+                        <ion-select name="title" [selectOptions]="selectOptions">
+                            <ion-option value="Mr." selected>Mr.</ion-option>
+                            <ion-option value="Mrs.">Mrs.</ion-option>
+                        </ion-select>
+                    </ion-item>
                 </div>
-               <div class="member-name">
-                  <ion-item mode="ios">
-                      <ion-label floating>Holder 1 Name</ion-label>
-                      <ion-input type="text" name="memberName" value="Govind Kondhe"></ion-input>
-                  </ion-item>
-               </div>
-              </div>
+                <div class="member-name">
+                    <ion-item mode="ios">
+                        <ion-label floating>Holder 1 Name</ion-label>
+                        <ion-input type="text" name="memberName" value="Govind Kondhe"></ion-input>
+                    </ion-item>
+                </div>
+            </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Holder 1 Email ID</ion-label>
@@ -51,11 +51,11 @@
             </div>
             <div class="dob mb">
                 <ion-item mode="ios">
-                  <ion-label floating>Holder 1 Date of Birth</ion-label>
-                  <ion-datetime  #datePicker displayFormat="DD MMM, YYYY"></ion-datetime>
+                    <ion-label floating>Holder 1 Date of Birth</ion-label>
+                    <ion-datetime #datePicker displayFormat="DD MMM, YYYY"></ion-datetime>
                 </ion-item>
                 <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged()">
-              </div>
+            </div>
             <div class="birthPlace mb">
                 <ion-item mode="ios">
                     <ion-label floating>Select Place of Birth</ion-label>
@@ -63,19 +63,197 @@
                         <ion-option value="Ahmedabad" selected>Ahmedabad</ion-option>
                         <ion-option value="Mumbai">Mumbai</ion-option>
                     </ion-select>
-                  </ion-item>
+                </ion-item>
+            </div>
+            <div class="hideDetails">
+                <div class="panel panel-1">
+                    <div class="collapsible" (click)="openPanel1()" [ngClass]="{'hideInfo': !showDetails1 }">
+                        <ion-label>Joint Holder 1 Personal Information</ion-label>
+                        <ion-icon name="ios-add-outline" *ngIf="!showDetails1" color="primary"></ion-icon>
+                        <ion-icon name="ios-remove-outline" *ngIf="showDetails1" color="primary"></ion-icon>
+                    </div>
+                    <div [ngClass]="{'showInfo': showDetails1 }" *ngIf="showDetails1">
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Select Joint Holder 1 Marital Status</ion-label>
+                                <ion-select name="Marital" [selectOptions]="selectOptions2">
+                                    <ion-option value="Married" selected>Married</ion-option>
+                                    <ion-option value="Single">Single</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                        <div class="member-detail mb">
+                            <div class="member-title">
+                                <ion-item mode="ios">
+                                    <ion-select name="title" [selectOptions]="selectOptions3">
+                                        <ion-option value="Mr." selected>Mr.</ion-option>
+                                        <ion-option value="Mrs.">Mrs.</ion-option>
+                                    </ion-select>
+                                </ion-item>
+                            </div>
+                            <div class="member-name">
+                                <ion-item mode="ios">
+                                    <ion-label floating>Joint Holder 1 Father or Spouse Name</ion-label>
+                                    <ion-input type="text" name="memberName" value="Ravindra Salukhe"></ion-input>
+                                </ion-item>
+                            </div>
+                        </div>
+                        <div class="member-detail mb">
+                            <div class="member-title">
+                                <ion-item mode="ios">
+                                    <ion-select name="title" [selectOptions]="selectOptions3">
+                                        <ion-option value="Mr.">Mr.</ion-option>
+                                        <ion-option value="Mrs." selected>Mrs.</ion-option>
+                                    </ion-select>
+                                </ion-item>
+                            </div>
+                            <div class="member-name">
+                                <ion-item mode="ios">
+                                    <ion-label floating>Joint Holder 1 Mother Name</ion-label>
+                                    <ion-input type="text" name="memberName" value="Mala"></ion-input>
+                                </ion-item>
+                            </div>
+                        </div>
+                        <div class="member-detail mb">
+                            <div class="member-title">
+                                <ion-item mode="ios">
+                                    <ion-select name="title" [selectOptions]="selectOptions3">
+                                        <ion-option value="Mr." selected>Mr.</ion-option>
+                                        <ion-option value="Mrs.">Mrs.</ion-option>
+                                    </ion-select>
+                                </ion-item>
+                            </div>
+                            <div class="member-name">
+                                <ion-item mode="ios">
+                                    <ion-label floating>Joint Holder 1 Name</ion-label>
+                                    <ion-input type="text" name="memberName" value="Govind Tukaram Kondhe"></ion-input>
+                                </ion-item>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-2">
+                    <div class="collapsible" (click)="openPanel2()" [ngClass]="{'hideInfo': !showDetails2 }">
+                        <ion-label>Joint Holder 1 Address Information</ion-label>
+                        <ion-icon name="ios-add-outline" *ngIf="!showDetails2" color="primary"></ion-icon>
+                        <ion-icon name="ios-remove-outline" *ngIf="showDetails2" color="primary"></ion-icon>
+                    </div>
+                    <div [ngClass]="{'showInfo': showDetails2 }" *ngIf="showDetails2">
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Address Line 1</ion-label>
+                                <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-textarea>
+                            </ion-item>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Address Line 2</ion-label>
+                                <ion-textarea value="Western Express Highway, Goregaon East,"></ion-textarea>
+                            </ion-item>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-3">
+                    <div class="collapsible" (click)="openPanel3()" [ngClass]="{'hideInfo': !showDetails3}">
+                        <ion-label>Joint Holder 1 Bank Information</ion-label>
+                        <ion-icon name="ios-add-outline" *ngIf="!showDetails3" color="primary"></ion-icon>
+                        <ion-icon name="ios-remove-outline" *ngIf="showDetails3" color="primary"></ion-icon>
+                    </div>
+                    <div [ngClass]="{'showInfo': showDetails3 }" *ngIf="showDetails3">
+                        <div class="custom-select mb">
+                            <ion-item mode="ios">
+                                <ion-label floating class="custom-float-text">Select Bank</ion-label>
+                                <ion-label class="custom-text" (click)="openModal()">{{defaultBank}}
+                                </ion-label>
+                            </ion-item>
+                            <div class="custom-select-icon">
+                                <div class="custom-select-icon-inner"></div>
+                            </div>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>IFSC Code</ion-label>
+                                <ion-input type="text" name="ifsc" formControlName="ifsc" value="" (input)="checkIFSC()"></ion-input>
+                            </ion-item>
+                            <div class="spinner-container">
+                                <ion-spinner *ngIf="checkIfsc" mode="md"></ion-spinner>
+                            </div>
+                            <div class="error" *ngIf="showError">
+                                Invalid IFSC code.
+                            </div>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Branch Name</ion-label>
+                                <ion-input type="text" name="branchName" formControlName="branchName" value=""></ion-input>
+                            </ion-item>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Branch Address</ion-label>
+                                <ion-textarea name="branchAddress" formControlName="branchAddress" value=""></ion-textarea>
+                            </ion-item>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Account Type</ion-label>
+                                <ion-select name="account" [selectOptions]="selectOptions4">
+                                    <ion-option value="Savings" selected>Savings</ion-option>
+                                    <ion-option value="Internal">Current</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Account Number</ion-label>
+                                <ion-input type="tel" name="accountNo" [(ngModel)]="accountNo" formControlName="accountNumber" value="{{accountNo}}"></ion-input>
+                            </ion-item>
+                            <ion-item class="error-block" no-lines>
+                                <!-- *ngIf="( jointHolderDetails.get('accountNumber').hasError('required') ) && jointHolderDetails.get('accountNumber').touched" -->
+                                <div class="error" *ngIf="jointHolderDetails.get('accountNumber').hasError('required') && jointHolderDetails.get('accountNumber').touched">
+                                    Account Number is required
+                                </div>
+                                <div class="error" *ngIf="jointHolderDetails.get('accountNumber').hasError('maxLength')">
+                                    Account Number should not be 14 digits long.
+                                </div>
+                            </ion-item>
+                        </div>
+                        <div class="mb">
+                            <ion-item mode="ios">
+                                <ion-label floating>Re-enter Account Number</ion-label>
+                                <ion-input type="tel" name="reAccountNo" [(ngModel)]="reAccountNo" value="{{reAccountNo}}" formControlName="re_accountNumber"></ion-input>
+                            </ion-item>
+                            <ion-item class="error-block" no-lines *ngIf="( jointHolderDetails.get('re_accountNumber').hasError('equalTo') || jointHolderDetails.get('re_accountNumber').hasError('required') ) && jointHolderDetails.get('re_accountNumber').touched">
+                                <div class="error" *ngIf="jointHolderDetails.get('re_accountNumber').hasError('required') && jointHolderDetails.get('re_accountNumber').touched">
+                                    Re Account Number is required.
+                                </div>
+                                <div class="error" *ngIf="jointHolderDetails.get('re_accountNumber').hasError('equalTo') && jointHolderDetails.get('re_accountNumber').touched">
+                                    Account Number Mismatch
+                                </div>
+                            </ion-item>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Nominee</ion-label>
+                    <ion-select name="nominee" [selectOptions]="selectOptions5">
+                        <ion-option value="Yes" selected>Yes</ion-option>
+                        <ion-option value="No">No</ion-option>
+                    </ion-select>
+                </ion-item>
             </div>
             <div class="add-holder">
-              <button ion-button clear outline mode="md">
-                + Add another Joint Holder
-              </button>
+                <button ion-button clear outline mode="md">
+                    + Add another Joint Holder
+                </button>
             </div>
-          </ion-list>
-      </form>
-      <div class="footer-action-btn">
-          <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
-              CONTINUE
+        </ion-list>
+    </form>
+    <div class="footer-action-btn">
+        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+            CONTINUE
         </button>
-      </div> 
-  </ion-content>
-  
+    </div>
+</ion-content>

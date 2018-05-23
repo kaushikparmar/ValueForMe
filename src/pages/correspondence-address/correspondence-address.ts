@@ -1,13 +1,12 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-// import { FormGroup, FormControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
-  selector: 'page-address-details',
-  templateUrl: 'address-details.html',
+  selector: 'page-correspondence-address',
+  templateUrl: 'correspondence-address.html',
 })
-export class AddressDetailsPage {
+export class CorrespondenceAddressPage {
   public defaultCity = "Mumbai";
   public selectOptions = {
     title: 'Select Birth Place'
@@ -21,7 +20,9 @@ export class AddressDetailsPage {
   public selectOptions3 = {
     title: 'Select Country'
   };
-  
+  public selectOptions4 = {
+    title: 'Select Title'
+  };
   public location = [
     {
       'placeName' : 'Mumbai',
@@ -68,7 +69,7 @@ export class AddressDetailsPage {
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddressDetailsPage');
+    console.log('ionViewDidLoad CorrespondenceAddressPage');
   }
   openModal(){
     let openModal=this.modalCtrl.create('AddressDetailsPopupPage');

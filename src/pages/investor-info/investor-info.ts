@@ -27,6 +27,6 @@ export class InvestorInfoPage {
     this.datePicker.open();
   }
   nextPage(){
-    this.navCtrl.push('AddressDetailsPage');
+    this.navCtrl.push('CorrespondenceAddressPage');
   }
 }

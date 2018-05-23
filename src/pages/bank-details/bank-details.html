@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-    <form>
+    <form novalidate [formGroup]="bankDetails">
         <ion-list mode="ios">
             <div class="custom-select mb">
                 <ion-item mode="ios">
                     <ion-label floating class="custom-float-text">Select Bank</ion-label>
-                    <ion-label class="custom-text" (click)="openModal()">ICICI Bank LTD.
+                    <ion-label class="custom-text" (click)="openModal()">{{defaultBank}}
                     </ion-label>
                 </ion-item>
                 <div class="custom-select-icon">
@@ -20,19 +20,25 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>IFSC Code</ion-label>
-                    <ion-input type="text" value="ICIC0000408"></ion-input>
+                    <ion-input type="text" name="ifsc" formControlName="ifsc" value="" (input)="checkIFSC()"></ion-input>
                 </ion-item>
+                <div class="spinner-container">
+                    <ion-spinner *ngIf="checkIfsc" mode="md"></ion-spinner>
+                </div>
+                <div class="error" *ngIf="showError">
+                    Invalid IFSC code.
+                </div>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Branch Name</ion-label>
-                    <ion-input type="text" value="MUMBAI - NERUL "></ion-input>
+                    <ion-input type="text" name="branchName" formControlName="branchName" value=""></ion-input>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
-                    <ion-label floating>Branch Name</ion-label>
-                    <ion-textarea value="Coral Crest Co-Op Soc, Unit 14, Plot No3, Sector 23, Nerul East- 4000706."></ion-textarea>
+                    <ion-label floating>Branch Address</ion-label>
+                    <ion-textarea name="branchAddress" formControlName="branchAddress" value=""></ion-textarea>
                 </ion-item>
             </div>
             <div class="mb">
@@ -47,13 +53,32 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Account Number</ion-label>
-                    <ion-input type="tel" value="412739865024"></ion-input>
+                    <ion-input type="tel" name="accountNo" [(ngModel)]="accountNo" 
+                        formControlName="accountNumber" 
+                        value="{{accountNo}}" ></ion-input>
+                </ion-item>
+                <ion-item class="error-block" no-lines>
+                        <!-- *ngIf="( bankDetails.get('accountNumber').hasError('required') ) && bankDetails.get('accountNumber').touched" -->
+                    <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('required') && bankDetails.get('accountNumber').touched">
+                        Account Number is required
+                    </div>
+                    <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('maxLength')">
+                        Account Number should not be 14 digits long.
+                    </div>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Re-enter Account Number</ion-label>
-                    <ion-input type="tel" value="412739865024"></ion-input>
+                    <ion-input type="tel" name="reAccountNo" [(ngModel)]="reAccountNo" value="{{reAccountNo}}" formControlName="re_accountNumber"></ion-input>
+                </ion-item>
+                <ion-item class="error-block" no-lines *ngIf="( bankDetails.get('re_accountNumber').hasError('equalTo') || bankDetails.get('re_accountNumber').hasError('required') ) && bankDetails.get('re_accountNumber').touched">
+                    <div class="error" *ngIf="bankDetails.get('re_accountNumber').hasError('required') && bankDetails.get('re_accountNumber').touched">
+                        Re Account Number is required.
+                    </div>
+                    <div class="error" *ngIf="bankDetails.get('re_accountNumber').hasError('equalTo') && bankDetails.get('re_accountNumber').touched">
+                        Account Number Mismatch
+                    </div>
                 </ion-item>
             </div>
         </ion-list>

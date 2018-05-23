@@ -5,8 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http'; 
 import { MyApp } from './app.component';
-
 import { DataProvider } from '../providers/data/data';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ import { DataProvider } from '../providers/data/data';
   providers: [
     StatusBar,
     SplashScreen,
+    DocumentViewer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider
   ]
