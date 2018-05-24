@@ -52,10 +52,10 @@ export class NonKycFamilyPage implements OnInit {
       'icon': './assets/imgs/india-flag.png'
     },{
       'code': '+04',
-      'icon': './assets/imgs/australia-flag.png'
+      'icon': './assets/imgs/england-flag.png'
     },{
       'code': '+23',
-      'icon': './assets/imgs/japan-flag.png'
+      'icon': './assets/imgs/canada-flag.png'
     }
   ];
   public bindIcon: string;
