@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import 'rxjs/add/operator/debounceTime';
@@ -8,7 +8,7 @@ import 'rxjs/add/operator/debounceTime';
   selector: 'page-non-kyc-family',
   templateUrl: 'non-kyc-family.html',
 })
-export class NonKycFamilyPage {
+export class NonKycFamilyPage implements OnInit {
   public selectOptions = {
     title: 'Select Title'
   };
@@ -21,98 +21,137 @@ export class NonKycFamilyPage {
     'familyName': '',
     'isNRI': false
   };
-  public familyName:any;
+  public familyName: any;
   public familyMembers: any = [];
-  public searchFlag:boolean = true;
-  public searching:boolean = false;
-  public familyArray:any = [];
+  public searchFlag: boolean = true;
+  public searching: boolean = false;
+  public familyArray: any = [];
   public noResult: boolean = false;
-  
-  public investorPan:any;
+
+  public investorPan: any;
   public investorPanno: any;
   public showFalseIcon: boolean = false;
   public showTrueIcon: boolean = false;
-  public panSearchFlag:boolean = true;
-  public panSearching:boolean = false;
-  public panArray:any = [];
+  public panSearchFlag: boolean = true;
+  public panSearching: boolean = false;
+  public panArray: any = [];
   public tempCurrentMember: any;
   public isPANRight: boolean;
-  
-  public showOtp:boolean = false;
+
+  public showOtp: boolean = false;
+  // public country: any;
+  // public countryIcon : any;
+  // public tempRemove: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public _cdr: ChangeDetectorRef,
     public modalCtrl: ModalController,
-    public data : DataProvider,
+    public data: DataProvider,
     private ngZone: NgZone
   ) {
   }
 
+  // public countryList = [
+  //   {
+  //     'code' : '+04',
+  //     'icon': './assets/imgs/australia-flag.png'
+  //   },
+  //   {
+  //     'code' : '+23',
+  //     'icon': './assets/imgs/japan-flag.png'
+  //   },
+  //   {
+  //     'code' : '+91',
+  //     'icon': './assets/imgs/india-flag.png'
+  //   }
+  // ]
+  
+  // changeCountry(countryName) {
+  //   for (let obj of this.countryList ){
+  //       if(obj.code === countryName && this.currentMember.isNRI === true){
+  //         this.country = obj.code;
+  //         this.countryIcon = obj.icon;
+  //       }
+  //   }
+  //   this._cdr.detectChanges();
+  // }
+  ngOnInit() {
+    // if(this.currentMember.isNRI === false) {
+    //   this.country = this.countryList[2].code;
+    // } 
+  }
+
+  // checkNri(check) {
+  //   if(check){
+  //     this.tempRemove =JSON.parse(JSON.stringify(this.countryList));
+  //       delete this.countryList[2].code;
+  //     }
+  //   } 
+  
   ionViewDidLoad() {
-    
-    // this.searchControl1.valueChanges.debounceTime(700).subscribe(search => {
-    //   this.searching = false;
-    //   this.setFilterPan();
-    // });
-}
+  }
 
-onFamilyNameChanged() {
-  this.searching = true;
-  this.searchFlag = true;
-  setTimeout(
-    () => {
-      this.setFilteredName();
-    }, 700
-  );
-}
+  onFamilyNameChanged() {
+    this.searching = true;
+    this.searchFlag = true;
+    setTimeout(
+      () => {
+        this.setFilteredName();
+      }, 700
+    );
+  }
 
- //filter name
-onSearchInput(ev) {
-  this.searchFlag= true;
-  this.searching = true;
-  let val = ev.target.value;
-  this.familyArray = this.data.filterName(val);
-  if (val && val.trim() !== '') {
-    if (this.familyArray.length === 0) {
-      this.noResult = true;
+
+
+  //filter name
+  onSearchInput(ev) {
+    this.searchFlag = true;
+    this.searching = true;
+    let val = ev.target.value;
+    this.familyArray = this.data.filterName(val);
+    if (val && val.trim() !== '') {
+      if (this.familyArray.length === 0) {
+        this.noResult = true;
+      } else {
+        this.noResult = false;
+      }
     } else {
       this.noResult = false;
     }
-  } else {
-      this.noResult = false;
   }
-}
 
-public isNewMember(isNew): void {
-  if (isNew) {
-    this.currentMember = {};
-    this.currentMember['name'] = '';
-    this.currentMember['title'] = '';
-    this.currentMember['familyName'] = '';
-    this.currentMember['mobile'] = '';
-    this.currentMember['contact'] = '';
-    this.currentMember['pan_no'] = '';
-    this.currentMember['aadhar_no'] = '';
-    this.currentMember['email'] = '';
-    this.currentMember['isNRI'] = false;
-    this.currentMember['isNewMember'] = true;
+  public isNewMember(isNew): void {
+    if (isNew) {
+      this.currentMember = {};
+      this.currentMember['name'] = '';
+      this.currentMember['title'] = '';
+      this.currentMember['familyName'] = '';
+      this.currentMember['mobile'] = '';
+      this.currentMember['contact'] = '';
+      this.currentMember['pan_no'] = '';
+      this.currentMember['aadhar_no'] = '';
+      this.currentMember['email'] = '';
+      this.currentMember['isNRI'] = false;
+      this.currentMember['isNewMember'] = true;
+    }
   }
-}
 
   public setFilteredName() {
-      this.searching = false; 
-      this.familyMembers = this.data.filterName(this.currentMember.familyName);
-      if (this.familyMembers.length > 0) {
-        this.noResult = false;
-      } else {
-        this.noResult = true;
-        this.searchFlag = false;
-      }
+    this.searching = false;
+    this.familyMembers = this.data.filterName(this.currentMember.familyName);
+    if (this.familyMembers.length > 0) {
+      this.noResult = false;
+    } else {
+      this.noResult = true;
+      this.searchFlag = false;
+    }
   }
+
 
   public investorPAN(pan_no): void {
     this.panSearching = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.ngZone.run(
         () => {
           if (this.tempCurrentMember.pan_no === pan_no) {
@@ -134,20 +173,20 @@ public isNewMember(isNew): void {
           }
         }
       );
-    },700);
+    }, 700);
   }
 
-  public setValue(member){
+  public setValue(member) {
     this.tempCurrentMember = member;
     this.currentMember.familyName = member.familyName;
     this.searchFlag = false;
-    this.noResult = false;  
+    this.noResult = false;
   }
 
 
   //filter pan no
   searchPan(ev) {
-    this.panSearchFlag= true;
+    this.panSearchFlag = true;
     this.panSearching = true;
     let val = ev.target.value;
     this.panArray = this.data.filterPanData(this.investorPan);
@@ -164,24 +203,25 @@ public isNewMember(isNew): void {
         this.showOtp = false;
       }
     } else {
-        // this.panSearching = false;
-        this.showOtp = false;
-        this.showFalseIcon = false;
-        this.showTrueIcon = false;
+      // this.panSearching = false;
+      this.showOtp = false;
+      this.showFalseIcon = false;
+      this.showTrueIcon = false;
     }
   }
 
-  public setFilterPan(){
-    this.panSearching = false; 
+  public setFilterPan() {
+    this.panSearching = false;
     this.investorPanno = this.data.filterPanData(this.investorPan);
   }
 
-  sendOTP(){
-    let otpModal =this.modalCtrl.create('NonKycPopupPage');
+  sendOTP() {
+    let otpModal = this.modalCtrl.create('NonKycPopupPage');
     otpModal.present();
   }
-  openOTP(){
-    let otp =this.modalCtrl.create('OtpPopupPage');
+  openOTP() {
+    this.data.set(this.currentMember);
+    let otp = this.modalCtrl.create('OtpPopupPage');
     otp.present();
   }
 }

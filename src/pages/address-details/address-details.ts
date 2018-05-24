@@ -36,15 +36,15 @@ export class AddressDetailsPage {
       'pinCode' : '456734'
     },
     {
-      'placeName' : 'Bavla',
-      'stateName' : 'Gujarat',
+      'placeName' : 'India Gate',
+      'stateName' : 'Delhi',
       'countryName' : 'India',
       'pinCode' : '382220'
     }
   ];
   public place: any;
   public state: any;
-  public country:any;
+  public country = "India";
   public pincode: any;
   
   constructor(

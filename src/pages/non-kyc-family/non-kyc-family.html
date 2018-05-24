@@ -12,16 +12,16 @@
           <ion-label floating>Enter Family</ion-label>
           <ion-input type="text" name="familyName" [(ngModel)]="currentMember.familyName" (ngModelChange)="onFamilyNameChanged()" value="Pradip Malpute"></ion-input>
         </ion-item>        
-        <div *ngIf="searching" class="spinner-container">
+        <div *ngIf="searching && !currentMember?.isNewMember && currentMember?.familyName !== ''" class="spinner-container">
           <ion-spinner mode="md"></ion-spinner>
         </div>
       </div>
-      <div class="filteredNames" *ngIf="searchFlag">
+      <div class="filteredNames" *ngIf="searchFlag && !currentMember?.isNewMember && currentMember?.familyName !== ''">
         <ion-label *ngFor="let member of familyMembers" (click)="setValue(member)">
             {{member.familyName}}
         </ion-label>
       </div>
-      <div *ngIf="noResult" class="noName">
+      <div *ngIf="noResult && !currentMember?.isNewMember && currentMember?.familyName !== ''" class="noName">
         No name found.
       </div>
 
@@ -63,15 +63,16 @@
       </div>
 
       <div class="intl-tel-input mb">
-        <div class="country-code">
+        <div class="country-code">{{currentMember?.countryCode}}
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
-            <ion-select name="code" [selectOptions]="selectOptions1" [disabled]="!currentMember?.isNRI">
-              <ion-option value="+91" selected>+91</ion-option>
-              <ion-option value="+01">+01</ion-option>
+            <ion-select name="code" [selectOptions]="selectOptions1"  [disabled]="!currentMember?.isNRI">
+              <ion-option value="+91">+91</ion-option>
+              <ion-option value="+04">+04</ion-option>
+              <ion-option value="+23">+23</ion-option> 
             </ion-select>
           </ion-item>
-          <img src="./assets/imgs/india-flag.png" alt="flag">
+          <img src="./assets/imgs/india-flag.png" *ngIf="!currentMember?.isNRI" alt="flag">
         </div>
         <div class="member-no">
           <ion-item mode="ios">
