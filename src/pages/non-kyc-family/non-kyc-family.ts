@@ -38,10 +38,29 @@ export class NonKycFamilyPage implements OnInit {
   public tempCurrentMember: any;
   public isPANRight: boolean;
 
+  
   public showOtp: boolean = false;
   // public country: any;
   // public countryIcon : any;
   // public tempRemove: any;
+
+  public countryCodeArr: Array<any>  = ['+91', '+04', '+23'];
+  public indianCode = '+91';
+  public countryIcon: Array<Object> = [
+    {
+      'code': '+91',
+      'icon': './assets/imgs/india-flag.png'
+    },{
+      'code': '+04',
+      'icon': './assets/imgs/australia-flag.png'
+    },{
+      'code': '+23',
+      'icon': './assets/imgs/japan-flag.png'
+    }
+  ];
+  public bindIcon: string;
+  public showOtherCountryIcon: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -52,43 +71,30 @@ export class NonKycFamilyPage implements OnInit {
   ) {
   }
 
-  // public countryList = [
-  //   {
-  //     'code' : '+04',
-  //     'icon': './assets/imgs/australia-flag.png'
-  //   },
-  //   {
-  //     'code' : '+23',
-  //     'icon': './assets/imgs/japan-flag.png'
-  //   },
-  //   {
-  //     'code' : '+91',
-  //     'icon': './assets/imgs/india-flag.png'
-  //   }
-  // ]
-  
-  // changeCountry(countryName) {
-  //   for (let obj of this.countryList ){
-  //       if(obj.code === countryName && this.currentMember.isNRI === true){
-  //         this.country = obj.code;
-  //         this.countryIcon = obj.icon;
-  //       }
-  //   }
-  //   this._cdr.detectChanges();
-  // }
   ngOnInit() {
-    // if(this.currentMember.isNRI === false) {
-    //   this.country = this.countryList[2].code;
-    // } 
+    
   }
 
-  // checkNri(check) {
-  //   if(check){
-  //     this.tempRemove =JSON.parse(JSON.stringify(this.countryList));
-  //       delete this.countryList[2].code;
-  //     }
-  //   } 
+  checkNRI(flagNRI) {
+    if(flagNRI) {
+      let checkIndex = this.countryCodeArr.indexOf('+91');
+      this.countryCodeArr.splice(checkIndex, 1);
+    } else {
+      this.showOtherCountryIcon = false;
+      this.countryCodeArr.push('+91');
+      this.indianCode = '+91';
+    }
+  } 
   
+  checkSelectedCon(myCode) {
+    this.showOtherCountryIcon = true;
+    for(let icons of this.countryIcon) {
+      if(icons['code'] == myCode) {
+        this.bindIcon = icons['icon'];
+      }
+    }
+  }
+
   ionViewDidLoad() {
   }
 

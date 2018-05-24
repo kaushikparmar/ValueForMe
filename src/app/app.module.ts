@@ -46,10 +46,10 @@ import { CameraProvider } from '../providers/camera/camera';
     StatusBar,
     SplashScreen,
     DocumentViewer,
+    Diagnostic,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     Camera,
-    Diagnostic,
     CameraProvider
   ]
 })

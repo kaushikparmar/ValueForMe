@@ -59,9 +59,9 @@
                         You have already selected Individual previously.
                     </div>
             </div>
-            <div class="mb">
+            <!-- <div class="mb">
                     <img [src]="chosenPicture" onerror="this.src='./assets/imgs/cancel-cheque.png'" alt="profile" >
-            </div>
+            </div> -->
             <div class="mb">
                 <ion-label class="upload-text">Upload:</ion-label>
                 <div class="upload-container">
@@ -78,7 +78,8 @@
           </ion-list>
       </form>
       <div class="footer-action-btn">
-            <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+        <button ion-button round block class="action-btn" 
+[disabled]="currentMember?.isNRI===false && investorType==='NRI'" mode="md" (click)="nextPage()">
                 SUBMIT
           </button>
         </div> 

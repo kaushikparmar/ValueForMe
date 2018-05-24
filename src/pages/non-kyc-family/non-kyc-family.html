@@ -66,13 +66,13 @@
         <div class="country-code">{{currentMember?.countryCode}}
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
-            <ion-select name="code" [selectOptions]="selectOptions1"  [disabled]="!currentMember?.isNRI">
-              <ion-option value="+91">+91</ion-option>
-              <ion-option value="+04">+04</ion-option>
-              <ion-option value="+23">+23</ion-option> 
+            <ion-select name="code" [selectOptions]="selectOptions1" (ngModelChange)="checkSelectedCon($event)" [(ngModel)]="indianCode" [disabled]="!currentMember?.isNRI">
+              <ion-option *ngFor="let code of countryCodeArr" [value]="code">{{code}}</ion-option>
             </ion-select>
           </ion-item>
           <img src="./assets/imgs/india-flag.png" *ngIf="!currentMember?.isNRI" alt="flag">
+          <img [src]="bindIcon" *ngIf="showOtherCountryIcon" alt="flag">
+          <!-- <img src="./assets/imgs/japan-flag.png" *ngIf="currentMember?.isNRI" alt="flag"> -->
         </div>
         <div class="member-no">
           <ion-item mode="ios">
@@ -84,9 +84,9 @@
       <div class="check-nri mb">
         <ion-label>Are you a NRI?</ion-label>
         <div class="switch">
-          <input type="radio" class="switch-input" name="toggle" id="yes" [value]="true" [ngClass]="{'nri-checked':currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI">
+          <input type="radio" class="switch-input" name="toggle" id="yes" [value]="true" [ngClass]="{'nri-checked':currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI" (change)="checkNRI(true)">
           <label for="yes" class="switch-label switch-label-off">Yes</label>
-          <input type="radio" class="switch-input" name="toggle" id="no" [value]="false" [ngClass]="{'nri-checked': !currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI">
+          <input type="radio" class="switch-input" name="toggle" id="no" [value]="false" [ngClass]="{'nri-checked': !currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI" (change)="checkNRI(false)">
           <label for="no" class="switch-label switch-label-on">No</label>
           <span class="switch-selection"></span>
         </div>

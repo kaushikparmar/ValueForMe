@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ActionSheetCont
 Platform } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 import { CameraProvider } from '../../providers/camera/camera';
 
 
@@ -131,6 +131,8 @@ export class InvestorInfoPage {
       loading.dismiss();
     }, error => {
       alert(error);
+    }).catch(err => {
+      console.log('catch', err);
     });
   }
 

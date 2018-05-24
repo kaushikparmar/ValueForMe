@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Camera } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Injectable()
 export class CameraProvider {
@@ -8,6 +8,7 @@ export class CameraProvider {
   }
 
   getPictureFromCamera(): Promise<any> {
+    console.log('getPictureFromCamera', this.camera.PictureSourceType.CAMERA);
     return this.getImage(this.camera.PictureSourceType.CAMERA, true);
   }
 
@@ -31,7 +32,7 @@ export class CameraProvider {
       options['targetWidth'] = 600;
       options['targetHeight'] = 600;
     }
-
+    console.log('this.camera.getPicture');
     return this.camera.getPicture(options).then(imageData => {
       console.log('imageData', imageData);
       const base64Image = 'data:image/png;base64,' + imageData;
