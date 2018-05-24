@@ -45,7 +45,7 @@ export class CorrespondenceAddressPage {
   ];
   public place: any;
   public state: any;
-  public country:any;
+  public country = "India";
   public pincode: any;
   
   constructor(

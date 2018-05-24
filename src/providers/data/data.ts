@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class DataProvider {
+  public currentMember: any;
+
   public familyName: any;
   public usersList: any = [
     {
@@ -14,6 +17,7 @@ export class DataProvider {
       'aadhar_no': 'ABCDEF123456',
       'email': 'rohit.prasad@gmail.com',
       'isNRI': false,
+      'countryCode': '+91',
       'isNewMember': false
     },
     {
@@ -26,6 +30,7 @@ export class DataProvider {
       'aadhar_no': 'ABCDEF123456',
       'email': 'pradip.malpute@gmail.com',
       'isNRI': false,
+      'countryCode': '+91',
       'isNewMember': false
     },
     {
@@ -38,6 +43,7 @@ export class DataProvider {
       'email': 'ravindra.salukhe@gmail.com',
       'name': 'Ravindra Salukhe',
       'isNRI': false,
+      'countryCode': '+91',
       'isNewMember': false
     },
     {
@@ -50,6 +56,7 @@ export class DataProvider {
       'aadhar_no': 'ABCDEF123456',
       'email': 'kaushik.parmar@gmail.com',
       'isNRI': false,
+      'countryCode': '+91',
       'isNewMember': false
     },
     {
@@ -62,11 +69,14 @@ export class DataProvider {
       'email': 'satish.gaurav@gmail.com',
       'name': 'Satish Gaurav',
       'isNRI': false,
+      'countryCode': '+91',
       'isNewMember': false
     }
   ];
 
-  constructor() {
+  constructor(
+    private storage: Storage
+  ) {
   }
 
   public filterName(searchName) {
@@ -80,5 +90,54 @@ export class DataProvider {
       return panNo.value.toLowerCase() === searchPan.toLowerCase();
     })
   }
+
+  public set(currentMemberData): void { 
+    this.currentMember = JSON.parse(JSON.stringify(currentMemberData));
+  }
+  public get(): void { 
+    return this.currentMember;
+  }
+
+
+  
+    // To hold user data and configuration
+    private userPreferences: any = {
+      
+  };
+
+  
+
+  /**
+   * @param key : Getter returns user data as passed key in argument
+   */
+  public getter(key: string): any {
+      return this.userPreferences[key];
+  }
+
+  /**
+   * @param key : Removed user data as passed key in argument
+   */
+  public remove(key: string): any {
+      delete this.userPreferences[key];
+      this.storage.set('userPreferences', JSON.parse(JSON.stringify(this.userPreferences)));
+  }
+
+  /**
+   * @param key : Property nane sets user data with a named key as passed key in argument
+   * @param data : Setter sets user data on passed key in argument
+   */
+  public setter(key: string, data: any): void {
+      this.userPreferences[key] = data;
+      // Update userPreferences in app storage
+      this.storage.set('userPreferences', JSON.parse(JSON.stringify(this.userPreferences)));
+  }
+
+  /**
+   * @param userPreferences : Property sets user preferences
+   */
+  public setUserPreferenceFromStorage(userPreferences: any): void {
+      this.userPreferences = userPreferences;
+  }
+
 
 }

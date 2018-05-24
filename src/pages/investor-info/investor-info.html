@@ -47,16 +47,25 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Investor Type</ion-label>
-                    <ion-select name="investorType" [selectOptions]="selectOptions2">
-                        <ion-option value="Individual" selected>Individual</ion-option>
+                    <ion-select name="investorType" [(ngModel)]="investorType" [selectOptions]="selectOptions2">
+                        <ion-option value="Individual">Individual</ion-option>
                         <ion-option value="NRI">NRI</ion-option>
                     </ion-select>
                   </ion-item>
+                  <div class="error" *ngIf="currentMember?.isNRI && investorType==='Individual'">
+                      You have already selected NRI previously.
+                  </div>
+                  <div class="error" *ngIf="currentMember?.isNRI===false && investorType==='NRI'">
+                        You have already selected Individual previously.
+                    </div>
+            </div>
+            <div class="mb">
+                    <img [src]="chosenPicture" onerror="this.src='./assets/imgs/cancel-cheque.png'" alt="profile" >
             </div>
             <div class="mb">
                 <ion-label class="upload-text">Upload:</ion-label>
                 <div class="upload-container">
-                    <div class="cancelCheque">
+                    <div class="cancelCheque" (click)="changePicture()">
                         <img src="./assets/imgs/cancel-cheque.png" alt="cancel-cheque">
                         <ion-label>Cancelled Cheque</ion-label>
                     </div>

@@ -17,9 +17,16 @@
             <div class="proper-panNo mb">
                 <ion-item mode="ios">
                     <ion-label floating>Holder PAN No.</ion-label>
-                    <ion-input type="tel" name="holderrPan" value="123456ABC"></ion-input>
+                    <ion-input type="text" name="holderPan" formControlName="holderPan" (input)="checkPan()"></ion-input>
                 </ion-item>
-                <ion-icon name="ios-checkmark-outline"></ion-icon>
+                <ion-icon class="false" name="ios-close-outline" *ngIf="showPanError"></ion-icon>
+                <ion-icon class="true" name="ios-checkmark-outline" *ngIf="showPanel"></ion-icon>
+                <div class="spinner-container" *ngIf="checkPanno">
+                    <ion-spinner mode="md"></ion-spinner>
+                </div>
+                <div class="error" *ngIf="showPanError">
+                    Invalid IFSC code.
+                </div>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
@@ -65,7 +72,7 @@
                     </ion-select>
                 </ion-item>
             </div>
-            <div class="hideDetails">
+            <div class="hideDetails" *ngIf="showPanel">
                 <div class="panel panel-1">
                     <div class="collapsible" (click)="openPanel1()" [ngClass]="{'hideInfo': !showDetails1 }">
                         <ion-label>Joint Holder 1 Personal Information</ion-label>
@@ -238,9 +245,9 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Nominee</ion-label>
-                    <ion-select name="nominee" [selectOptions]="selectOptions5">
-                        <ion-option value="Yes" selected>Yes</ion-option>
-                        <ion-option value="No">No</ion-option>
+                    <ion-select name="nominee" formControlName="nominee" [selectOptions]="selectOptions5">
+                        <ion-option value="Yes">Yes</ion-option>
+                        <ion-option value="No" selected>No</ion-option>
                     </ion-select>
                 </ion-item>
             </div>

@@ -91,9 +91,15 @@ page-holding-details {
                     ion-icon{
                         position: absolute;
                         right: 0;
-                        bottom: 0;
                         font-size: 2.4em;
-                        color:map-get($colors,primary);
+                        &.false{
+                            color:red;
+                            bottom: 10px;
+                        }
+                        &.true{
+                            bottom: 0;
+                            color:map-get($colors,primary);
+                        }
                     }
                 }
                 .member-detail{

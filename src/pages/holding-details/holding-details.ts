@@ -40,6 +40,13 @@ export class HoldingDetailsPage implements OnInit {
   branchAddress: any;
   checkIfsc: boolean = false;
   showError: boolean = false;
+
+  panNo: any;
+  checkPanno: boolean = false;
+  showPanError:boolean = false;
+  showPanel:boolean = false;
+
+  nominee: any;
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -49,6 +56,12 @@ export class HoldingDetailsPage implements OnInit {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HoldingDetailsPage');
   }
+
+  public panDetails: any = [
+    {
+      'panNo' : 'ABC1234567'
+    }
+  ]
 
   public accountDetails: any = [
     {
@@ -64,8 +77,11 @@ export class HoldingDetailsPage implements OnInit {
       re_accountNumber: new FormControl('', [Validators.required, this.equalto('accountNumber')]),
       ifsc: new FormControl(''),
       branchName: new FormControl(''),
-      branchAddress: new FormControl('')
+      branchAddress: new FormControl(''),
+      nominee : new FormControl(''),
+      holderPan : new FormControl('')
     });
+    this.jointHolderDetails.controls['nominee'].setValue('No');
   }
   checkIFSC() {
     this.checkIfsc = true;
@@ -113,6 +129,28 @@ export class HoldingDetailsPage implements OnInit {
     };
   }
 
+  checkPan() {
+    this.checkPanno = true;
+    let panNo = this.jointHolderDetails.get('holderPan').value;
+    setTimeout(() => {
+      this.checkPanno = false;
+    }, 700);
+    this.showPanError = false;
+    for (let obj of this.panDetails) {
+      if (obj.panNo === panNo) {
+        setTimeout(() => {
+          this.showPanError = false;
+        }, 700);
+        this.showPanel = true;
+      } else {
+        setTimeout(() => {
+          this.showPanError = true;
+        }, 700);
+        this.showPanel = false;
+      }
+    }
+  }
+
   openModal() {
     let openModal = this.modalCtrl.create('BankDetailsPopupPage');
     openModal.present();
@@ -126,7 +164,13 @@ export class HoldingDetailsPage implements OnInit {
     this.datePicker.open();
   }
   nextPage() {
-    this.navCtrl.push('NomineeDetailsPage');
+    if(this.jointHolderDetails.get('nominee').value === 'Yes' ) {
+      this.navCtrl.push('NomineeDetailsPage');
+    } else if(this.jointHolderDetails.get('nominee').value === 'No') {
+      this.navCtrl.push('RegulatoryInfoPage');
+    } else {
+      this.navCtrl.push('NomineeDetailsPage');
+    }
   }
   openPanel1() {
     this.showDetails1 = !this.showDetails1;
