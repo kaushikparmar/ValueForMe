@@ -1,18 +1,24 @@
 page-bank-details-popup {
     ion-content{
         border-radius: 5px;
+        h4{
+            font : {
+                size :1.8rem;
+            }
+            margin:20px 0 0;
+            color:rgb(83,181,72);
+        }
+        div[ion-fixed]{
+            width: 100%;
+            margin: 0;
+            padding: 0 25px 0 25px;
+        }
         .scroll-content{
             padding: 10px 15px 20px;
             text-align: center;
             display: flex;
             flex-flow: column nowrap;
             justify-content: space-between;
-        }
-        h4{
-            font : {
-                size :1.8rem;
-            }
-            color:rgb(83,181,72);
         }
         .bank{
             border: 0.7px solid rgb(96,96,96);
@@ -26,6 +32,13 @@ page-bank-details-popup {
             img{
                 margin: auto;
                 width: 45%;
+            }
+        }
+        .top-bank{
+            margin-top: 90px;
+            height: 220px;
+            .scroll-content{
+                padding: 0;
             }
         }
         .bank-name{

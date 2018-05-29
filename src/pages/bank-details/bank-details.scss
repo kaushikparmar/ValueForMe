@@ -10,6 +10,15 @@ page-bank-details {
                     margin-bottom: 30px;
                     position: relative;
                 }
+                .header{
+                    color:rgb(96,96,96);
+                    font : {
+                        size : 1.6rem;
+                        weight:500;
+                    }
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
                 .spinner-container{
                     position: absolute;
                     right: 0;

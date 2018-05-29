@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams, ViewController, ModalController } 
   templateUrl: 'non-kyc-popup.html',
 })
 export class NonKycPopupPage {
-
+  public pageName: any;
   constructor(
     public navCtrl: NavController,
     public renderer: Renderer,
@@ -16,16 +16,23 @@ export class NonKycPopupPage {
     public navParams: NavParams) {
   }
   ionViewDidLoad() {
+    this.pageName = this.navParams.get('pageName');
     this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
   }
   public dismiss(): void {
     this.viewCtrl.dismiss();
   }
   openOTP(){
-    let otp =this.modalCtrl.create('OtpPopupPage');
+    console.log(this.pageName);
+    if(this.pageName === 'holding'){
+        this.viewCtrl.dismiss();
+    } else {
+      let otp =this.modalCtrl.create('OtpPopupPage');
     otp.present();
     setTimeout(() => {
       this.viewCtrl.dismiss();
   }, 500);
   }
+    }
+    
 }

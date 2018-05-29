@@ -25,4 +25,7 @@ export class OtpPopupPage {
   }, 500);
   }
 
+  public dismissModal(): void{
+    this.viewCtrl.dismiss(); 
+  }
 }

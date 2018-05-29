@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-
+import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
@@ -32,6 +32,9 @@ export class HoldingDetailsPage implements OnInit {
   public selectOptions5 = {
     title: 'Select Nominee'
   };
+  public selectOptions6 = {
+    title: 'Select Joint Holder'
+  };
   showDetails1: boolean = false;
   showDetails2: boolean = false;
   showDetails3: boolean = false;
@@ -40,16 +43,30 @@ export class HoldingDetailsPage implements OnInit {
   branchAddress: any;
   checkIfsc: boolean = false;
   showError: boolean = false;
-
+  hideJointDetails: boolean = false;
   panNo: any;
   checkPanno: boolean = false;
   showPanError:boolean = false;
   showPanel:boolean = false;
-
+  properPan:boolean = false;
   nominee: any;
+
+  public jointHolderData= {
+    'jointHolderInfo' : 
+      {
+        'panNumber' : '',
+        'aadharNumber' : '',
+        'jointHolderName' : '',
+        'emailId' : '',
+        'dob' : '',
+        'nominee' : ''
+      }
+  }
+
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
+    public data: DataProvider,
     public navParams: NavParams) {
   }
 
@@ -79,10 +96,25 @@ export class HoldingDetailsPage implements OnInit {
       branchName: new FormControl(''),
       branchAddress: new FormControl(''),
       nominee : new FormControl(''),
-      holderPan : new FormControl('')
+      holderPan : new FormControl(''),
+      emailId: new FormControl(''),
+      aadharNo: new FormControl(''),
+      holderName : new FormControl(''),
+      dob: new FormControl(''),
+      jointHolder: new FormControl('')
     });
     this.jointHolderDetails.controls['nominee'].setValue('No');
+    this.jointHolderDetails.controls['jointHolder'].setValue('Single');
   }
+  checkJointHolder() {
+    if(this.jointHolderDetails.get('jointHolder').value === 'Joint Holder'){
+      this.hideJointDetails = true;
+    }
+    if(this.jointHolderDetails.get('jointHolder').value === 'Single'){
+      this.hideJointDetails = false;
+    }
+  }
+  
   checkIFSC() {
     this.checkIfsc = true;
     let ifsc = this.jointHolderDetails.get('ifsc').value;
@@ -141,12 +173,15 @@ export class HoldingDetailsPage implements OnInit {
         setTimeout(() => {
           this.showPanError = false;
         }, 700);
-        this.showPanel = true;
+        this.jointHolderData['jointHolderInfo'].panNumber = panNo;
+        this.showPanel = false;
+        this.properPan=true;
       } else {
         setTimeout(() => {
           this.showPanError = true;
         }, 700);
-        this.showPanel = false;
+        this.properPan=false;
+        this.showPanel = true;
       }
     }
   }
@@ -162,15 +197,35 @@ export class HoldingDetailsPage implements OnInit {
   }
   dateChanged() {
     this.datePicker.open();
+    this.jointHolderData['jointHolderInfo'].dob = this.jointHolderDetails.get('dob').value;
   }
+
+  email() {
+    this.jointHolderData['jointHolderInfo'].emailId = this.jointHolderDetails.get('emailId').value;
+  }
+  aadhar() {
+    this.jointHolderData['jointHolderInfo'].aadharNumber = this.jointHolderDetails.get('aadharNo').value;
+  }
+  holdername() {
+    this.jointHolderData['jointHolderInfo'].jointHolderName = this.jointHolderDetails.get('holderName').value;
+  }
+  sendOTP() {
+    let otpModal = this.modalCtrl.create('NonKycPopupPage',{pageName : 'holding'});
+    otpModal.present();
+  }
+
   nextPage() {
     if(this.jointHolderDetails.get('nominee').value === 'Yes' ) {
       this.navCtrl.push('NomineeDetailsPage');
+      this.jointHolderData['jointHolderInfo'].nominee = this.jointHolderDetails.get('nominee').value;
     } else if(this.jointHolderDetails.get('nominee').value === 'No') {
       this.navCtrl.push('RegulatoryInfoPage');
+      this.jointHolderData['jointHolderInfo'].nominee = this.jointHolderDetails.get('nominee').value;
     } else {
       this.navCtrl.push('NomineeDetailsPage');
     }
+    this.data.dataSet(this.jointHolderData);
+    console.log(this.data);
   }
   openPanel1() {
     this.showDetails1 = !this.showDetails1;

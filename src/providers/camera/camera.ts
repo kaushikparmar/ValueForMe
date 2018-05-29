@@ -7,10 +7,10 @@ export class CameraProvider {
   constructor(private camera: Camera) {
   }
 
-  getPictureFromCamera(): Promise<any> {
-    console.log('getPictureFromCamera', this.camera.PictureSourceType.CAMERA);
-    return this.getImage(this.camera.PictureSourceType.CAMERA, true);
-  }
+  // getPictureFromCamera(): Promise<any> {
+  //   console.log('getPictureFromCamera', this.camera.PictureSourceType.CAMERA);
+  //   return this.getImage(this.camera.PictureSourceType.CAMERA, true);
+  // }
 
   getPictureFromPhotoLibrary(): Promise<any> {
     return this.getImage(this.camera.PictureSourceType.PHOTOLIBRARY);

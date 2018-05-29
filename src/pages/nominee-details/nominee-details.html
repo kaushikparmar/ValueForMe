@@ -11,13 +11,13 @@
       <div class="mb">
         <ion-item mode="ios">
           <ion-label floating>Nominee 1 Name</ion-label>
-          <ion-input type="text" name="Nominee" value="Govind Kondhe"></ion-input>
+          <ion-input type="text" name="nomineeName" value="" [(ngModel)]="nomineeName" (ngModelChange)="getName(nomineeName)" ></ion-input>
         </ion-item>
       </div>
       <div class="custom-select mb">
         <ion-item mode="ios">
           <ion-label floating>Nominee 1 Relationship</ion-label>
-          <ion-select name="place" [selectOptions]="selectOptions">
+          <ion-select name="relationship" [selectOptions]="selectOptions" [(ngModel)]="relationship" (ngModelChange)="checkRelation(relationship)">
             <ion-option value="Wife" selected>Wife</ion-option>
             <ion-option value="Husband">Husband</ion-option>
           </ion-select>
@@ -26,7 +26,7 @@
       <div class="custom-select mb">
         <ion-item mode="ios">
           <ion-label floating>Select Nominee Type</ion-label>
-          <ion-select name="place" [selectOptions]="selectOptions1">
+          <ion-select name="nomineeType" [selectOptions]="selectOptions1" [(ngModel)]="nomineeType" (ngModelChange)="checkType(nomineeType)">
             <ion-option value="Minor" selected>Minor</ion-option>
             <ion-option value="Major">Major</ion-option>
           </ion-select>
@@ -35,14 +35,14 @@
       <div class="dob mb">
         <ion-item mode="ios">
           <ion-label floating>Nominee 1 Date of Birth</ion-label>
-          <ion-datetime #datePicker displayFormat="DD MMM, YYYY"></ion-datetime>
+          <ion-datetime #datePicker displayFormat="DD MMM, YYYY" name="datePick" [(ngModel)]="datePick" (ngModelChange)="dateChanged($event)"></ion-datetime>
         </ion-item>
-        <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged()">
+        <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged($event)">
       </div>
       <div class="mb">
         <ion-item mode="ios">
           <ion-label floating>Nominee Percentage</ion-label>
-          <ion-input type="tel" name="percentage" value="100"></ion-input>
+          <ion-input type="tel" name="percentage" value="100" [(ngModel)]="percentage" (ngModelChange)="checkShare(percentage)"></ion-input>
         </ion-item>
       </div>
       <div class="add-holder">

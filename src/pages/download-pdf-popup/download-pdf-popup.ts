@@ -1,8 +1,9 @@
 import { Component, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
-// import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-// import { File } from '@ionic-native/file';
+import { IonicPage, NavController, NavParams, ViewController, Platform,AlertController } from 'ionic-angular';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+import { DataProvider } from '../../providers/data/data';
 declare var cordova: any;
 // import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
@@ -14,16 +15,18 @@ declare var cordova: any;
 })
 export class DownloadPdfPopupPage {
   // fileTransfer:any;
-  // storageDirectory: string = '';
+  storageDirectory: string = '';
   //  pdfSrc: string = '../assets/doc/report.pdf';
+  pdfUrl:any;
   constructor(
     public navCtrl: NavController,
     public renderer: Renderer,
     private document: DocumentViewer,
-    // private transfer: FileTransfer, 
-    // private file: File,
-    // public alertCtrl:AlertController,
+    private transfer: FileTransfer, 
+    private file: File,
+    public alertCtrl:AlertController,
     public platform: Platform,
+    public data: DataProvider,
     public viewCtrl: ViewController, 
     public navParams: NavParams) {
       // this.platform.ready().then(() => {
@@ -46,11 +49,29 @@ export class DownloadPdfPopupPage {
     }
     
     download() {
-      const options: DocumentViewerOptions = {
-        title: 'My PDF'
-    }
-      const imgeLocation = `${cordova.file.applicationDirectory}www/assets/doc/${'report.pdf'}`;
-      this.document.viewDocument(imgeLocation, 'application/pdf', options)
+    //   const options: DocumentViewerOptions = {
+    //     title: 'My PDF'
+    // }
+    //   // const imgeLocation = `${cordova.file.applicationDirectory}www/assets/doc/${'report.pdf'}`;
+      let pdfLocation = this.pdfUrl;
+    //   console.log(pdfLocation);
+    //   this.document.viewDocument(pdfLocation, 'application/pdf', options)
+      let path = null;
+ 
+      if (this.platform.is('ios')) {
+        path = this.file.documentsDirectory;
+      } else if (this.platform.is('android')) {
+        path = this.file.dataDirectory;
+      }
+   
+      const transfer = this.transfer.create();
+      console.log('pdfUrl to download', this.pdfUrl);
+      transfer.download(this.pdfUrl, path + 'myfile.pdf').then(entry => {
+        let url = entry.toURL();
+        console.log('entry.toURL', url);
+        this.document.viewDocument(url, 'application/pdf', {});
+      });
+    
       // let blob: Blob = this.b64toBlob(dataBlob, 'application/pdf');
       // let pathFile: string;
       // const options : DocumentViewerOptions = {
@@ -61,12 +82,12 @@ export class DownloadPdfPopupPage {
 
       //   const fileTransfer: FileTransferObject = this.transfer.create();
   
-      //   const fileLocation = 'file:///data/user/0/io.ionic.starter/files/www/assets/doc/report.pdf';
+      //   const fileLocation = this.pdfUrl;
   
-      //   fileTransfer.download(fileLocation, this.storageDirectory + "/image").then((entry) => {
+      //   fileTransfer.download(fileLocation, this.storageDirectory + "report.pdf").then((entry) => {
       //     const alertSuccess = this.alertCtrl.create({
       //       title: `Download Succeeded!`,
-      //       subTitle: `${image} was successfully downloaded to: ${entry.toURL()}`,
+      //       subTitle: `${fileLocation} was successfully downloaded to: ${entry.toURL()}`,
       //       buttons: ['Ok']
       //     });
   
@@ -76,7 +97,7 @@ export class DownloadPdfPopupPage {
       //     console.log(error);
       //     const alertFailure = this.alertCtrl.create({
       //       title: `Download Failed!`,
-      //       subTitle: `${image} was not successfully downloaded. Error code: ${error.code}`,
+      //       subTitle: `${fileLocation} was not successfully downloaded. Error code: ${error.code}`,
       //       buttons: ['Ok']
       //     });
   
@@ -89,6 +110,7 @@ export class DownloadPdfPopupPage {
 
   ionViewDidLoad() {
     this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
+    this.pdfUrl = this.data.getPdfUrl();
   }
   public dismiss(): void {
     this.viewCtrl.dismiss();

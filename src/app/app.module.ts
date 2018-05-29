@@ -6,8 +6,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { Diagnostic } from '@ionic-native/diagnostic';
-// import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http'; 
 import { MyApp } from './app.component';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 import { DataProvider } from '../providers/data/data';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { CameraProvider } from '../providers/camera/camera';
@@ -36,7 +38,7 @@ import { CameraProvider } from '../providers/camera/camera';
       },
     }),
     IonicStorageModule.forRoot(),
-    // HttpClientModule
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,6 +49,9 @@ import { CameraProvider } from '../providers/camera/camera';
     SplashScreen,
     DocumentViewer,
     Diagnostic,
+    File,
+    FileTransfer,
+    FileTransferObject,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     Camera,

@@ -107,9 +107,11 @@ page-non-kyc-family {
                         img{
                             position: absolute;
                             left:0;
-                            bottom: 0.8em;
+                            bottom: 0.6em;
+                            width: 22%;
                         }
                         ion-select{
+                            height: 23px;
                             max-width: 100%;
                             padding: 0px 15px 6px 0;
                             // height: 70px;

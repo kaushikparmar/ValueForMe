@@ -10,13 +10,13 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Address 1</ion-label>
-                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-textarea>
+                    <ion-textarea name="address1" value="E 701 Lotus Corporate Park, Laxmi Nagar," [(ngModel)]="address1" (ngModelChange)="checkAddress1(address1)"></ion-textarea>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Address 2</ion-label>
-                    <ion-textarea value="Western Express Highway, Goregaon East,"></ion-textarea>
+                    <ion-textarea name="address2" value="Western Express Highway, Goregaon East," [(ngModel)]="address2" (ngModelChange)="checkAddress2(address2)"></ion-textarea>
                 </ion-item>
             </div>
             <div class="mb">

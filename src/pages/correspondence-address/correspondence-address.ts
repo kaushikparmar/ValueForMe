@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
@@ -7,7 +8,8 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
   templateUrl: 'correspondence-address.html',
 })
 export class CorrespondenceAddressPage {
-  public defaultCity = "Mumbai";
+  public defaultIndianCity = "Mumbai";
+  public defaultOverseasCity = "";
   public selectOptions = {
     title: 'Select Birth Place'
   };
@@ -23,66 +25,136 @@ export class CorrespondenceAddressPage {
   public selectOptions4 = {
     title: 'Select Title'
   };
-  public location = [
-    {
-      'placeName' : 'Mumbai',
-      'stateName' : 'Maharashtra',
-      'countryName' : 'India',
-      'pinCode' : '285643'
-    },
-    {
-      'placeName' : 'Kanpur',
-      'stateName' : 'Uttar Pradesh',
-      'countryName' : 'India',
-      'pinCode' : '456734'
-    },
-    {
-      'placeName' : 'Bavla',
-      'stateName' : 'Gujarat',
-      'countryName' : 'India',
-      'pinCode' : '382220'
-    }
-  ];
-  public place: any;
-  public state: any;
-  public country = "India";
-  public pincode: any;
+  public selectOptions5 = {
+    title: 'Select Resident Type'
+  };
   
+  public overSeasAddress1: string;
+  public overSeasAddress2: string;
+  public indianAddress1: string;
+  public indianAddress2: string;
+  public overseasCountryName: string;
+  public addressDetails = {
+      'overseasAddress':
+        {
+          'address1': '',
+          'address2': '',
+          'city':'',
+          'placeName': '',
+          'stateName': '',
+          'pincode': '',
+          'countryName': '',
+        },
+      'indianAddress':
+        {
+          'address1': '',
+          'address2': '',
+          'placeName': '',
+          'city':'',
+          'stateName': '',
+          'pincode': '',
+          'countryName': 'India',
+        }
+    };
+
+  public place: any;
+  public overseasState: any;
+  public country = "India";
+  public overseasPincode: any;
+  public indiaPincode: any;
+  public indianState: any;
+  public overseasCity:any;
   constructor(
     public navCtrl: NavController,
     public _cdr: ChangeDetectorRef,
-    public modalCtrl: ModalController, 
+    public modalCtrl: ModalController,
+    public data:DataProvider,
     public navParams: NavParams) {
-      
-    }
-    
-    onPlaceChange(): void{
-      
-      for(let obj of this.location){
-        if(obj.placeName === this.place){
-          this.state = obj.stateName;
-          this.country = obj.countryName;
-          this.pincode = obj.pinCode;
-        }
-      }
-        this._cdr.detectChanges();
-    }
+
+  }
+  public overseasAddress1(overSeasAddress1): void {
+    this.addressDetails['overseasAddress'].address1 = overSeasAddress1;
+  }
+  public overseasAddress2(overSeasAddress2): void {
+    this.addressDetails['overseasAddress'].address2 = overSeasAddress2;
+  }
+  public indiaAddress1(indianAddress1): void {
+    this.addressDetails['indianAddress'].address1 = indianAddress1;
+  }
+  public indiaAddress2(indianAddress2): void {
+    this.addressDetails['indianAddress'].address2 = indianAddress2;
+  }
+  
+  public overSeasPincode(pincode): void {
+    this.addressDetails['overseasAddress'].pincode = pincode;
+  }
+  // onPlaceChangeOverseas(): void {
+
+  //   for (let obj of this.overSeasLocation) {
+  //     if (obj.placeName === this.place) {
+  //       this.overseasState = obj.stateName;
+  //       this.country = obj.countryName;
+  //       this.overseasPincode = obj.pinCode;
+  //       this.addressDetails['overseasAddress'].placeName = this.place;
+  //       this.addressDetails['overseasAddress'].stateName = this.overseasState;
+  //       this.addressDetails['overseasAddress'].pincode = this.overseasPincode;
+
+  //     }
+  //   }
+  //   this._cdr.detectChanges();
+  // }
+
+  onStateChange(state){
+    // this.indianState = state;
+    this.addressDetails['indianAddress'].stateName = state;
+  }
+  onInput(pincode){
+    // this.indiaPincode = pincode;
+    this.addressDetails['indianAddress'].pincode = pincode;
+  }
+  overseasCountry(country){
+    this.addressDetails['overseasAddress'].countryName= country;
+  }
+  changeOverseasState(state){
+    this.addressDetails['overseasAddress'].stateName= state;
+  }
+  changeOverseasCity(city){
+    this.addressDetails['overseasAddress'].city= city;
+  }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CorrespondenceAddressPage');
   }
-  openModal(){
-    let openModal=this.modalCtrl.create('AddressDetailsPopupPage');
-    openModal.present();
-    openModal.onDidDismiss( data => {
-      if(data !== undefined){
-        this.defaultCity = data;
+  openIndianModal() {
+    let openModal1 = this.modalCtrl.create('AddressDetailsPopupPage');
+    openModal1.present();
+    openModal1.onDidDismiss(data => {
+      if (data !== undefined) {
+        this.defaultIndianCity = data; 
+        this.addressDetails['indianAddress'].city = this.defaultIndianCity;
       }
     });
   }
+  // openOverseasModal() {
+  //   let openModal2 = this.modalCtrl.create('AddressDetailsPopupPage');
+  //   openModal2.present();
+  //   openModal2.onDidDismiss(data => {
+  //     if (data !== undefined) {
+  //       this.defaultOverseasCity = data;
+  //       this.addressDetails['overseasAddress'].city = this.defaultOverseasCity;
+        
+  //     }
+  //   });
+  // }
+  onPlaceChangeOverseas(place) {
+    this.addressDetails['overseasAddress'].placeName= place;
+  }
 
 
-  nextPage(){
+  nextPage() {
     this.navCtrl.push('HoldingDetailsPage');
+    this.data.dataSet(this.addressDetails);
+    console.log(this.data);
   }
 }

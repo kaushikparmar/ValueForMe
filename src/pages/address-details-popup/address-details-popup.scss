@@ -1,6 +1,12 @@
 page-address-details-popup {
+  
     ion-content{
         border-radius: 5px;
+        div[ion-fixed]{
+            width: 100%;
+            margin: 0;
+            padding: 0 25px 0 25px;
+        }
         .scroll-content{
             padding: 10px 15px 20px;
             text-align: center;
@@ -8,6 +14,7 @@ page-address-details-popup {
             flex-flow: column nowrap;
             justify-content: space-between;
         }
+        
         h4{
             font : {
                 size :1.8rem;
@@ -36,6 +43,13 @@ page-address-details-popup {
             }
             text-overflow: initial;
             white-space: initial;
+        }
+        .top-city{
+            margin-top: 90px;
+            height: 220px;
+            .scroll-content{
+                padding: 0;
+            }
         }
         .view-all{
             // margin-top: -8px;

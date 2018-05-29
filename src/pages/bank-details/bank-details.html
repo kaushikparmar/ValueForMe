@@ -7,10 +7,12 @@
 <ion-content padding>
     <form novalidate [formGroup]="bankDetails">
         <ion-list mode="ios">
+            <ion-label class="header" *ngIf="showNRIAccount">NRI Account</ion-label>
+            <ion-label class="header" *ngIf="showIndiaAccount">Saving Account</ion-label>
             <div class="custom-select mb">
                 <ion-item mode="ios">
                     <ion-label floating class="custom-float-text">Select Bank</ion-label>
-                    <ion-label class="custom-text" (click)="openModal()">{{defaultBank}}
+                    <ion-label class="custom-text" (click)="openModal()" name="bank" formContolName="bank">{{defaultBank}}
                     </ion-label>
                 </ion-item>
                 <div class="custom-select-icon">
@@ -32,29 +34,38 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Branch Name</ion-label>
-                    <ion-input type="text" name="branchName" formControlName="branchName" value=""></ion-input>
+                    <ion-input type="text" name="branchName" formControlName="branchName" value="" (ionBlur)="branchname()"></ion-input>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Branch Address</ion-label>
-                    <ion-textarea name="branchAddress" formControlName="branchAddress" value=""></ion-textarea>
+                    <ion-textarea name="branchAddress" formControlName="branchAddress" value="" (ionBlur)="branchaddress()"></ion-textarea>
                 </ion-item>
             </div>
-            <div class="mb">
+            <div class="mb" *ngIf="showNRIAccount">
                 <ion-item mode="ios">
                     <ion-label floating>Non-Resident</ion-label>
-                    <ion-select name="outsideInida" [selectOptions]="selectOptions">
+                    <ion-select name="outsideInida" [selectOptions]="selectOptions" formControlName="outsideInida" (ngModelChange)="checkResident()">
                         <ion-option value="External">External</ion-option>
                         <ion-option value="Internal" selected>Internal</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
+            <div class="mb" *ngIf="showIndiaAccount">
+                    <ion-item mode="ios">
+                        <ion-label floating>Select Account</ion-label>
+                        <ion-select name="insideIndia" [selectOptions]="selectOptions2" formControlName="insideIndia" (ngModelChange)="checkInternalResident()">
+                            <ion-option value="Saving" selected>Saving</ion-option>
+                            <ion-option value="Current">Current</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Account Number</ion-label>
                     <ion-input type="tel" name="accountNo" [(ngModel)]="accountNo" 
-                        formControlName="accountNumber" 
+                        formControlName="accountNumber" (input)="checkAccount(accountNo)" 
                         value="{{accountNo}}" ></ion-input>
                 </ion-item>
                 <ion-item class="error-block" no-lines>
@@ -62,7 +73,7 @@
                     <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('required') && bankDetails.get('accountNumber').touched">
                         Account Number is required
                     </div>
-                    <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('maxLength')">
+                    <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('maxlength')">
                         Account Number should not be 14 digits long.
                     </div>
                 </ion-item>
@@ -85,7 +96,7 @@
 
     </form>
     <div class="footer-action-btn">
-        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+        <button ion-button round block class="action-btn" mode="md" [disabled]="showError || bankDetails.invalid" (click)="nextPage()">
             COMPLETE REGISTRATION
         </button>
     </div>

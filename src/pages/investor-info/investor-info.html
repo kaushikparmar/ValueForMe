@@ -5,12 +5,12 @@
   </ion-header>
   
   <ion-content padding>
-      <form>
+      <form #investorForm="ngForm">
           <ion-list mode="ios">
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Marital Status</ion-label>
-                    <ion-select name="status" [selectOptions]="selectOptions1">
+                    <ion-select name="status" [selectOptions]="selectOptions" [(ngModel)]="marital" (ngModelChange)="checkMarital(marital)">
                         <ion-option value="Single" selected>Single</ion-option>
                         <ion-option value="Married">Married</ion-option>
                     </ion-select>
@@ -19,7 +19,7 @@
             <div class="mb">
               <ion-item mode="ios">
                 <ion-label floating>Mother's Name</ion-label>
-                <ion-input type="text" name="motherName" value="Anuradha Patel"></ion-input>
+                <ion-input type="text" name="motherName" [(ngModel)]="mothername" (ngModelChange)="setName(mothername)" value="Anuradha Patel"></ion-input>
               </ion-item>
             </div>
             <ion-row>
@@ -27,17 +27,17 @@
                   <div class="dob mb">
                       <ion-item mode="ios">
                         <ion-label floating>Date of Birth</ion-label>
-                        <ion-datetime  #datePicker displayFormat="MM/DD/YYYY"></ion-datetime>
+                        <ion-datetime name="dob" #datePicker displayFormat="MM/DD/YYYY" (ngModelChange)="dateChanged($event)" [(ngModel)]="dob"></ion-datetime>
                       </ion-item>
-                      <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged()">
+                      <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged(dob)">
                     </div>
               </ion-col>
               <ion-col col-6>
                   <div class="mb">
                       <ion-item mode="ios">
                           <ion-label floating>Gender</ion-label>
-                          <ion-select name="gender" [selectOptions]="selectOptions1">
-                              <ion-option value="Female" selected>Male</ion-option>
+                          <ion-select name="gender" [selectOptions]="selectOptions1" [(ngModel)]="gender" (ngModelChange)="checkGender(gender)">
+                              <ion-option value="Female" selected>Female</ion-option>
                               <ion-option value="Male">Male</ion-option>
                           </ion-select>
                         </ion-item>
@@ -47,7 +47,7 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Investor Type</ion-label>
-                    <ion-select name="investorType" [(ngModel)]="investorType" [selectOptions]="selectOptions2">
+                    <ion-select name="investorType" [(ngModel)]="investorType" [selectOptions]="selectOptions2" (ngModelChange)="checkInvestor(investorType)">
                         <ion-option value="Individual">Individual</ion-option>
                         <ion-option value="NRI">NRI</ion-option>
                     </ion-select>
@@ -65,12 +65,12 @@
             <div class="mb">
                 <ion-label class="upload-text">Upload:</ion-label>
                 <div class="upload-container">
-                    <div class="cancelCheque" (click)="changePicture()">
+                    <div class="cancelCheque">
                         <img src="./assets/imgs/cancel-cheque.png" alt="cancel-cheque">
                         <ion-label>Cancelled Cheque</ion-label>
                     </div>
-                    <div class="signature">
-                        <img src="./assets/imgs/sign.png" alt="sign">
+                    <div class="signature" (click)="changePicture()">
+                        <img src="./assets/imgs/sign.png" alt="sign" >
                         <ion-label>Digital Signature</ion-label>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
       </form>
       <div class="footer-action-btn">
         <button ion-button round block class="action-btn" 
-[disabled]="currentMember?.isNRI===false && investorType==='NRI'" mode="md" (click)="nextPage()">
+            [disabled]="(currentMember?.isNRI===false && investorType==='NRI') || (currentMember?.isNRI && investorType==='Individual')" mode="md" (click)="nextPage()">
                 SUBMIT
           </button>
         </div> 

@@ -35,7 +35,7 @@ export class NonKycFamilyPage implements OnInit {
   public panSearchFlag: boolean = true;
   public panSearching: boolean = false;
   public panArray: any = [];
-  public tempCurrentMember: any;
+  public tempCurrentMember: any = {};
   public isPANRight: boolean;
 
   
@@ -160,7 +160,7 @@ export class NonKycFamilyPage implements OnInit {
     setTimeout(() => {
       this.ngZone.run(
         () => {
-          if (this.tempCurrentMember.pan_no === pan_no) {
+          if (this.tempCurrentMember && (this.tempCurrentMember.pan_no === pan_no)) {
             this.currentMember = JSON.parse(JSON.stringify(this.tempCurrentMember));
             // this.showTrueIcon = true;
             // this.showFalseIcon = false;
@@ -171,7 +171,7 @@ export class NonKycFamilyPage implements OnInit {
             // this.showFalseIcon = true;
             // this.showTrueIcon = false;
             this.currentMember = {};
-            this.currentMember['familyName'] = JSON.parse(JSON.stringify(this.tempCurrentMember.familyName));
+            this.currentMember['familyName'] = this.tempCurrentMember ? this.tempCurrentMember.familyName : "";
             this.currentMember['isNRI'] = false;
             this.isPANRight = false;
             this.panSearching = false;
@@ -227,6 +227,7 @@ export class NonKycFamilyPage implements OnInit {
   }
   openOTP() {
     this.data.set(this.currentMember);
+    this.data.dataSet(this.currentMember);
     let otp = this.modalCtrl.create('OtpPopupPage');
     otp.present();
   }

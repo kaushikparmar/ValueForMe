@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ActionSheetController, ViewController,
-Platform } from 'ionic-angular';
+import {
+  IonicPage, NavController, NavParams, LoadingController, ActionSheetController, ViewController,
+  Platform,ToastController
+} from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { Camera } from '@ionic-native/camera';
+// import { Camera } from '@ionic-native/camera';
 import { CameraProvider } from '../../providers/camera/camera';
 
 
@@ -25,48 +27,97 @@ export class InvestorInfoPage {
     title: 'Select Investment Type'
   };
   public currentMember: any;
-  public investorType: any;
   public uploadedData: any = {};
+
+  public marital: string;
+  public mothername: string;
+  public dob: any;
+  public gender: any;
+  public investorType: any;
+
+  public investoInfoPage =
+    {
+      'investorInfo':
+        {
+          'maritalStatus': '',
+          'motherName': '',
+          'dob': '',
+          'gender': '',
+          'investorType': '',
+        }
+    }
+    ;
+
   constructor(
     public navCtrl: NavController,
     public viewCtrl: ViewController,
-    private camera: Camera,
+    public toastCtrl: ToastController,
+    // private camera: Camera,
     // private data: data,
     public actionsheetCtrl: ActionSheetController,
     public cameraProvider: CameraProvider,
     public platform: Platform,
     public loadingCtrl: LoadingController,
-    public data: DataProvider, 
+    public data: DataProvider,
     private diagnostic: Diagnostic,
     public navParams: NavParams) {
   }
-  
+
+  public checkMarital(status: any): void {
+    if (this.investoInfoPage !== undefined && this.investoInfoPage.investorInfo !== undefined && this.investoInfoPage.investorInfo.maritalStatus !== undefined) {
+      this.investoInfoPage.investorInfo.maritalStatus = status;
+    }
+  }
+  public setName(name: any): void {
+    if (this.investoInfoPage !== undefined && this.investoInfoPage.investorInfo !== undefined && this.investoInfoPage.investorInfo.motherName !== undefined) {
+      this.investoInfoPage.investorInfo.motherName = name;
+    }
+  }
+  public checkGender(gender): void {
+    if (this.investoInfoPage !== undefined && this.investoInfoPage.investorInfo !== undefined && this.investoInfoPage.investorInfo.gender !== undefined) {
+      this.investoInfoPage.investorInfo.gender = gender;
+    }
+  }
+
+  public checkInvestor(investor): void {
+    if (this.investoInfoPage !== undefined && this.investoInfoPage.investorInfo !== undefined && this.investoInfoPage.investorInfo.investorType !== undefined) {
+      this.investoInfoPage.investorInfo.investorType = investor;
+    }
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InvestorInfoPage');
     let profilePicture = this.data.getter('profilePicture');
     if (profilePicture !== undefined) {
       this.chosenPicture = profilePicture;
     }
-
+    // this.data.userData.push(this.investoInfoPage);
+    // console.log(this.data.userData);
     this.currentMember = this.data.get();
-    if(this.currentMember.isNRI !== undefined && this.currentMember.isNRI === true){
+    if (this.currentMember.isNRI !== undefined && this.currentMember.isNRI === true) {
       this.investorType = 'NRI';
+      this.investoInfoPage.investorInfo.investorType = this.investorType;
     } else {
       this.investorType = 'Individual';
+      this.investoInfoPage.investorInfo.investorType = this.investorType;
     }
-    
-  }
-  dateChanged() {
-    this.datePicker.open();
+
   }
 
-  nextPage(){
-    if(this.currentMember.isNRI !== undefined && this.currentMember.isNRI === true){
+  public dateChanged(selectedDate) {
+    this.datePicker.open();
+    this.investoInfoPage.investorInfo.dob = selectedDate;
+  }
+
+  
+  nextPage() {
+    this.data.dataSet(this.investoInfoPage);
+    console.log(this.data);
+    if (this.currentMember.isNRI !== undefined && this.currentMember.isNRI === true) {
       this.navCtrl.push('CorrespondenceAddressPage');
     } else {
       this.navCtrl.push('AddressDetailsPage');
     }
-    
+
   }
 
   public getCameraPermission(): void {
@@ -84,19 +135,19 @@ export class InvestorInfoPage {
       }
     )
   }
-  
-  public  changePicture() {
+
+  public changePicture() {
     this.getCameraPermission();
     const actionsheet = this.actionsheetCtrl.create({
       title: 'upload picture',
       buttons: [
-        {
-          text: 'camera',
-          icon: !this.platform.is('ios') ? 'camera' : null,
-          handler: () => {
-            this.takePicture();
-          }
-        },
+        // {
+        //   text: 'camera',
+        //   icon: !this.platform.is('ios') ? 'camera' : null,
+        //   handler: () => {
+        //     this.takePicture();
+        //   }
+        // },
         {
           text: !this.platform.is('ios') ? 'gallery' : 'camera roll',
           icon: !this.platform.is('ios') ? 'image' : null,
@@ -118,23 +169,23 @@ export class InvestorInfoPage {
   }
 
 
-  takePicture() {
-    const loading = this.loadingCtrl.create();
+  // takePicture() {
+  //   const loading = this.loadingCtrl.create();
 
-    loading.present();
-    this.cameraProvider.getPictureFromCamera().then(picture => {
-      console.log('picture', picture);
-      if (picture) {
-        this.chosenPicture = picture;
-        this.data.setter('profilePicture', picture);
-      }
-      loading.dismiss();
-    }, error => {
-      alert(error);
-    }).catch(err => {
-      console.log('catch', err);
-    });
-  }
+  //   loading.present();
+  //   this.cameraProvider.getPictureFromCamera().then(picture => {
+  //     console.log('picture', picture);
+  //     if (picture) {
+  //       this.chosenPicture = picture;
+  //       this.data.setter('profilePicture', picture);
+  //     }
+  //     loading.dismiss();
+  //   }, error => {
+  //     alert(error);
+  //   }).catch(err => {
+  //     console.log('catch', err);
+  //   });
+  // }
 
   getPicture() {
     const loading = this.loadingCtrl.create();
@@ -147,10 +198,23 @@ export class InvestorInfoPage {
         this.data.setter('profilePicture', picture);
       }
       loading.dismiss();
+      this.presentToast("Image uploaded successfully");
     }, error => {
       console.log(error);
     });
   }
 
-
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
 }

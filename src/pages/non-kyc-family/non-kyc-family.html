@@ -63,7 +63,7 @@
       </div>
 
       <div class="intl-tel-input mb">
-        <div class="country-code">{{currentMember?.countryCode}}
+        <div class="country-code">
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
             <ion-select name="code" [selectOptions]="selectOptions1" (ngModelChange)="checkSelectedCon($event)" [(ngModel)]="indianCode" [disabled]="!currentMember?.isNRI">
@@ -100,7 +100,7 @@
       <div class="member-detail mb">
         <div class="member-title">
           <ion-item mode="ios">
-            <ion-select name="title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title">
+            <ion-select name="title" placeholder="Title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title">
               <ion-option value="Mr." selected>Mr.</ion-option>
               <ion-option value="Mrs.">Mrs.</ion-option>
             </ion-select>
@@ -116,7 +116,7 @@
     </ion-list>
   </form>
   <div class="send-otp-btn">
-    <button ion-button round block class="action-btn" mode="md" (click)="openOTP()">
+    <button ion-button round block class="action-btn" [disabled]="isPANRight!==undefined && !isPANRight && currentMember.pan_no !== ''" mode="md" (click)="openOTP()">
       SEND OTP
     </button>
   </div>

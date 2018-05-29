@@ -4,8 +4,9 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class DataProvider {
   public currentMember: any;
-
+  public pdfUrl: any;
   public familyName: any;
+  public userData:any  = [];
   public usersList: any = [
     {
       'name': 'Rohit Prasad',
@@ -98,7 +99,10 @@ export class DataProvider {
     return this.currentMember;
   }
 
-
+  public dataSet(curentPage): void {
+    this.userData.push(curentPage);
+  }
+  
   
     // To hold user data and configuration
     private userPreferences: any = {
@@ -138,6 +142,14 @@ export class DataProvider {
   public setUserPreferenceFromStorage(userPreferences: any): void {
       this.userPreferences = userPreferences;
   }
-
+/**
+ * set pdf url
+ */
+public setPdfUrl(url) {
+    this.pdfUrl = url;
+}
+public getPdfUrl() { 
+  return this.pdfUrl;
+}
 
 }

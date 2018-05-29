@@ -11,16 +11,16 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Birth Country</ion-label>
-                    <ion-select name="birthPlace" [selectOptions]="selectOptions">
+                    <ion-select name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace" (ngModelChange)="checkCountry(birthPlace)">
                         <ion-option value="India" selected>India</ion-option>
-                        <ion-option value="USA">USA</ion-option>
+                        <ion-option value="USA">Russia</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Tax Resident Outside India?</ion-label>
-                    <ion-select name="outsideInida" [selectOptions]="selectOptions1">
+                    <ion-select name="outsideInida" [selectOptions]="selectOptions1" [(ngModel)]="outsideInida" (ngModelChange)="checkResident(outsideInida)">
                         <ion-option value="Yes">Yes</ion-option>
                         <ion-option value="No" selected>No</ion-option>
                     </ion-select>
@@ -29,7 +29,7 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Political Exposure</ion-label>
-                    <ion-select name="exposure" [selectOptions]="selectOptions2">
+                    <ion-select name="exposure" [selectOptions]="selectOptions2" [(ngModel)]="exposure" (ngModelChange)="checkExposure(exposure)">
                         <ion-option value="Not Applicable" selected>Not Applicable</ion-option>
                         <ion-option value="No">No</ion-option>
                     </ion-select>
@@ -38,16 +38,16 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Gross Annual Income</ion-label>
-                    <ion-select name="income" [selectOptions]="selectOptions3">
+                    <ion-select name="income" [selectOptions]="selectOptions3" [(ngModel)]="income" (ngModelChange)="checkIncome(income)">
                         <ion-option value="5L TO 10L" selected>5L TO 10L</ion-option>
-                        <ion-option value="Below 5L">Below 5L</ion-option>
+                        <ion-option value=">= 25 Lacs <=1 Crore"> >= 25 Lacs <=1 Crore</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Source of Wealth</ion-label>
-                    <ion-select name="income" [selectOptions]="selectOptions4">
+                    <ion-select name="source" [selectOptions]="selectOptions4" [(ngModel)]="source" (ngModelChange)="checkSource(source)">
                         <ion-option value="Salary" selected>Salary</ion-option>
                         <ion-option value="Bussiness">Bussiness</ion-option>
                     </ion-select>
@@ -56,7 +56,7 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>ID Source (Given for KYC)</ion-label>
-                    <ion-select name="id" [selectOptions]="selectOptions5">
+                    <ion-select name="identification" [selectOptions]="selectOptions5" [(ngModel)]="identification" (ngModelChange)="checkIndentification(identification)">
                         <ion-option value="PAN Card" selected>PAN Card</ion-option>
                         <ion-option value="Aadhar Card">Aadhar Card</ion-option>
                     </ion-select>
@@ -65,8 +65,8 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Occupation</ion-label>
-                    <ion-select name="occupation" [selectOptions]="selectOptions6">
-                        <ion-option value="Priate Sector Service" selected>Priate Sector Service</ion-option>
+                    <ion-select name="occupation" [selectOptions]="selectOptions6" [(ngModel)]="occupation" (ngModelChange)="checkOccupation(occupation)">
+                        <ion-option value="Private Sector Service" selected>Prviate Sector Service</ion-option>
                         <ion-option value="Aadhar Card">Government Sector</ion-option>
                     </ion-select>
                 </ion-item>
@@ -74,14 +74,14 @@
             <div class="hideDetails">
                 <ion-item mode="md" no-lines>
                     <ion-label name="resident">I am not a US & Canada Resident</ion-label>
-                    <ion-checkbox mode="md" for="resident" checked></ion-checkbox>
+                    <ion-checkbox mode="md" for="resident" checked name="residentCheck" [(ngModel)]="residentCheck" (ngModelChange)="checkResidency(residentCheck)"></ion-checkbox>
                 </ion-item>
             </div>
         </ion-list>
 
     </form>
     <div class="footer-action-btn">
-        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+        <button ion-button round block class="action-btn" mode="md"  [disabled]="disableBtn"  (click)="nextPage()">
             CONTINUE
         </button>
     </div>
