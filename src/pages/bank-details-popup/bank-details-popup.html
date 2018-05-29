@@ -16,7 +16,7 @@
     <div class="error" *ngIf="topBankList?.length === 0">
       No Banks Found.
     </div>
-    <ion-row>
+    <ion-row [ngClass]="{'searchBlock' : (searchBlock === true)}">
       <ion-col col-4 (click)="selectBank(bank.bankName)" *ngFor="let bank of topBankList">
         <div class="bank">
           <img [src]="bank.bankImg" [alt]="bank.bankName">

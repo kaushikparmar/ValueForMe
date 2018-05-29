@@ -10,6 +10,8 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class AddressDetailsPage {
   public defaultCity = "Mumbai";
+  public permanentCity:any;
+  public addressFill: any;
   public selectOptions = {
     title: 'Select Birth Place'
   };
@@ -35,7 +37,6 @@ export class AddressDetailsPage {
             }
   }
   public location = [
-    
     {
       'placeName' : 'Mumbai',
       'stateName' : 'Maharashtra',
@@ -58,6 +59,26 @@ export class AddressDetailsPage {
       'cityName' :'',
     }
   ];
+
+  public permanentLocation = 
+    {
+      'permanentAddress1' : '',
+      'permanentAddress2' : '',
+      'permanentCountry' : '',
+      'permanentPincode' : '',
+      'permanentState' :'',
+    };
+
+  public permanentAddress1: any;
+  public permanentAddress2: any;
+  public permanentState: any;
+  public permanentPincode: any;
+  public permanentCountry: any = 'India';
+  
+
+
+  
+
   public place: any;
   public state: any;
   public country = "India";
@@ -104,13 +125,28 @@ export class AddressDetailsPage {
     openModal.onDidDismiss( data => {
       if(data !== undefined){
         this.defaultCity = data;
-        this.location['indianAddress'].cityName = this.defaultCity;
+        // this.location['indianAddress'].cityName = this.defaultCity;
         this.locationDetails['locationInfo'].cityName = this.defaultCity;
       }
     });
   }
+  prefillAddress(isChecked) { 
+    if(isChecked) {
+      console.log(isChecked);
+      this.permanentAddress1 = this.address1;
+      this.permanentAddress2 = this.address2;
+      this.permanentState = this.state;
+      this.permanentPincode = this.pincode;
+      this.permanentCity = this.defaultCity; 
+    } else {
+      this.permanentAddress1 = '';
+      this.permanentAddress2 = '';
+      this.permanentState = '';
+      this.permanentPincode =''; 
+    }
+  }
 
-
+  
   nextPage(){
     this.navCtrl.push('HoldingDetailsPage');
     this.data.dataSet(this.locationDetails);

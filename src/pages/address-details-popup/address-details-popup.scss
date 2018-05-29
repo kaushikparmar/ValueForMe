@@ -5,7 +5,7 @@ page-address-details-popup {
         div[ion-fixed]{
             width: 100%;
             margin: 0;
-            padding: 0 25px 0 25px;
+            padding: 0 15px 0 15px;
         }
         .scroll-content{
             padding: 10px 15px 20px;
@@ -20,6 +20,31 @@ page-address-details-popup {
                 size :1.8rem;
             }
             color:rgb(83,181,72);
+        }
+        .searchbar-md .searchbar-input{
+            box-shadow: none;
+            border-bottom: 1px solid #ccc;
+        }
+        ion-row.searchBlock{
+            ion-col.col{
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                width:100%;
+                max-width: 100%;
+                flex: 0 0 100%;
+                div.city{
+                    width: 30px;
+                    height: 30px;
+                    img{
+                        width: 45%;
+                    }
+                }
+                .city-name{
+                    margin-left: 20px;
+                    text-align: left;
+                }
+            }
         }
         .city{
             border: 0.7px solid rgb(96,96,96);
@@ -46,7 +71,7 @@ page-address-details-popup {
         }
         .top-city{
             margin-top: 90px;
-            height: 220px;
+            height: 260px;
             .scroll-content{
                 padding: 0;
             }

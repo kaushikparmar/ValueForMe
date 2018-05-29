@@ -26,7 +26,7 @@ export class BankDetailsPage implements OnInit {
     private http: HttpClient,
     // public cdRef :ChangeDetectorRef,  
     public navParams: NavParams) {
-
+      this.backAccountDetails['bankAccountInfo'].bankName = this.defaultBank;
   }
 
 
@@ -46,7 +46,7 @@ export class BankDetailsPage implements OnInit {
   };
   public accountDetails: any = [
     {
-      'ifsc': '23405394303',
+      'ifsc': 'ICIC0001238',
       'branchName': 'MUMBAI-SERUL',
       'branchAddress': 'Coral Crest Co-Op Soc, Unit 14, Plot No3, Sector 23, Nerul East- 4000706.'
     }

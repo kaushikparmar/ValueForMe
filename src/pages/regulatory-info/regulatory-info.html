@@ -13,9 +13,15 @@
                     <ion-label floating>Birth Country</ion-label>
                     <ion-select name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace" (ngModelChange)="checkCountry(birthPlace)">
                         <ion-option value="India" selected>India</ion-option>
-                        <ion-option value="USA">Russia</ion-option>
+                        <ion-option value="Russia">Russia</ion-option>
                     </ion-select>
                 </ion-item>
+                <div class="error" *ngIf="currentMember?.isNRI && birthPlace==='India'">
+                    You have already selected NRI previously.
+                </div>
+                <div class="error" *ngIf="currentMember?.isNRI===false && birthPlace==='Russia'">
+                    You have already selected Individual previously.
+                </div>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
@@ -25,6 +31,26 @@
                         <ion-option value="No" selected>No</ion-option>
                     </ion-select>
                 </ion-item>
+                <div class="error" *ngIf="currentMember?.isNRI && outsideInida==='No'">
+                        You have already selected NRI previously.
+                    </div>
+                    <div class="error" *ngIf="currentMember?.isNRI===false && outsideInida==='Yes'">
+                        You have already selected Individual previously.
+                    </div>
+            </div>
+            <div class="nri-section" *ngIf="showSection">
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Country</ion-label>
+                        <ion-input type="text" name="nriCountry" [(ngModel)]="nriCountry" (ngModelChange)="checkNRICountry(nriCountry)"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>TIN No</ion-label>
+                        <ion-input type="text" name="tinNo" [(ngModel)]="tinNo" (ngModelChange)="checkTINno(tinNo)"></ion-input>
+                    </ion-item>
+                </div>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
@@ -40,7 +66,8 @@
                     <ion-label floating>Gross Annual Income</ion-label>
                     <ion-select name="income" [selectOptions]="selectOptions3" [(ngModel)]="income" (ngModelChange)="checkIncome(income)">
                         <ion-option value="5L TO 10L" selected>5L TO 10L</ion-option>
-                        <ion-option value=">= 25 Lacs <=1 Crore"> >= 25 Lacs <=1 Crore</ion-option>
+                        <ion-option value=">= 25 Lacs <=1 Crore"> >= 25 Lacs
+                            <=1 Crore</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
@@ -66,7 +93,7 @@
                 <ion-item mode="ios">
                     <ion-label floating>Occupation</ion-label>
                     <ion-select name="occupation" [selectOptions]="selectOptions6" [(ngModel)]="occupation" (ngModelChange)="checkOccupation(occupation)">
-                        <ion-option value="Private Sector Service" selected>Prviate Sector Service</ion-option>
+                        <ion-option value="Private Sector Service" selected>Private Sector Service</ion-option>
                         <ion-option value="Aadhar Card">Government Sector</ion-option>
                     </ion-select>
                 </ion-item>
@@ -81,7 +108,8 @@
 
     </form>
     <div class="footer-action-btn">
-        <button ion-button round block class="action-btn" mode="md"  [disabled]="disableBtn"  (click)="nextPage()">
+        <button ion-button round block class="action-btn" mode="md" [disabled]="disableBtn || (currentMember?.isNRI && birthPlace==='India') || (currentMember?.isNRI===false && birthPlace==='Russia') || (currentMember?.isNRI && outsideInida==='No') || (currentMember?.isNRI===false && outsideInida==='Yes')"
+            (click)="nextPage()">
             CONTINUE
         </button>
     </div>

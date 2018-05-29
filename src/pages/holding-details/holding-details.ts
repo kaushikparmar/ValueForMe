@@ -13,6 +13,7 @@ export class HoldingDetailsPage implements OnInit {
   public defaultBank = "ICICI Bank LTD.";
   public accountNo: any = "412739865024";
   public reAccountNo: any = "412739865024";
+  public showAadharError: boolean = false;
   jointHolderDetails: FormGroup;
   public selectOptions = {
     title: 'Select Title'
@@ -51,6 +52,9 @@ export class HoldingDetailsPage implements OnInit {
   properPan:boolean = false;
   nominee: any;
 
+  properAadhar:boolean =false;
+  checkAadharno:boolean =false;
+
   public jointHolderData= {
     'jointHolderInfo' : 
       {
@@ -76,18 +80,19 @@ export class HoldingDetailsPage implements OnInit {
 
   public panDetails: any = [
     {
-      'panNo' : 'ABC1234567'
+      'panNo' : 'BFTHD4619M'
     }
   ]
 
   public accountDetails: any = [
     {
-      'ifsc': '23405394303',
+      'ifsc': 'ICIC0001238',
+      'aadharNo': '5420456112345',
       'branchName': 'MUMBAI-SERUL',
       'branchAddress': 'Coral Crest Co-Op Soc, Unit 14, Plot No3, Sector 23, Nerul East- 4000706.'
     }
   ];
-
+  
   ngOnInit() {
     this.jointHolderDetails = new FormGroup({
       accountNumber: new FormControl('', [Validators.required, Validators.maxLength(15)]),
@@ -122,6 +127,7 @@ export class HoldingDetailsPage implements OnInit {
       this.checkIfsc = false;
     }, 700);
     this.showError = false;
+    // this.showAadharError= false;
     for (let obj of this.accountDetails) {
       if (obj.ifsc === ifsc) {
         this.jointHolderDetails.controls['branchName'].setValue(obj.branchName);
@@ -129,12 +135,14 @@ export class HoldingDetailsPage implements OnInit {
         setTimeout(() => {
           this.showError = false;
         }, 700);
+        // this.showAadharError=false;
       } else {
         this.jointHolderDetails.controls['branchName'].setValue('');
         this.jointHolderDetails.controls['branchAddress'].setValue('');
         setTimeout(() => {
           this.showError = true;
         }, 700);
+        // this.showAadharError=true;
       }
     }
   }
@@ -163,11 +171,15 @@ export class HoldingDetailsPage implements OnInit {
 
   checkPan() {
     this.checkPanno = true;
+    
     let panNo = this.jointHolderDetails.get('holderPan').value;
+    let aadharNo = this.jointHolderDetails.get('aadharNo').value;
     setTimeout(() => {
       this.checkPanno = false;
     }, 700);
     this.showPanError = false;
+    this.showAadharError = false;
+    
     for (let obj of this.panDetails) {
       if (obj.panNo === panNo) {
         setTimeout(() => {
@@ -176,16 +188,45 @@ export class HoldingDetailsPage implements OnInit {
         this.jointHolderData['jointHolderInfo'].panNumber = panNo;
         this.showPanel = false;
         this.properPan=true;
+        this.showAadharError = false;
       } else {
         setTimeout(() => {
           this.showPanError = true;
         }, 700);
         this.properPan=false;
         this.showPanel = true;
+        this.showAadharError = true;
+        
+      }
+    }
+    
+  }
+  aadhar() {
+    this.checkAadharno = true;
+    
+    let aadharNo = this.jointHolderDetails.get('aadharNo').value;
+    setTimeout(() => {
+      this.checkAadharno = false;
+    }, 700);
+    this.showAadharError = false;
+    for (let obj of this.accountDetails) {
+      if (obj.aadharNo === aadharNo) {
+        setTimeout(() => {
+          this.showAadharError = false;
+        }, 700);
+        this.jointHolderData['jointHolderInfo'].aadharNumber = aadharNo;
+        this.properAadhar=true;
+        this.showAadharError = false;
+        
+      } else {
+        setTimeout(() => {
+          this.showAadharError = true;
+        }, 700);
+        this.properAadhar=false;
+        this.showAadharError = true;
       }
     }
   }
-
   openModal() {
     let openModal = this.modalCtrl.create('BankDetailsPopupPage');
     openModal.present();
@@ -203,9 +244,7 @@ export class HoldingDetailsPage implements OnInit {
   email() {
     this.jointHolderData['jointHolderInfo'].emailId = this.jointHolderDetails.get('emailId').value;
   }
-  aadhar() {
-    this.jointHolderData['jointHolderInfo'].aadharNumber = this.jointHolderDetails.get('aadharNo').value;
-  }
+  
   holdername() {
     this.jointHolderData['jointHolderInfo'].jointHolderName = this.jointHolderDetails.get('holderName').value;
   }

@@ -8,6 +8,7 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'regulatory-info.html',
 })
 export class RegulatoryInfoPage {
+
   public selectOptions = {
     title: 'Select Birth Country'
   };
@@ -38,25 +39,43 @@ export class RegulatoryInfoPage {
       'income': '',
       'source': '',
       'identity': '',
-      'occupation': ''
+      'occupation': '',
+      'nriCountry' : '',
+      'tniNo' : ''
     }
   }
+  public currentMember:any;
+  // public selectedUserCoutnry: any;
+  public tinNo:any;
   public birthPlace:any;
   public outsideInida:any;
-  public exposure:any;
-  public income:any;
-  public source:any;
-  public identification:any;
-  public occupation:any;
+  public exposure:any = 'No';
+  public income:any = '5L TO 10L';
+  public source:any = 'Salary';
+  public identification:any = 'Aadhar Card';
+  public occupation:any = 'Private Sector Service';
   public disableBtn: boolean = true;
+  public nriCountry:any;
+  public showSection:boolean = false;
   constructor(public navCtrl: NavController, public data:DataProvider,public navParams: NavParams) {
+    this.fatchaDetails['fatchaInfo'].income = this.income;
+    this.fatchaDetails['fatchaInfo'].source = this.source;
+    this.fatchaDetails['fatchaInfo'].identity = this.identification;
+    this.fatchaDetails['fatchaInfo'].occupation = this.occupation;
+    this.fatchaDetails['fatchaInfo'].exposure = this.exposure;
   }
   checkCountry(place) {
     this.fatchaDetails['fatchaInfo'].birthPlace = place;
   }
   checkResident(residence) {
     this.fatchaDetails['fatchaInfo'].residence = residence;
+    if(residence === 'Yes'){
+      this.showSection = true; 
+    } else {
+      this.showSection = false; 
+    } 
   }
+  
   checkExposure(exposure) {
     this.fatchaDetails['fatchaInfo'].exposure = exposure;
   }
@@ -72,9 +91,28 @@ export class RegulatoryInfoPage {
   checkOccupation(occupation) {
     this.fatchaDetails['fatchaInfo'].occupation = occupation;
   }
+  checkNRICountry(nri){
+    this.fatchaDetails['fatchaInfo'].nriCountry = nri; 
+  }
+  checkTINno(tinNo) {
+    this.fatchaDetails['fatchaInfo'].tniNo = tinNo; 
+  }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegulatoryInfoPage');
+    this.currentMember = this.data.get();
+    if (this.currentMember.isNRI !== undefined && this.currentMember.isNRI === true) {
+      // this.selectedUserCoutnry = '';
+      this.fatchaDetails['fatchaInfo'].birthPlace = this.birthPlace;
+      this.fatchaDetails['fatchaInfo'].birthPlace = this.outsideInida;
+    } else {
+      // this.selectedUserCoutnry = 'India';
+      this.birthPlace='India';
+      this.outsideInida='No';
+      this.fatchaDetails['fatchaInfo'].birthPlace = 'India';
+      this.fatchaDetails['fatchaInfo'].residence = 'No';
+    }
   }
   checkResidency(isChecked){
     if(isChecked){
@@ -84,6 +122,6 @@ export class RegulatoryInfoPage {
   nextPage(){
     this.navCtrl.push('BankDetailsPage');
     this.data.dataSet(this.fatchaDetails);
-    
+    console.log(this.data);
   }
 }

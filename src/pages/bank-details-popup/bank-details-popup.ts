@@ -10,6 +10,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class BankDetailsPopupPage {
   public showBank : boolean = false;
   public searchString: string;
+  public searchBlock: boolean = false;
   public bankDetails = [
     {
       'bankName' : 'Axis Bank',
@@ -100,6 +101,7 @@ export class BankDetailsPopupPage {
   public showAll() : void{
     this.showBank = !this.showBank;
     this.topBankList = JSON.parse(JSON.stringify(this.bankDetails));
+    this.searchBlock = !this.searchBlock;
   }
   public dismiss(): void {
     this.viewCtrl.dismiss();

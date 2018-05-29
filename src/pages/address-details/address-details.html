@@ -7,6 +7,17 @@
 <ion-content padding>
     <form>
         <ion-list mode="ios">
+            <ion-label class="header">Correspondence Address</ion-label>
+            <div class="mb">
+                <ion-item mode="ios">
+                    <ion-label floating>Place of Birth</ion-label>
+                    <ion-select name="place" [(ngModel)]="place" (ionChange)="onPlaceChange()" [selectOptions]="selectOptions">
+                        <!-- <ion-option value="Nagpur" selected>Nagpur</ion-option>
+                            <ion-option value="Kanpur">Kanpur</ion-option> -->
+                        <ion-option *ngFor="let place of location" [value]="place.placeName">{{place.placeName}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Address 1</ion-label>
@@ -17,16 +28,6 @@
                 <ion-item mode="ios">
                     <ion-label floating>Address 2</ion-label>
                     <ion-textarea name="address2" value="Western Express Highway, Goregaon East," [(ngModel)]="address2" (ngModelChange)="checkAddress2(address2)"></ion-textarea>
-                </ion-item>
-            </div>
-            <div class="mb">
-                <ion-item mode="ios">
-                    <ion-label floating>Place of Birth</ion-label>
-                    <ion-select name="place" [(ngModel)]="place"  (ionChange)="onPlaceChange()" [selectOptions]="selectOptions">
-                        <!-- <ion-option value="Nagpur" selected>Nagpur</ion-option>
-                        <ion-option value="Kanpur">Kanpur</ion-option> -->
-                        <ion-option *ngFor="let place of location" [value]="place.placeName">{{place.placeName}}</ion-option>
-                    </ion-select>
                 </ion-item>
             </div>
             <div class="custom-select mb">
@@ -71,11 +72,66 @@
             <div class="hideDetails">
                 <ion-item mode="md" no-lines>
                     <ion-label name="family">Permanent address same as per correspondence address</ion-label>
-                    <ion-checkbox mode="md"></ion-checkbox>
+                    <ion-checkbox mode="md" name="addressFill" [(ngModel)]="addressFill" (ngModelChange)="prefillAddress(addressFill)"></ion-checkbox>
                 </ion-item>
             </div>
+            <div class="pernnanentAddress">
+                <ion-label class="header">Permanent Address</ion-label>
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Address 1</ion-label>
+                        <ion-textarea name="permanentAddress1" value="E 701 Lotus Corporate Park, Laxmi Nagar," [(ngModel)]="permanentAddress1"></ion-textarea>
+                    </ion-item>
+                </div>
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Address 2</ion-label>
+                        <ion-textarea name="permanentAddress2" value="Western Express Highway, Goregaon East," [(ngModel)]="permanentAddress2" ></ion-textarea>
+                    </ion-item>
+                </div>
+                <div class="custom-select mb">
+                    <ion-item mode="ios">
+                        <ion-label floating class="custom-float-text">City</ion-label>
+                        <ion-label class="custom-text" (click)="openModal()">{{permanentCity}}
+                        </ion-label>
+                    </ion-item>
+                    <div class="custom-select-icon">
+                        <div class="custom-select-icon-inner"></div>
+                    </div>
+                </div>
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>State</ion-label>
+                        <ion-select name="permanentState" [(ngModel)]="permanentState" [selectOptions]="selectOptions2">
+                            <ion-option value="Haryana">Haryana</ion-option>
+                            <ion-option value="Assam">Assam</ion-option>
+                            <ion-option value="Arunchal Pradesh">Arunchal Pradesh</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
+                <ion-row>
+                    <ion-col col-4>
+                        <div class="mb-0">
+                            <ion-item mode="ios">
+                                <ion-label floating>Pincode</ion-label>
+                                <ion-input type="tel" name="pincode" value="{{permanentPincode}}">{{permanentPincode}}</ion-input>
+                            </ion-item>
+                        </div>
+                    </ion-col>
+                    <ion-col col-8>
+                        <div class="mb-0">
+                            <ion-item mode="ios">
+                                <ion-label floating>Country</ion-label>
+                                <ion-select name="permanentCountry" [(ngModel)]="permanentCountry" disabled [selectOptions]="selectOptions3">
+                                    <ion-option [value]="permanentCountry">{{permanentCountry}}</ion-option>
+                                    <!-- <ion-option value="USA">USA</ion-option> -->
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </div>
         </ion-list>
-
     </form>
     <div class="footer-action-btn">
         <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">

@@ -10,6 +10,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class AddressDetailsPopupPage {
   public showCity : boolean = false;
   public searchString: string;
+  public searchBlock: boolean = false;
   public cityDetails = [
     {
       'cityName' : 'Mumbai',
@@ -90,6 +91,7 @@ export class AddressDetailsPopupPage {
   public showAll() : void{
     this.showCity = !this.showCity;
     this.topCityList = JSON.parse(JSON.stringify(this.cityDetails));
+    this.searchBlock = !this.searchBlock;
   }
   
   public dismiss(): void {

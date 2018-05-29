@@ -40,17 +40,25 @@
                     </div>
                 </div>
                 <div class="contact-no mb" *ngIf="showPanError">
-                    <ion-item mode="ios">
-                        <ion-label floating>Contact</ion-label>
-                        <ion-input type="tel" name="contact"></ion-input>
-                    </ion-item>
-                    <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
-                </div>
-                <div class="mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Contact</ion-label>
+                            <ion-input type="tel" name="contact"></ion-input>
+                        </ion-item>
+                        <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
+                    </div>
+                <div class="proper-aadhar mb">
                     <ion-item mode="ios">
                         <ion-label floating>Joint Holder 1 Aadhar No.</ion-label>
-                        <ion-input type="tel" name="aadharNo" value="" formControlName="aadharNo" (ionBlur)="aadhar()"></ion-input>
+                        <ion-input type="tel" name="aadharNo" value="" formControlName="aadharNo" (input)="aadhar()"></ion-input>
                     </ion-item>
+                    <ion-icon class="false" name="ios-close-outline" *ngIf="showAadharError"></ion-icon>
+                    <ion-icon class="true" name="ios-checkmark-outline" *ngIf="properAadhar"></ion-icon>
+                    <div class="spinner-container" *ngIf="checkAadharno">
+                        <ion-spinner mode="md"></ion-spinner>
+                    </div>
+                    <div class="error" *ngIf="showAadharError">
+                            Aadhar number is mandatory.
+                        </div>
                 </div>
                 <div class="member-detail mb">
                     <div class="member-title">
@@ -278,7 +286,7 @@
         </ion-list>
     </form>
     <div class="footer-action-btn">
-        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+        <button ion-button round block class="action-btn" mode="md" [disabled]="showAadharError" (click)="nextPage()">
             CONTINUE
         </button>
     </div>
