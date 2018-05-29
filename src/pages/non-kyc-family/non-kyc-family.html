@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-  <form #investorForm="ngForm">
+  <form #investorForm="ngForm" novalidate>
     <ion-list mode="ios">
       <div class="mb-0">
         <ion-item mode="ios">
           <ion-label floating>Enter Family</ion-label>
-          <ion-input type="text" name="familyName" [(ngModel)]="currentMember.familyName" (ngModelChange)="onFamilyNameChanged()" value="Pradip Malpute"></ion-input>
+          <ion-input type="text" name="familyName" [disabled]="currentMember.isNewMember" [(ngModel)]="currentMember.familyName" (ngModelChange)="onFamilyNameChanged()" value="Pradip Malpute"></ion-input>
         </ion-item>        
         <div *ngIf="searching && !currentMember?.isNewMember && currentMember?.familyName !== ''" class="spinner-container">
           <ion-spinner mode="md"></ion-spinner>
@@ -47,20 +47,27 @@
         <ion-icon name="ios-checkmark-outline" *ngIf="isPANRight!==undefined && isPANRight && currentMember.pan_no !== ''"></ion-icon>
       </div>
 
-      <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
+      <!-- <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
         <ion-item mode="ios">
           <ion-label floating>Contact</ion-label>
           <ion-input type="tel" name="contact" [(ngModel)]="currentMember.contact"></ion-input>
         </ion-item>
         <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
-      </div>
+      </div> -->
 
-      <div class="mb">
+      <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
         <ion-item mode="ios">
           <ion-label floating>Aadhar No.</ion-label>
-          <ion-input type="tel" name="aadharNo" [(ngModel)]="currentMember.aadhar_no"></ion-input>
+          <ion-input type="tel" name="aadharNo" patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
         </ion-item>
+        <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
       </div>
+      <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.maxLength">
+				Aadhar No should not be more than 12 digits long
+      </p>
+      <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.invalidPattern">
+				Aadhar No is invalid
+			</p>
 
       <div class="intl-tel-input mb">
         <div class="country-code">

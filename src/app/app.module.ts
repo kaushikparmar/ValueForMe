@@ -13,6 +13,7 @@ import { File } from '@ionic-native/file';
 import { DataProvider } from '../providers/data/data';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { CameraProvider } from '../providers/camera/camera';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CameraProvider } from '../providers/camera/camera';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: '',
       backButtonIcon: 'ios-arrow-back',
@@ -56,6 +58,8 @@ import { CameraProvider } from '../providers/camera/camera';
     DataProvider,
     Camera,
     CameraProvider
+  ],
+  exports: [
   ]
 })
 export class AppModule {}
