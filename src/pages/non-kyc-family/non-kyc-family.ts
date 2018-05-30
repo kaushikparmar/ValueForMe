@@ -183,8 +183,23 @@ export class NonKycFamilyPage implements OnInit {
   }
 
   public setValue(member) {
-    this.tempCurrentMember = member;
-    this.currentMember.familyName = member.familyName;
+    this.tempCurrentMember = undefined;
+    this.tempCurrentMember = {};
+    this.tempCurrentMember = JSON.parse(JSON.stringify(member));
+    this.ngZone.run(
+      () => {
+      this.currentMember = {};
+      this.currentMember['name'] = undefined;
+      this.currentMember['title'] = undefined;
+      this.currentMember['mobile'] = undefined;
+      this.currentMember['contact'] = undefined;
+      this.currentMember['pan_no'] = undefined;
+      this.currentMember['aadhar_no'] = undefined;
+      this.currentMember['email'] = undefined;
+      this.currentMember['isNRI'] = false;
+      this.currentMember['familyName'] = member.familyName;
+      }
+    );
     this.searchFlag = false;
     this.noResult = false;
   }
