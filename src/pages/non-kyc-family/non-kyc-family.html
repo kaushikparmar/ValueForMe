@@ -58,10 +58,13 @@
       <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
         <ion-item mode="ios">
           <ion-label floating>Aadhar No.</ion-label>
-          <ion-input type="tel" name="aadharNo" patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
+          <ion-input type="tel" name="aadharNo" required patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
         </ion-item>
         <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
       </div>
+      <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.required">
+				Aadhar No is mandatory
+      </p>
       <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.maxLength">
 				Aadhar No should not be more than 12 digits long
       </p>
@@ -83,7 +86,7 @@
         </div>
         <div class="member-no">
           <ion-item mode="ios">
-            <ion-input type="tel" mode="ios" name="mobileNo" [(ngModel)]="currentMember.mobile"></ion-input>
+            <ion-input type="tel" mode="ios" name="mobileNo" [(ngModel)]="currentMember.mobile" #mobileNo="ngModel"></ion-input>
           </ion-item>
         </div>
       </div>
@@ -101,13 +104,13 @@
       <div class="mb">
         <ion-item mode="ios">
           <ion-label floating>Email ID</ion-label>
-          <ion-input type="email" name="email" [(ngModel)]="currentMember.email"></ion-input>
+          <ion-input type="email" name="email" #email="ngModel" [(ngModel)]="currentMember.email"></ion-input>
         </ion-item>
       </div>
       <div class="member-detail mb">
         <div class="member-title">
           <ion-item mode="ios">
-            <ion-select name="title" placeholder="Title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title">
+            <ion-select name="title" placeholder="Title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title" #title="ngModel">
               <ion-option value="Mr." selected>Mr.</ion-option>
               <ion-option value="Mrs.">Mrs.</ion-option>
             </ion-select>
@@ -116,14 +119,14 @@
         <div class="member-name">
           <ion-item mode="ios">
             <ion-label floating>Name as in KYC</ion-label>
-            <ion-input type="text" name="memberName" [(ngModel)]="currentMember.name"></ion-input>
+            <ion-input type="text" name="memberName" [(ngModel)]="currentMember.name" #memberName="ngModel"></ion-input>
           </ion-item>
         </div>
       </div>
     </ion-list>
   </form>
   <div class="send-otp-btn">
-    <button ion-button round block class="action-btn" [disabled]="isPANRight!==undefined && !isPANRight && currentMember.pan_no !== ''" mode="md" (click)="openOTP()">
+    <button ion-button round block class="action-btn" [disabled]="isPANRight!==undefined && !isPANRight && currentMember.pan_no !== '' && investorForm.invalid" mode="md" (click)="openOTP()">
       SEND OTP
     </button>
   </div>
