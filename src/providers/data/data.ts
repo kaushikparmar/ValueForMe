@@ -12,11 +12,11 @@ export class DataProvider {
       'name': 'Rohit Prasad',
       'title': "Mr.",
       'familyName': 'Rohit Family',
-      'mobile': '9022905438',
-      'contact': '0265456743',
-      'pan_no': 'ABCDEF123456',
-      'aadhar_no': 'ABCDEF123456',
-      'email': 'rohit.prasad@gmail.com',
+      'mobile': undefined,
+      'contact': undefined,
+      'pan_no': 'ABCDE1234A',
+      'aadhar_no': '111122223333',
+      'email': undefined,
       'isNRI': false,
       'countryCode': '+91',
       'isNewMember': false
@@ -25,11 +25,11 @@ export class DataProvider {
       'name': 'Pradip Malpute',
       'title': "Mr.",
       'familyName': 'Pradip Family',
-      'mobile': '9022904438',
-      'contact': '0265456743',
-      'pan_no': 'ABCDEF456789',
-      'aadhar_no': 'ABCDEF123456',
-      'email': 'pradip.malpute@gmail.com',
+      'mobile': undefined,
+      'contact': undefined,
+      'pan_no': 'ABCDE1234B',
+      'aadhar_no': '111122223333',
+      'email': undefined,
       'isNRI': false,
       'countryCode': '+91',
       'isNewMember': false
@@ -37,11 +37,11 @@ export class DataProvider {
     {
       'familyName': 'Ravindra Family',
       'title': "Mr.",
-      'mobile': '9022105438',
-      'contact': '0265456743',
-      'pan_no': 'ABCDEF546454',
-      'aadhar_no': 'ABCDEF123456',
-      'email': 'ravindra.salukhe@gmail.com',
+      'mobile': undefined,
+      'contact': undefined,
+      'pan_no': 'ABCDE1234C',
+      'aadhar_no': '111122223333',
+      'email': undefined,
       'name': 'Ravindra Salukhe',
       'isNRI': false,
       'countryCode': '+91',
@@ -53,8 +53,8 @@ export class DataProvider {
       'familyName': 'Kaushik Family',
       'mobile': undefined,
       'contact': undefined,
-      'pan_no': 'ABCDEF491020',
-      'aadhar_no': 'ABCDEF123456',
+      'pan_no': 'ABCDE1234D',
+      'aadhar_no': '111122223333',
       'email': undefined,
       'isNRI': false,
       'countryCode': '+91',
@@ -63,11 +63,11 @@ export class DataProvider {
     {
       'familyName': 'Satish Family',
       'title': "Mr.",
-      'mobile': '9025405438',
-      'contact': '0265456743',
-      'pan_no': 'ABCDEF491023',
-      'aadhar_no': 'ABCDEF123456',
-      'email': 'satish.gaurav@gmail.com',
+      'mobile': undefined,
+      'contact': undefined,
+      'pan_no': 'ABCDE1234E',
+      'aadhar_no': '111122223333',
+      'email': undefined,
       'name': 'Satish Gaurav',
       'isNRI': false,
       'countryCode': '+91',
@@ -87,8 +87,8 @@ export class DataProvider {
   }
 
   public filterPanData(searchPan) {
-    return this.usersList.filter((panNo) => {
-      return panNo.value.toLowerCase() === searchPan.toLowerCase();
+    return this.usersList.filter((obj) => {
+      return obj.pan_no.toLowerCase() === searchPan.toLowerCase();
     })
   }
 

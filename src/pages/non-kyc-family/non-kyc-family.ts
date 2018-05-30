@@ -1,4 +1,4 @@
-import { Component, NgZone, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import 'rxjs/add/operator/debounceTime';
@@ -9,6 +9,7 @@ import 'rxjs/add/operator/debounceTime';
   templateUrl: 'non-kyc-family.html',
 })
 export class NonKycFamilyPage implements OnInit {
+
   public selectOptions = {
     title: 'Select Title'
   };
@@ -37,6 +38,7 @@ export class NonKycFamilyPage implements OnInit {
   public panArray: any = [];
   public tempCurrentMember: any = {};
   public isPANRight: boolean;
+  public isPANExist: boolean = false;
 
   
   public showOtp: boolean = false;
@@ -156,30 +158,40 @@ export class NonKycFamilyPage implements OnInit {
 
 
   public investorPAN(pan_no): void {
-    this.panSearching = true;
-    setTimeout(() => {
+    if (pan_no.length === 10 && (this.currentMember.isNewMember === undefined || this.currentMember.isNewMember === false)) {
+      this.panSearching = true;
+      setTimeout(() => {
       this.ngZone.run(
         () => {
-          if (this.tempCurrentMember && (this.tempCurrentMember.pan_no === pan_no)) {
-            this.currentMember = JSON.parse(JSON.stringify(this.tempCurrentMember));
-            // this.showTrueIcon = true;
-            // this.showFalseIcon = false;
-            this.isPANRight = true;
-            this.panSearching = false;
-            // this.showOtp = false;
-          } else {
-            // this.showFalseIcon = true;
-            // this.showTrueIcon = false;
-            this.currentMember = {};
-            this.currentMember['familyName'] = this.tempCurrentMember ? this.tempCurrentMember.familyName : "";
-            this.currentMember['isNRI'] = false;
-            this.isPANRight = false;
-            this.panSearching = false;
-            // this.showOtp = true;
-          }
+            if (this.tempCurrentMember && this.tempCurrentMember.pan_no && (this.tempCurrentMember.pan_no.toLowerCase() === pan_no)) {
+              this.currentMember = JSON.parse(JSON.stringify(this.tempCurrentMember));
+              // this.showTrueIcon = true;
+              // this.showFalseIcon = false;
+              this.isPANRight = true;
+              this.panSearching = false;
+              // this.showOtp = false;
+            } else {
+              // this.showFalseIcon = true;
+              // this.showTrueIcon = false;
+              // this.currentMember = {};
+              this.currentMember['familyName'] = this.tempCurrentMember ? this.tempCurrentMember.familyName : "";
+              this.currentMember['isNRI'] = false;
+              this.isPANRight = false;
+              this.panSearching = false;
+              // this.showOtp = true;
+            }
         }
       );
     }, 700);
+    }
+    if (this.currentMember.isNewMember === true && pan_no.length === 10) {
+      let pan = this.data.filterPanData(pan_no);
+      if (pan !== undefined) {
+        this.isPANExist = true;
+      } else {
+        this.isPANExist = false;
+      }
+    }
   }
 
   public setValue(member) {
@@ -188,15 +200,8 @@ export class NonKycFamilyPage implements OnInit {
     this.tempCurrentMember = JSON.parse(JSON.stringify(member));
     this.ngZone.run(
       () => {
-      this.currentMember = {};
-      this.currentMember['name'] = undefined;
-      this.currentMember['title'] = undefined;
-      this.currentMember['mobile'] = undefined;
-      this.currentMember['contact'] = undefined;
-      this.currentMember['pan_no'] = undefined;
-      this.currentMember['aadhar_no'] = undefined;
-      this.currentMember['email'] = undefined;
-      this.currentMember['isNRI'] = false;
+      this.isNewMember(true);
+      this.currentMember['isNewMember'] = false;
       this.currentMember['familyName'] = member.familyName;
       }
     );

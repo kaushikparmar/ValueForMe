@@ -38,7 +38,7 @@
       <div class="proper-panNo mb">
         <ion-item mode="ios">
           <ion-label floating>Investor PAN No.</ion-label>
-          <ion-input type="text" name="investorPan" [(ngModel)]="currentMember.pan_no" (ngModelChange)="investorPAN(currentMember.pan_no)"></ion-input>
+          <ion-input type="text" name="investorPan" #investorPan="ngModel"  patternValidate="pan" [(ngModel)]="currentMember.pan_no" (ngModelChange)="investorPAN(currentMember.pan_no)"></ion-input>
         </ion-item>
         <div *ngIf="panSearching" class="spinner-container pan-spinner">
             <ion-spinner mode="md"></ion-spinner>
@@ -46,6 +46,12 @@
         <ion-icon name="ios-close-outline" class="false" *ngIf="isPANRight!==undefined && !isPANRight && currentMember.pan_no !== ''"></ion-icon>
         <ion-icon name="ios-checkmark-outline" *ngIf="isPANRight!==undefined && isPANRight && currentMember.pan_no !== ''"></ion-icon>
       </div>
+      <p class="error" *ngIf="investorPan.touched && investorPan.dirty && investorPan?.errors?.invalidPattern">
+				Investor PAN Number should have first five character, four digits and one character at the end. Like, BEADF3944M.
+      </p>
+      <p class="error" *ngIf="investorPan.touched && investorPan.dirty && investorPan?.errors === null && isPANExist">
+        This PAN No. is already exist
+      </p>
 
       <!-- <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
         <ion-item mode="ios">
@@ -69,7 +75,7 @@
 				Aadhar No should not be more than 12 digits long
       </p>
       <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.invalidPattern">
-				Aadhar No is invalid
+				Aadhar No should be 12 digit number
 			</p>
 
       <div class="intl-tel-input mb">
