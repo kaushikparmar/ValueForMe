@@ -193,14 +193,20 @@ export class InvestorInfoPage {
     loading.present();
     this.cameraProvider.getPictureFromPhotoLibrary().then(picture => {
       console.log('picture', picture);
-      if (picture) {
+      if (picture !== 'No Image Selected') {
         this.chosenPicture = picture;
+        console.log(picture,"picture");
         this.data.setter('profilePicture', picture);
+        this.presentToast("Image uploaded successfully");
+      }  
+      if(picture === 'No Image Selected'){
+        this.presentToast("Image upload error");
       }
+      
       loading.dismiss();
-      this.presentToast("Image uploaded successfully");
+      
     }, error => {
-      this.presentToast("Image uploaded failed");
+      
     });
   }
 
