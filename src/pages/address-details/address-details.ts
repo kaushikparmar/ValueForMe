@@ -74,8 +74,7 @@ export class AddressDetailsPage {
   public permanentState: any;
   public permanentPincode: any;
   public permanentCountry: any = 'India';
-  
-
+  public buttonDisabled: boolean = true;
 
   
 
@@ -108,6 +107,7 @@ export class AddressDetailsPage {
         }
       }
         this._cdr.detectChanges();
+        this.buttonDisabled = false;
     }
 
   ionViewDidLoad() {
@@ -119,17 +119,22 @@ export class AddressDetailsPage {
   checkAddress2(address2) {
     this.locationDetails['locationInfo'].address2 = address2;
   }
-  openModal(){
+
+  openModal(addressType){
+    
     let openModal=this.modalCtrl.create('AddressDetailsPopupPage');
     openModal.present();
     openModal.onDidDismiss( data => {
-      if(data !== undefined){
+      if(data !== undefined && addressType === 'correspondenceCity'){
         this.defaultCity = data;
         // this.location['indianAddress'].cityName = this.defaultCity;
         this.locationDetails['locationInfo'].cityName = this.defaultCity;
+      } else {
+        this.permanentCity = data;
       }
     });
   }
+
   prefillAddress(isChecked) { 
     if(isChecked) {
       console.log(isChecked);
@@ -142,7 +147,8 @@ export class AddressDetailsPage {
       this.permanentAddress1 = '';
       this.permanentAddress2 = '';
       this.permanentState = '';
-      this.permanentPincode =''; 
+      this.permanentPincode ='';
+      this.permanentCity = '';  
     }
   }
 

@@ -200,14 +200,14 @@ export class InvestorInfoPage {
       loading.dismiss();
       this.presentToast("Image uploaded successfully");
     }, error => {
-      console.log(error);
+      this.presentToast("Image uploaded failed");
     });
   }
 
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 3000,
+      duration: 2000,
       position: 'bottom'
     });
   

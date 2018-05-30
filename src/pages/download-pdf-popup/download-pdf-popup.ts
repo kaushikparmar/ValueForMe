@@ -61,17 +61,34 @@ export class DownloadPdfPopupPage {
       if (this.platform.is('ios')) {
         path = this.file.documentsDirectory;
       } else if (this.platform.is('android')) {
-        path = this.file.dataDirectory;
+        path = this.file.externalApplicationStorageDirectory;
+        
+        console.log(path);
       }
    
-      const transfer = this.transfer.create();
+      const transfer: FileTransferObject  = this.transfer.create();
       console.log('pdfUrl to download', this.pdfUrl);
-      transfer.download(this.pdfUrl, path + 'myfile.pdf').then(entry => {
+      transfer.download(this.pdfUrl, path + 'Valufey.pdf').then(entry => {
         let url = entry.toURL();
-        console.log('entry.toURL', url);
-        this.document.viewDocument(url, 'application/pdf', {});
+        // path = url;
+        console.log("entry",entry);
+        console.log("url",url);
+        console.log(path,'pdf path');
+            const alertSuccess = this.alertCtrl.create({
+            title: `Download Succeeded!`,
+            subTitle: `File was successfully downloaded to: ${entry.toURL()}`,
+            buttons: ['Ok']
+          });
+  
+          alertSuccess.present();
+          // setTimeout( ()=> function(){
+          //   this.document.viewDocument(url, 'application/pdf', {});
+          // },500);
+  
+      }, (error) => {
+        console.log(error);
       });
-    
+      // this.document.viewDocument(url, 'application/pdf', {});
       // let blob: Blob = this.b64toBlob(dataBlob, 'application/pdf');
       // let pathFile: string;
       // const options : DocumentViewerOptions = {

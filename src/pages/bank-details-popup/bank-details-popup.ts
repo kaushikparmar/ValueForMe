@@ -11,6 +11,7 @@ export class BankDetailsPopupPage {
   public showBank : boolean = false;
   public searchString: string;
   public searchBlock: boolean = false;
+  public viewAll:boolean =true;
   public bankDetails = [
     {
       'bankName' : 'Axis Bank',
@@ -102,6 +103,7 @@ export class BankDetailsPopupPage {
     this.showBank = !this.showBank;
     this.topBankList = JSON.parse(JSON.stringify(this.bankDetails));
     this.searchBlock = !this.searchBlock;
+    this.viewAll = false;
   }
   public dismiss(): void {
     this.viewCtrl.dismiss();

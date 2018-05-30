@@ -56,7 +56,7 @@
     </ion-row>
   </ion-scroll>
   <div class="view-all">
-    <button ion-button clear outline mode="md" (click)="showAll()">
+    <button ion-button clear outline mode="md" (click)="showAll()" *ngIf="viewAll">
       Other Banks
     </button>
   </div>

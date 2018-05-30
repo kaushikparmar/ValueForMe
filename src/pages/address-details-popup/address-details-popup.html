@@ -12,7 +12,7 @@
   </button> -->
   <ion-scroll class="top-city" scrollY="true">
     <div class="error" *ngIf="topCityList?.length === 0">
-      No Banks Found.
+      No Cities Found.
     </div>
     <ion-row [ngClass]="{'searchBlock' : (searchBlock === true)}">
         <ion-col col-4 (click)="selectCity(city.cityName)" *ngFor="let city of topCityList">
@@ -64,7 +64,7 @@
   
   </div> -->
   <div class="view-all">
-    <button ion-button clear outline mode="md" (click)="showAll()">
+    <button ion-button clear outline mode="md" (click)="showAll()" *ngIf="viewAll">
       View All Cities
     </button>
   </div>

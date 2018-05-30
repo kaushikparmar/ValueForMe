@@ -48,17 +48,6 @@ page-holding-details {
                 }
                 .contact-no{
                     position: relative;
-                    .otp{
-                        position: absolute;
-                        right: 0;
-                        margin: 0;
-                        bottom: 0.5em;
-                        color:rgb(0,6,255);
-                        font : {
-                            size :1.4rem;
-                            weight:600;
-                        }
-                    }
                 }
                 .custom-select{
                     position: relative;
@@ -129,6 +118,17 @@ page-holding-details {
                         &.true{
                             bottom: 0;
                             color:map-get($colors,primary);
+                        }
+                    }
+                    .otp{
+                        position: absolute;
+                        right: 0;
+                        margin: 0;
+                        bottom: 1.2em;
+                        color:rgb(0,6,255);
+                        font : {
+                            size :1.4rem;
+                            weight:600;
                         }
                     }
                 }

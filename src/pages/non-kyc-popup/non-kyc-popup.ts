@@ -24,15 +24,15 @@ export class NonKycPopupPage {
   }
   openOTP(){
     console.log(this.pageName);
-    if(this.pageName === 'holding'){
+    // if(this.pageName === 'holding'){
         this.viewCtrl.dismiss();
-    } else {
-      let otp =this.modalCtrl.create('OtpPopupPage');
-    otp.present();
-    setTimeout(() => {
-      this.viewCtrl.dismiss();
-  }, 500);
+    // } else {
+      // let otp =this.modalCtrl.create('OtpPopupPage');
+    // otp.present();
+    // setTimeout(() => {
+      // this.viewCtrl.dismiss();
+  // }, 500);
   }
-    }
+    // }
     
 }

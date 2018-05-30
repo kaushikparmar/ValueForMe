@@ -8,7 +8,7 @@
     <form>
         <ion-list mode="ios">
             <ion-label class="header">Correspondence Address</ion-label>
-            <div class="mb">
+            <div class="mb mb-0">
                 <ion-item mode="ios">
                     <ion-label floating>Place of Birth</ion-label>
                     <ion-select name="place" [(ngModel)]="place" (ionChange)="onPlaceChange()" [selectOptions]="selectOptions">
@@ -18,6 +18,11 @@
                     </ion-select>
                 </ion-item>
             </div>
+            <ion-label class="nri-text">Place of birth mandatory.
+                    <span class="info">
+                        <img src="./assets/imgs/info.png">
+                    </span>
+                </ion-label>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Address 1</ion-label>
@@ -33,7 +38,7 @@
             <div class="custom-select mb">
                 <ion-item mode="ios">
                     <ion-label floating class="custom-float-text">City</ion-label>
-                    <ion-label class="custom-text" (click)="openModal()">{{defaultCity}}
+                    <ion-label class="custom-text" (click)="openModal('correspondenceCity')">{{defaultCity}}
                     </ion-label>
                 </ion-item>
                 <div class="custom-select-icon">
@@ -92,7 +97,7 @@
                 <div class="custom-select mb">
                     <ion-item mode="ios">
                         <ion-label floating class="custom-float-text">City</ion-label>
-                        <ion-label class="custom-text" (click)="openModal()">{{permanentCity}}
+                        <ion-label class="custom-text" (click)="openModal('permanentCity')">{{permanentCity}}
                         </ion-label>
                     </ion-item>
                     <div class="custom-select-icon">
@@ -106,6 +111,7 @@
                             <ion-option value="Haryana">Haryana</ion-option>
                             <ion-option value="Assam">Assam</ion-option>
                             <ion-option value="Arunchal Pradesh">Arunchal Pradesh</ion-option>
+                            <ion-option [value]="permanentState">{{permanentState}}</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>
@@ -134,7 +140,7 @@
         </ion-list>
     </form>
     <div class="footer-action-btn">
-        <button ion-button round block class="action-btn" mode="md" (click)="nextPage()">
+        <button ion-button round block class="action-btn" [disabled]="buttonDisabled" mode="md" (click)="nextPage()">
             CONTINUE
         </button>
     </div>
