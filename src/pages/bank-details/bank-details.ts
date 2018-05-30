@@ -18,6 +18,7 @@ export class BankDetailsPage implements OnInit {
   public checkInvestor: any;
   public showNRIAccount: boolean = false;
   public showIndiaAccount: boolean = true;
+  public properIfsc: boolean = false;
   bankDetails: FormGroup;
   constructor(
     public navCtrl: NavController,
@@ -82,6 +83,7 @@ export class BankDetailsPage implements OnInit {
         setTimeout(() => {
           this.showError = false;
         }, 700);
+        this.properIfsc = true;
         this.backAccountDetails['bankAccountInfo'].ifsc = ifsc;
 
       } else {
@@ -90,6 +92,7 @@ export class BankDetailsPage implements OnInit {
         setTimeout(() => {
           this.showError = true;
         }, 700);
+        this.properIfsc = false;
       }
       this.backAccountDetails['bankAccountInfo'].branchName = this.bankDetails.get('branchName').value;
       this.backAccountDetails['bankAccountInfo'].branchAddress = this.bankDetails.get('branchAddress').value;

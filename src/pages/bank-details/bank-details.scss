@@ -46,7 +46,22 @@ page-bank-details {
                         size : 1.2rem;
                     }
                 }
-                
+                .proper-ifsc{
+                    position: relative;
+                    ion-icon{
+                        position: absolute;
+                        right: 0;
+                        font-size: 2.4em;
+                        &.false{
+                            color:red;
+                            bottom: 10px;
+                        }
+                        &.true{
+                            bottom: 0;
+                            color:map-get($colors,primary);
+                        }
+                    }
+                }
                 // .item.item-input-has-value ion-label,
                 // .item.input-has-value ion-label{
                 //     font-size:1.4rem;
