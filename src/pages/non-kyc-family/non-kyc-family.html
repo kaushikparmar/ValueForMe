@@ -61,7 +61,7 @@
         <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
       </div> -->
 
-      <div class="contact-no mb" *ngIf="isPANRight!==undefined && !isPANRight">
+      <div class="contact-no mb">
         <ion-item mode="ios">
           <ion-label floating>Aadhar No.</ion-label>
           <ion-input type="tel" name="aadharNo" required patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
