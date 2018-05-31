@@ -1,10 +1,8 @@
-
-
 import { Component, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Platform, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
-import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+// import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 import { DataProvider } from '../../providers/data/data';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -12,7 +10,6 @@ import { FileOpener } from '@ionic-native/file-opener';
 // import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 @IonicPage()
-
 @Component({
   selector: 'page-download-pdf-popup',
   templateUrl: 'download-pdf-popup.html',
@@ -25,7 +22,6 @@ export class DownloadPdfPopupPage {
   constructor(
     public navCtrl: NavController,
     public renderer: Renderer,
-    private document: DocumentViewer,
     private transfer: FileTransfer,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
@@ -54,9 +50,7 @@ export class DownloadPdfPopupPage {
     //     return false;
     //   }
     // });
-    this.localNotification.isTriggered(1).then((notification) => {
-
-    })
+    
   }
 
   download() {
