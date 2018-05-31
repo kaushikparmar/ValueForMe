@@ -90,7 +90,7 @@ export class AddressDetailsPage {
     public modalCtrl: ModalController, 
     public data:DataProvider,
     public navParams: NavParams) {
-      
+      this.locationDetails['locationInfo'].cityName = this.defaultCity;
     }
     
     onPlaceChange(): void{

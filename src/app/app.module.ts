@@ -11,9 +11,11 @@ import { MyApp } from './app.component';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { DataProvider } from '../providers/data/data';
-import { DocumentViewer } from '@ionic-native/document-viewer';
+// import { DocumentViewer } from '@ionic-native/document-viewer';
 import { CameraProvider } from '../providers/camera/camera';
 import { SharedModule } from './shared.module';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FileOpener } from '@ionic-native/file-opener';
 
 @NgModule({
   declarations: [
@@ -49,11 +51,13 @@ import { SharedModule } from './shared.module';
   providers: [
     StatusBar,
     SplashScreen,
-    DocumentViewer,
+    // DocumentViewer,
     Diagnostic,
     File,
     FileTransfer,
+    LocalNotifications,
     FileTransferObject,
+    FileOpener,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     Camera,
