@@ -26,11 +26,13 @@ page-non-kyc-popup {
         }
         .otp-msg{
             p{
-                color:rgb(96,96,96);
+                color:rgba(96,96,96,0.78);
                 font : {
                     size: 1.3rem;
                     weight:500;
                 }
+                width: 232px;
+                margin: 0 auto 20px;
             }
         }
         .item-block .item-inner{

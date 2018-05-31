@@ -34,6 +34,7 @@ page-address-details-popup {
                 max-width: 100%;
                 flex: 0 0 100%;
                 div.city{
+                    display: none;
                     width: 30px;
                     height: 30px;
                     img{
@@ -41,7 +42,7 @@ page-address-details-popup {
                     }
                 }
                 .city-name{
-                    margin-left: 20px;
+                    margin-left: 0px;
                     text-align: left;
                 }
             }
@@ -58,6 +59,7 @@ page-address-details-popup {
             img{
                 margin: auto;
                 width: 45%;
+                height: 25px;
             }
         }
         .city-name{

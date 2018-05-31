@@ -5,7 +5,7 @@ import { File } from '@ionic-native/file';
 // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 import { DataProvider } from '../../providers/data/data';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { FileOpener } from '@ionic-native/file-opener';
+// import { FileOpener } from '@ionic-native/file-opener';
 // declare var cordova: any;
 // import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
@@ -27,7 +27,7 @@ export class DownloadPdfPopupPage {
     public toastCtrl: ToastController,
     private file: File,
     public alertCtrl: AlertController,
-    private fileOpener: FileOpener,
+    // private fileOpener: FileOpener,
     private localNotification: LocalNotifications,
     public platform: Platform,
     public data: DataProvider,
@@ -91,11 +91,11 @@ export class DownloadPdfPopupPage {
           buttons: [{
             text: 'OK',
             role: 'cancel',
-            handler: () => {
-              this.fileOpener.open(localFileurl, 'application/pdf')
-                .then(() => console.log('File is opened'))
-                .catch(e => console.log('Error opening file', e));
-            }
+            // handler: () => {
+            //   this.fileOpener.open(localFileurl, 'application/pdf')
+            //     .then(() => console.log('File is opened'))
+            //     .catch(e => console.log('Error opening file', e));
+            // }
           }]
         });
 

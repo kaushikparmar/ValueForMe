@@ -33,6 +33,7 @@ page-bank-details-popup {
                 max-width: 100%;
                 flex: 0 0 100%;
                 div.bank{
+                    display: none;
                     width: 30px;
                     height: 30px;
                     img{
@@ -40,7 +41,7 @@ page-bank-details-popup {
                     }
                 }
                 .bank-name{
-                    margin-left: 20px;
+                    margin-left: 0px;
                     text-align: left;
                 }
             }
@@ -57,6 +58,7 @@ page-bank-details-popup {
             img{
                 margin: auto;
                 width: 45%;
+                height: 25px;
             }
         }
         .top-bank{

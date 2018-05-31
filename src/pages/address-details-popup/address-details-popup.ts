@@ -77,7 +77,7 @@ export class AddressDetailsPopupPage {
     for (let i=0;i<6;i++) {
       this.topCityList.push(this.cityDetails[i]);
     }
-    this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
+    this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'selectPopupModal', true);
   }
   public selectCity(city): void {
     this.viewCtrl.dismiss(city);
