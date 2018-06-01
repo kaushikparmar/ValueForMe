@@ -91,11 +91,9 @@ export class DownloadPdfPopupPage {
           buttons: [{
             text: 'OK',
             role: 'cancel',
-            // handler: () => {
-            //   this.fileOpener.open(localFileurl, 'application/pdf')
-            //     .then(() => console.log('File is opened'))
-            //     .catch(e => console.log('Error opening file', e));
-            // }
+            handler: () => {
+              this.dismiss();
+            }
           }]
         });
 

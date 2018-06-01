@@ -97,7 +97,7 @@
         </div>
       </div>
       <!-- <ngx-intl-tel-input [(value)]="8733083855"></ngx-intl-tel-input> -->
-      <div class="check-nri mb">
+      <div class="check-nri mb-0">
         <ion-label>Are you a NRI?</ion-label>
         <div class="switch">
           <input type="radio" class="switch-input" name="toggle" id="yes" [value]="true" [ngClass]="{'nri-checked':currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI" (change)="checkNRI(true)">

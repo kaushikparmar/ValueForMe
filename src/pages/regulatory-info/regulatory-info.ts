@@ -9,6 +9,13 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class RegulatoryInfoPage {
   @ViewChild('birthPlace1') birthPlace1;
+  @ViewChild('outsideIndia1') outsideIndia1;
+  @ViewChild('exposure1') exposure1;
+  @ViewChild('income1') income1;
+  @ViewChild('source1') source1;
+  @ViewChild('identfication1') identfication1;
+  @ViewChild('occuptaion1') occuptaion1;
+  
   public selectOptions = {
     title: 'Select Birth Country'
   };
@@ -69,29 +76,45 @@ export class RegulatoryInfoPage {
     this.birthPlace1.close();
     this.fatchaDetails['fatchaInfo'].birthPlace = event;
   }
-  checkResident(residence) {
-    this.fatchaDetails['fatchaInfo'].residence = residence;
-    if(residence === 'Yes'){
-      this.showSection = true; 
+  checkResident(event) {
+    this.fatchaDetails['fatchaInfo'].residence = event;
+    if(event === 'Yes'){
+      this.showSection = true;
+      this.outsideInida = event;
+      this.outsideIndia1.close();
     } else {
       this.showSection = false; 
+      this.outsideInida = event;
+      this.outsideIndia1.close();
+      
     } 
   }
   
-  checkExposure(exposure) {
-    this.fatchaDetails['fatchaInfo'].exposure = exposure;
+  checkExposure(event) {
+    this.fatchaDetails['fatchaInfo'].exposure = event;
+    this.exposure = event;
+    this.exposure1.close();
+
   }
-  checkIncome(income) {
-    this.fatchaDetails['fatchaInfo'].income = income;
+  checkIncome(event) {
+    this.fatchaDetails['fatchaInfo'].income = event;
+    this.income = event;
+    this.income1.close();
   }
-  checkSource(source) {
-    this.fatchaDetails['fatchaInfo'].source = source;
+  checkSource(event) {
+    this.fatchaDetails['fatchaInfo'].source = event;
+    this.source = event;
+    this.source1.close();
   }
-  checkIndentification(id) {
-    this.fatchaDetails['fatchaInfo'].identity = id;
+  checkIndentification(event) {
+    this.fatchaDetails['fatchaInfo'].identity = event;
+    this.identification = event;
+    this.identfication1.close();
   }
-  checkOccupation(occupation) {
-    this.fatchaDetails['fatchaInfo'].occupation = occupation;
+  checkOccupation(event) {
+    this.fatchaDetails['fatchaInfo'].occupation = event;
+    this.occupation = event;
+    this.occuptaion1.close();
   }
   checkNRICountry(nri){
     this.fatchaDetails['fatchaInfo'].nriCountry = nri; 
