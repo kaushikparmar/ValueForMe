@@ -26,9 +26,9 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Tax Resident Outside India?</ion-label>
-                    <ion-select name="outsideInida" [selectOptions]="selectOptions1" [(ngModel)]="outsideInida" (ngModelChange)="checkResident(outsideInida)">
-                        <ion-option value="Yes">Yes</ion-option>
-                        <ion-option value="No" selected>No</ion-option>
+                    <ion-select #outsideIndia1 name="outsideInida" [selectOptions]="selectOptions1" [(ngModel)]="outsideInida">
+                        <ion-option value="Yes" (ionSelect)="checkResident($event)">Yes</ion-option>
+                        <ion-option value="No" (ionSelect)="checkResident($event)" selected>No</ion-option>
                     </ion-select>
                 </ion-item>
                 <div class="error" *ngIf="currentMember?.isNRI && outsideInida==='No'">
@@ -55,18 +55,18 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Political Exposure</ion-label>
-                    <ion-select name="exposure" [selectOptions]="selectOptions2" [(ngModel)]="exposure" (ngModelChange)="checkExposure(exposure)">
-                        <ion-option value="Not Applicable" selected>Not Applicable</ion-option>
-                        <ion-option value="No">No</ion-option>
+                    <ion-select #exposure1 name="exposure" [selectOptions]="selectOptions2" [(ngModel)]="exposure">
+                        <ion-option value="Not Applicable" (ionSelect)="checkExposure($event)" >Not Applicable</ion-option>
+                        <ion-option value="No" (ionSelect)="checkExposure($event)">No</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Gross Annual Income</ion-label>
-                    <ion-select name="income" [selectOptions]="selectOptions3" [(ngModel)]="income" (ngModelChange)="checkIncome(income)">
-                        <ion-option value="5L TO 10L" selected>5L TO 10L</ion-option>
-                        <ion-option value=">= 25 Lacs <=1 Crore"> >= 25 Lacs
+                    <ion-select #income1 name="income" [selectOptions]="selectOptions3" [(ngModel)]="income" >
+                        <ion-option value="5L TO 10L" selected (ionSelect)="checkIncome($event)">5L TO 10L</ion-option>
+                        <ion-option value=">= 25 Lacs <=1 Crore" (ionSelect)="checkIncome($event)"> >= 25 Lacs
                             <=1 Crore</ion-option>
                     </ion-select>
                 </ion-item>
@@ -74,27 +74,27 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Source of Wealth</ion-label>
-                    <ion-select name="source" [selectOptions]="selectOptions4" [(ngModel)]="source" (ngModelChange)="checkSource(source)">
-                        <ion-option value="Salary" selected>Salary</ion-option>
-                        <ion-option value="Bussiness">Bussiness</ion-option>
+                    <ion-select #source1 name="source" [selectOptions]="selectOptions4" [(ngModel)]="source">
+                        <ion-option value="Salary" (ionSelect)="checkSource($event)" selected>Salary</ion-option>
+                        <ion-option value="Bussiness" (ionSelect)="checkSource($event)" >Bussiness</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>ID Source (Given for KYC)</ion-label>
-                    <ion-select name="identification" [selectOptions]="selectOptions5" [(ngModel)]="identification" (ngModelChange)="checkIndentification(identification)">
-                        <ion-option value="PAN Card" selected>PAN Card</ion-option>
-                        <ion-option value="Aadhar Card">Aadhar Card</ion-option>
+                    <ion-select #identfication1 name="identification" [selectOptions]="selectOptions5" [(ngModel)]="identification">
+                        <ion-option value="PAN Card" selected (ionSelect)="checkIndentification($event)">PAN Card</ion-option>
+                        <ion-option value="Aadhar Card" (ionSelect)="checkIndentification($event)">Aadhar Card</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Occupation</ion-label>
-                    <ion-select name="occupation" [selectOptions]="selectOptions6" [(ngModel)]="occupation" (ngModelChange)="checkOccupation(occupation)">
-                        <ion-option value="Private Sector Service" selected>Private Sector Service</ion-option>
-                        <ion-option value="Aadhar Card">Government Sector</ion-option>
+                    <ion-select #occuptaion1 name="occupation" [selectOptions]="selectOptions6" [(ngModel)]="occupation" >
+                        <ion-option value="Private Sector Service" (ionSelect)="checkOccupation($event)" selected>Private Sector Service</ion-option>
+                        <ion-option value="Aadhar Card" (ionSelect)="checkOccupation($event)">Government Sector</ion-option>
                     </ion-select>
                 </ion-item>
             </div>

@@ -49,18 +49,18 @@
             <div class="mb" *ngIf="showNRIAccount">
                 <ion-item mode="ios">
                     <ion-label floating>Non-Resident</ion-label>
-                    <ion-select name="outsideInida" [selectOptions]="selectOptions" formControlName="outsideInida" (ionChange)="checkResident()">
-                        <ion-option value="External">External</ion-option>
-                        <ion-option value="Internal" selected>Internal</ion-option>
+                    <ion-select #outsideInida1 name="outsideInida" [selectOptions]="selectOptions" formControlName="outsideInida" >
+                        <ion-option value="External" (ionSelect)="checkResident($event)">External</ion-option>
+                        <ion-option value="Internal" (ionSelect)="checkResident($event)" selected>Internal</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
             <div class="mb" *ngIf="showIndiaAccount">
                     <ion-item mode="ios">
                         <ion-label floating>Select Account</ion-label>
-                        <ion-select name="insideIndia" [selectOptions]="selectOptions2" formControlName="insideIndia" (ionChange)="checkInternalResident()">
-                            <ion-option value="Saving" selected>Saving</ion-option>
-                            <ion-option value="Current">Current</ion-option>
+                        <ion-select #insideIndia1 name="insideIndia" [selectOptions]="selectOptions2" formControlName="insideIndia">
+                            <ion-option value="Saving" (ionSelect)="checkInternalResident($event)" selected>Saving</ion-option>
+                            <ion-option value="Current" (ionSelect)="checkInternalResident($event)">Current</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>

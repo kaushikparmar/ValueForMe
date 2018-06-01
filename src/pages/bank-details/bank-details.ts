@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { DataProvider } from '../../providers/data/data';
@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'bank-details.html',
 })
 export class BankDetailsPage implements OnInit {
+  @ViewChild('outsideInida1') outsideInida;
+  @ViewChild('insideIndia1') insideIndia;
   public defaultBank = "ICICI Bank LTD.";
   public accountNo: any = "";
   public reAccountNo: any = "";
@@ -104,14 +106,18 @@ export class BankDetailsPage implements OnInit {
   branchaddress() {
     this.backAccountDetails['bankAccountInfo'].branchAddress = this.bankDetails.get('branchAddress').value;
   }
-  checkResident() {
-    this.backAccountDetails['bankAccountInfo'].residence = this.bankDetails.get('outsideInida').value;
+  checkResident(event) {
+    this.backAccountDetails['bankAccountInfo'].residence = event;
+    this.bankDetails.controls['outsideInida'].setValue(event);
+    this.outsideInida.close();
   }
   checkAccount() {
     this.backAccountDetails['bankAccountInfo'].accountNo = this.bankDetails.get('accountNumber').value;
   }
-  checkInternalResident() {
-    this.backAccountDetails['bankAccountInfo'].accountType = this.bankDetails.get('insideIndia').value;
+  checkInternalResident(event) {
+    this.backAccountDetails['bankAccountInfo'].accountType = event;
+    this.bankDetails.controls['insideIndia'].setValue(event);
+    this.insideIndia.close();
   }
 
   equalto(field_name): ValidatorFn {

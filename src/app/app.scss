@@ -27,6 +27,13 @@
 /******************global varisbles*******************/
 
 // gloabal css
+ion-list{
+    margin-bottom: 20px !important;
+}
+.checkbox-md .checkbox-icon{
+    width: 14px;
+    height: 14px;
+}
 
 .error{
     color:red;
@@ -115,7 +122,7 @@ ion-navbar{
 }
 
 ion-list .mb-30,ion-list .mb{
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
 }
 
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,

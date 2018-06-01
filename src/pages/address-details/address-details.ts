@@ -9,7 +9,7 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'address-details.html',
 })
 export class AddressDetailsPage {
-  public defaultCity = "Mumbai";
+  public defaultCity: any;
   public permanentCity:any;
   public addressFill: any;
   public selectOptions = {
@@ -84,31 +84,35 @@ export class AddressDetailsPage {
   public pincode: any;
   public address1:any;
   public address2:any;
+
+  public birthCity:any;
+  public birthState: any;
   constructor(
     public navCtrl: NavController,
     public _cdr: ChangeDetectorRef,
     public modalCtrl: ModalController, 
     public data:DataProvider,
     public navParams: NavParams) {
-      this.locationDetails['locationInfo'].cityName = this.defaultCity;
+      // this.locationDetails['locationInfo'].cityName = this.defaultCity;
+      this.locationDetails['locationInfo'].countryName = this.country;
     }
     
-    onPlaceChange(): void{
+    // onPlaceChange(): void{
       
-      for(let obj of this.location){
-        if(obj.placeName === this.place){
-          this.state = obj.stateName;
-          this.country = obj.countryName;
-          this.pincode = obj.pinCode;
-          this.locationDetails['locationInfo'].placeName = this.place;
-          this.locationDetails['locationInfo'].countryName = this.country;
-          this.locationDetails['locationInfo'].pincode = this.pincode;
-          this.locationDetails['locationInfo'].stateName = this.state;
-        }
-      }
-        this._cdr.detectChanges();
-        this.buttonDisabled = false;
-    }
+    //   for(let obj of this.location){
+    //     if(obj.placeName === this.place){
+    //       this.state = obj.stateName;
+    //       this.country = obj.countryName;
+    //       this.pincode = obj.pinCode;
+    //       this.locationDetails['locationInfo'].placeName = this.place;
+    //       this.locationDetails['locationInfo'].countryName = this.country;
+    //       this.locationDetails['locationInfo'].pincode = this.pincode;
+    //       this.locationDetails['locationInfo'].stateName = this.state;
+    //     }
+    //   }
+    //     this._cdr.detectChanges();
+    //     this.buttonDisabled = false;
+    // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddressDetailsPage');
@@ -134,13 +138,46 @@ export class AddressDetailsPage {
       }
     });
   }
+  openBirthCityModal(city) {
+    let openModal=this.modalCtrl.create('BirthPlaceModalPage');
+    openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined && city === 'correspondencePlace'){
+        this.birthCity = data;
+        // this.location['indianAddress'].cityName = this.defaultCity;
+        this.locationDetails['locationInfo'].placeName = this.birthCity;
+      } 
+    });
+    this.buttonDisabled = false;
+  }
+  openStateModal(state) {
+    let openModal=this.modalCtrl.create('StateModalPage');
+    openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined && state === 'correspondenceState'){
+        this.birthState = data;
+        // this.location['indianAddress'].cityName = this.defaultCity;
+        this.locationDetails['locationInfo'].stateName = this.birthState;
+      } else {
+        this.permanentState = data;
+      }
+    });
+  }
+
+  correspondencePincode(pincode) {
+    this.pincode = pincode;
+    this.locationDetails['locationInfo'].pincode = pincode;
+  }
+  permanentPinCode(pincode) {
+    this.permanentPincode = pincode;
+  }
 
   prefillAddress(isChecked) { 
     if(isChecked) {
       console.log(isChecked);
       this.permanentAddress1 = this.address1;
       this.permanentAddress2 = this.address2;
-      this.permanentState = this.state;
+      this.permanentState = this.birthState;
       this.permanentPincode = this.pincode;
       this.permanentCity = this.defaultCity; 
     } else {
