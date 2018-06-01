@@ -62,11 +62,15 @@
       </div> -->
 
       <div class="contact-no mb">
-        <ion-item mode="ios">
+        <ion-item mode="ios" *ngIf="isPANRight!==undefined && isPANRight">
+          <ion-label floating>Aadhar No.</ion-label>
+          <ion-input type="tel" name="aadharNo" patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
+        </ion-item>
+        <ion-item mode="ios" *ngIf="isPANRight!==undefined && !isPANRight">
           <ion-label floating>Aadhar No.</ion-label>
           <ion-input type="tel" name="aadharNo" required patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
         </ion-item>
-        <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
+        <button ion-button clear outline mode="md" class="otp" (click)="sendOTP()">Send OTP</button>
       </div>
       <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.required">
 				Aadhar No is mandatory
