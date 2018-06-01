@@ -58,6 +58,7 @@ page-address-details {
                     }
                     .custom-float-text{
                         // font-size: 1.4rem;
+                        padding-bottom: 5px;
                         width: 100%;
                         transform: translate3d(0, 0, 0) scale(0.8);
                         color: #606060;
@@ -83,7 +84,7 @@ page-address-details {
                 }
                 .hideDetails{
                     ion-label{
-                        color:rgb(96,96,96);
+                        color:rgba(96,96,96,0.78);
                         font : {
                             size : 1.3rem;
                             weight:500;

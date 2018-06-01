@@ -44,12 +44,43 @@ page-investor-info {
                         padding: 0px 8px 6px 0px;
                     }
                 }
+                .image-container{
+                    position: relative;
+                    img{
+                        border-radius: 15px;
+                        box-shadow: 0 0.3px 1.7px 0 #898989;
+                        position: relative;
+                        width: 125px;
+                    }
+                    .image-holder{
+                        position: relative;
+                        width: 125px;
+                    }
+                    .imageDismiss{
+                        position: absolute;
+                        right: 10px;
+                        top:0px;
+                        width: 18px;
+                        height: 18px;
+                        border-radius: 50%;
+                        padding:0px;
+                        position: absolute;
+                        background: map-get($colors,danger);
+                        &.activated{
+                            background: map-get($colors,danger);
+                        }
+                        ion-icon{
+                            font-size: 1.2rem;
+                        }
+
+                    }
+                }
                 .upload-container{
                     display: flex;
                     flex-flow: row nowrap;
                     justify-content: space-between;
                     div{
-                        width: 130px;
+                        width: 45%;
                         box-shadow: 0 0.3px 1.7px 0 rgb(137,137,137);
                         background: #fff;
                         height: 145px;

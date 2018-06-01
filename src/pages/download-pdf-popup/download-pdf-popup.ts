@@ -190,7 +190,7 @@ export class DownloadPdfPopupPage {
     toast.present();
   }
   ionViewDidLoad() {
-    this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
+    this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'selectPopupModal', true);
     this.pdfUrl = this.data.getPdfUrl();
   }
   public dismiss(): void {

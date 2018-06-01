@@ -16,10 +16,10 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Joint Holder Type</ion-label>
-                    <ion-select name="jointHolder" formControlName="jointHolder" [selectOptions]="selectOptions6" (ionChange)="checkJointHolder()">
-                        <ion-option value="Single" selected>Single</ion-option>
-                        <ion-option value="Joint Holder">Joint Holder</ion-option>
-                        <ion-option value="Anyone or Survivor" selected>Anyone or Survivor</ion-option>
+                    <ion-select #jointHolderClose name="jointHolder" formControlName="jointHolder" [selectOptions]="selectOptions6">
+                        <ion-option value="Single" (ionSelect)="joitnHolderClose($event)" selected>Single</ion-option>
+                        <ion-option value="Joint Holder" (ionSelect)="joitnHolderClose($event)">Joint Holder</ion-option>
+                        <ion-option value="Anyone or Survivor" (ionSelect)="joitnHolderClose($event)">Anyone or Survivor</ion-option>
                     </ion-select>
                 </ion-item>
             </div>
@@ -58,15 +58,15 @@
                     </div>
                     <ion-label class="otp" (click)="sendOTP()" *ngIf="showPanError">Send OTP</ion-label>
                     <div class="error" *ngIf="showAadharError">
-                            Aadhar number is mandatory.
-                        </div>
+                        Aadhar number is mandatory.
+                    </div>
                 </div>
                 <div class="member-detail mb">
                     <div class="member-title">
                         <ion-item mode="ios">
-                            <ion-select name="title" [selectOptions]="selectOptions">
-                                <ion-option value="Mr." selected>Mr.</ion-option>
-                                <ion-option value="Mrs.">Mrs.</ion-option>
+                            <ion-select #jointHolderTitle name="title" [selectOptions]="selectOptions" formControlName="jointTitle">
+                                <ion-option value="Mr." (ionSelect)="jointTitleClose($event)" selected>Mr.</ion-option>
+                                <ion-option value="Mrs." (ionSelect)="jointTitleClose($event)">Mrs.</ion-option>
                             </ion-select>
                         </ion-item>
                     </div>
@@ -86,7 +86,7 @@
                 <div class="dob mb">
                     <ion-item mode="ios">
                         <ion-label floating>Joint Holder 1 Date of Birth</ion-label>
-                        <ion-datetime #datePicker displayFormat="DD MMM, YYYY" name="dob" formControlName="dob" (ngModelChange)="dateChanged()"></ion-datetime>
+                        <ion-datetime #datePicker displayFormat="DD MMM, YYYY" name="dob" formControlName="dob" (ionChange)="dateChanged()"></ion-datetime>
                     </ion-item>
                     <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged($event)">
                 </div>
@@ -278,11 +278,96 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Nominee</ion-label>
-                    <ion-select name="nominee" formControlName="nominee" [selectOptions]="selectOptions5">
+                    <ion-select name="nominee" formControlName="nominee" [selectOptions]="selectOptions5" (ionChange)="checkNomineeSection()">
                         <ion-option value="Yes">Yes</ion-option>
                         <ion-option value="No" selected>No</ion-option>
                     </ion-select>
                 </ion-item>
+            </div>
+            <div class="nominee-section" *ngIf="hideNomineeSection">
+                <ion-label class="holder">Nominee 1 Details</ion-label>
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Nominee 1 Name</ion-label>
+                        <ion-input type="text" name="nomineeName" formControlName="nomineeName" (ionChange)="getName()"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="custom-select mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Nominee 1 Relationship</ion-label>
+                        <ion-select name="relationship" [selectOptions]="selectOptions7" formControlName="relationship" (ionChange)="checkRelation()">
+                            <ion-option value="Wife" selected>Wife</ion-option>
+                            <ion-option value="Husband">Husband</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
+                <div class="custom-select mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Select Nominee Type</ion-label>
+                        <ion-select name="nomineeType" [selectOptions]="selectOptions8" formControlName="nomineeType" (ionChange)="checkType(nomineeType)">
+                            <ion-option value="Minor" selected>Minor</ion-option>
+                            <ion-option value="Major">Major</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
+                <div class="dob mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Nominee 1 Date of Birth</ion-label>
+                        <ion-datetime #datePicker1 displayFormat="DD MMM, YYYY" name="datePick" formControlName="datePick" (ionChange)="dateChanged1()"></ion-datetime>
+                    </ion-item>
+                    <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged1($event)">
+                </div>
+                <div class="mb">
+                    <ion-item mode="ios">
+                        <ion-label floating>Nominee Percentage</ion-label>
+                        <ion-input type="tel" name="percentage" value="100" formControlName="percentage" (ionChange)="checkShare()"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="second-nominee" *ngIf="showSecondNominee">
+                    <ion-label class="holder">Nominee 2 Details</ion-label>
+                    <div class="mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Nominee 2 Name</ion-label>
+                            <ion-input type="text" name="nomineeName2"></ion-input>
+                        </ion-item>
+                    </div>
+                    <div class="custom-select mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Nominee 2 Relationship</ion-label>
+                            <ion-select name="relationship2" [selectOptions]="selectOptions7">
+                                <ion-option value="Wife" selected>Wife</ion-option>
+                                <ion-option value="Husband">Husband</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                    <div class="custom-select mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Select Nominee Type</ion-label>
+                            <ion-select name="nomineeType2" [selectOptions]="selectOptions8" (ionChange)="checkType()">
+                                <ion-option value="Minor" selected>Minor</ion-option>
+                                <ion-option value="Major">Major</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                    <div class="dob mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Nominee 2 Date of Birth</ion-label>
+                            <ion-datetime #datePicker2 displayFormat="DD MMM, YYYY" name="datePick2" (ionChange)="dateChanged2()"></ion-datetime>
+                        </ion-item>
+                        <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged2()">
+                    </div>
+                    <div class="mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Nominee Percentage</ion-label>
+                            <ion-input type="tel" name="percentage2" formControlName="percentage2" value="50"></ion-input>
+                        </ion-item>
+                    </div>
+                </div>
+                <div class="add-holder">
+                        <button ion-button clear outline mode="md" (click)="addAnotherNominee()">
+                            + Add another Nominee
+                        </button>
+                    </div>
             </div>
         </ion-list>
     </form>

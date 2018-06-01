@@ -114,9 +114,9 @@ ion-navbar{
     }
 }
 
-// ion-list .mb-30,ion-list .mb{
-//     margin-bottom: 20px !important;
-// }
+ion-list .mb-30,ion-list .mb{
+    margin-bottom: 20px !important;
+}
 
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
@@ -213,7 +213,7 @@ ion-modal.selectPopupModal{
             margin: auto;
             bottom: 0;
             width: 90%;
-            height: 400px;
+            height: 382px;
             .send-otp-btn{
                 button{
                     width: 120px;

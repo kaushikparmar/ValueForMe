@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Form } from 'ionic-angular';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { DataProvider } from '../../providers/data/data';
 
@@ -10,10 +10,16 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class HoldingDetailsPage implements OnInit {
   @ViewChild('datePicker') datePicker;
+  @ViewChild('datePicker1') datePicker1;
+  @ViewChild('datePicker2') datePicker2;
+  @ViewChild('jointHolderClose') closeJointHolder;
+  @ViewChild('jointHolderTitle') closeJointHolderTitle;
+  
   public defaultBank = "ICICI Bank LTD.";
   public accountNo: any = "412739865024";
   public reAccountNo: any = "412739865024";
   public showAadharError: boolean = false;
+  public showSecondNominee: boolean = false;
   jointHolderDetails: FormGroup;
   public selectOptions = {
     title: 'Select Title'
@@ -36,6 +42,12 @@ export class HoldingDetailsPage implements OnInit {
   public selectOptions6 = {
     title: 'Select Joint Holder'
   };
+  public selectOptions7 = {
+    title: 'Select Relationship'
+  };
+  public selectOptions8 = {
+    title: 'Select Type'
+  };
   showDetails1: boolean = false;
   showDetails2: boolean = false;
   showDetails3: boolean = false;
@@ -45,6 +57,7 @@ export class HoldingDetailsPage implements OnInit {
   checkIfsc: boolean = false;
   showError: boolean = false;
   hideJointDetails: boolean = false;
+  hideNomineeSection: boolean = false;
   panNo: any;
   checkPanno: boolean = false;
   showPanError:boolean = false;
@@ -54,6 +67,22 @@ export class HoldingDetailsPage implements OnInit {
 
   properAadhar:boolean =false;
   checkAadharno:boolean =false;
+
+  public nomineeName: any;
+  public relationship: any;
+  public nomineeType: any;
+  public datePick: any;
+  public percentage: any;
+
+  public nomineeDetails = {
+    'nomineeInfo': {
+      'nomineeName': '',
+      'nomineeRelationship': '',
+      'nomineeType': '',
+      'nomineeDob': '',
+      'nomineePercentage': ''
+    }
+  }
 
   public jointHolderData= {
     'jointHolderInfo' : 
@@ -106,17 +135,53 @@ export class HoldingDetailsPage implements OnInit {
       aadharNo: new FormControl(''),
       holderName : new FormControl(''),
       dob: new FormControl(''),
-      jointHolder: new FormControl('')
+      jointHolder: new FormControl(''),
+      nomineeName: new FormControl(''),
+      relationship: new FormControl(''),
+      nomineeType: new FormControl(''),
+      percentage: new FormControl(''),
+      datePick: new FormControl(''),
+      percentage2: new FormControl(''),
+      jointTitle: new FormControl('')
+
+
     });
     this.jointHolderDetails.controls['nominee'].setValue('No');
     this.jointHolderDetails.controls['jointHolder'].setValue('Single');
   }
-  checkJointHolder() {
-    if(this.jointHolderDetails.get('jointHolder').value === 'Joint Holder'){
+  // checkJointHolder() {
+  //   if(this.jointHolderDetails.get('jointHolder').value === 'Joint Holder'){
+  //     this.hideJointDetails = true;
+  //   }
+  //   if(this.jointHolderDetails.get('jointHolder').value === 'Single'){
+  //     this.hideJointDetails = false;
+  //   }
+  // }
+  joitnHolderClose(event){
+    // this.selectInvestor.close();
+    // this.investorType = event;
+    if(event === 'Joint Holder'){
+      this.jointHolderDetails.controls['jointHolder'].setValue('Joint Holder');
       this.hideJointDetails = true;
+      this.closeJointHolder.close();
     }
-    if(this.jointHolderDetails.get('jointHolder').value === 'Single'){
+    if(event === 'Single'){
+      this.jointHolderDetails.controls['jointHolder'].setValue('Single');
       this.hideJointDetails = false;
+      this.closeJointHolder.close();
+    }
+  }
+  jointTitleClose(event){
+    this.closeJointHolderTitle.close();
+    this.jointHolderDetails.controls['jointTitle'].setValue(event);
+  }
+
+  checkNomineeSection() {
+    if(this.jointHolderDetails.get('nominee').value === 'Yes'){
+      this.hideNomineeSection = true;
+    }
+    if(this.jointHolderDetails.get('nominee').value === 'No'){
+      this.hideNomineeSection = false;
     }
   }
   
@@ -253,19 +318,7 @@ export class HoldingDetailsPage implements OnInit {
     otpModal.present();
   }
 
-  nextPage() {
-    if(this.jointHolderDetails.get('nominee').value === 'Yes' ) {
-      this.navCtrl.push('NomineeDetailsPage');
-      this.jointHolderData['jointHolderInfo'].nominee = this.jointHolderDetails.get('nominee').value;
-    } else if(this.jointHolderDetails.get('nominee').value === 'No') {
-      this.navCtrl.push('RegulatoryInfoPage');
-      this.jointHolderData['jointHolderInfo'].nominee = this.jointHolderDetails.get('nominee').value;
-    } else {
-      this.navCtrl.push('NomineeDetailsPage');
-    }
-    this.data.dataSet(this.jointHolderData);
-    console.log(this.data);
-  }
+  
   openPanel1() {
     this.showDetails1 = !this.showDetails1;
     this.showDetails2 = false;
@@ -282,4 +335,44 @@ export class HoldingDetailsPage implements OnInit {
     this.showDetails3 = !this.showDetails3;
   }
 
+  checkRelation() {
+    this.nomineeDetails['nomineeInfo'].nomineeRelationship = this.jointHolderDetails.get('relationship').value;
+  }
+  getName() {
+    this.nomineeDetails['nomineeInfo'].nomineeName =  this.jointHolderDetails.get('nomineeName').value;
+  }
+  checkType() {
+    this.nomineeDetails['nomineeInfo'].nomineeType = this.jointHolderDetails.get('nomineeType').value;
+  }
+  dateChanged1() {
+    this.nomineeDetails['nomineeInfo'].nomineeDob = this.jointHolderDetails.get('datePick').value;
+    this.datePicker1.open();
+  }
+  dateChanged2(){
+    this.datePicker2.open();
+  }
+  checkShare() {
+    this.nomineeDetails['nomineeInfo'].nomineePercentage =this.jointHolderDetails.get('percentage').value;
+  }
+
+  nextPage() {
+    // if(this.jointHolderDetails.get('nominee').value === 'Yes' ) {
+    //   this.navCtrl.push('NomineeDetailsPage');
+    //   this.jointHolderData['jointHolderInfo'].nominee = this.jointHolderDetails.get('nominee').value;
+    // } else if(this.jointHolderDetails.get('nominee').value === 'No') {
+    //   this.navCtrl.push('RegulatoryInfoPage');
+    //   this.jointHolderData['jointHolderInfo'].nominee = this.jointHolderDetails.get('nominee').value;
+    // } else {
+      this.navCtrl.push('RegulatoryInfoPage');
+    // }
+    this.data.dataSet(this.jointHolderData);
+    this.data.dataSet(this.nomineeDetails);
+    console.log(this.data);
+  }
+
+  public addAnotherNominee() : void {
+    this.showSecondNominee = true;
+    this.jointHolderDetails.controls['percentage'].setValue('50');
+    this.jointHolderDetails.controls['percentage2'].setValue('50');
+  } 
 }
