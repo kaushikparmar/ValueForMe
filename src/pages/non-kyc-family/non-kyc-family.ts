@@ -261,13 +261,23 @@ export class NonKycFamilyPage implements OnInit {
   }
 
   sendOTP() {
-    let otpModal = this.modalCtrl.create('NonKycPopupPage');
+    let otpModal = this.modalCtrl.create('NonKycPopupPage',{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
     otpModal.present();
   }
   openOTP() {
     this.data.set(this.currentMember);
     this.data.dataSet(this.currentMember);
-    let otp = this.modalCtrl.create('OtpPopupPage');
+    let otp = this.modalCtrl.create('OtpPopupPage',{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
     otp.present();
   }
 }

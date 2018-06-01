@@ -34,6 +34,9 @@ ion-list{
     width: 14px;
     height: 14px;
 }
+ion-checkbox.checkbox .checkbox-checked .checkbox-inner{
+    top:1px !important;
+}
 
 .error{
     color:red;

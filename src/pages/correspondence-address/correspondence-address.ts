@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 
@@ -8,8 +8,10 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'correspondence-address.html',
 })
 export class CorrespondenceAddressPage {
+  @ViewChild('residentialType') residentialType;
   public defaultIndianCity = "Mumbai";
   public defaultOverseasCity = "";
+  public residential:any;
   public selectOptions = {
     title: 'Select Birth Place'
   };
@@ -104,10 +106,10 @@ export class CorrespondenceAddressPage {
   //   this._cdr.detectChanges();
   // }
 
-  onStateChange(state){
-    // this.indianState = state;
-    this.addressDetails['indianAddress'].stateName = state;
-  }
+  // onStateChange(state){
+  //   // this.indianState = state;
+  //   this.addressDetails['indianAddress'].stateName = state;
+  // }
   onInput(pincode){
     // this.indiaPincode = pincode;
     this.addressDetails['indianAddress'].pincode = pincode;
@@ -121,7 +123,10 @@ export class CorrespondenceAddressPage {
   changeOverseasCity(city){
     this.addressDetails['overseasAddress'].city= city;
   }
-  
+  checkResidential(event){
+    this.residential = event;
+    this.residentialType.close();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CorrespondenceAddressPage');
@@ -136,6 +141,19 @@ export class CorrespondenceAddressPage {
       }
     });
   }
+
+  openStateModal(state) {
+    let openModal=this.modalCtrl.create('StateModalPage');
+    openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined){
+        this.indianState = data;
+        // this.location['indianAddress'].cityName = this.defaultCity;
+        this.addressDetails['indianAddress'].stateName = this.indianState;
+      }
+    });
+  }
+
   // openOverseasModal() {
   //   let openModal2 = this.modalCtrl.create('AddressDetailsPopupPage');
   //   openModal2.present();

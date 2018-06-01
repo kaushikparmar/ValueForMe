@@ -14,7 +14,7 @@
                     <!-- <ion-select name="place" [(ngModel)]="place" (ngModelChange)="onPlaceChangeOverseas()" [selectOptions]="selectOptions">
                         <ion-option *ngFor="let place of overSeasLocation" [value]="place.placeName">{{place.placeName}}</ion-option>
                     </ion-select> -->
-                    <ion-input name="place" [(ngModel)]="overseasPlace" (ngModelChange)="onPlaceChangeOverseas(overseasPlace)"></ion-input> 
+                    <ion-input name="place" [(ngModel)]="overseasPlace" (ngModelChange)="onPlaceChangeOverseas(overseasPlace)"></ion-input>
                 </ion-item>
             </div>
             <ion-label class="nri-text">Not mandatory for NRI
@@ -37,7 +37,7 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>City</ion-label>
-                    <ion-input  name="overseasCity" [(ngModel)]="overseasCity" (ngModelChange)="changeOverseasCity(overseasCity)">
+                    <ion-input name="overseasCity" [(ngModel)]="overseasCity" (ngModelChange)="changeOverseasCity(overseasCity)">
                     </ion-input>
                 </ion-item>
                 <!-- <div class="custom-select-icon">
@@ -59,7 +59,8 @@
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Pincode</ion-label>
-                            <ion-input type="tel" name="overseasPincode"[(ngModel)]="overseasPincode" (ngModelChange)="overSeasPincode(overseasPincode)"  value="{{overseasPincode}}"></ion-input>
+                            <ion-input type="tel" name="overseasPincode" [(ngModel)]="overseasPincode" (ngModelChange)="overSeasPincode(overseasPincode)"
+                                value="{{overseasPincode}}"></ion-input>
                         </ion-item>
                     </div>
                 </ion-col>
@@ -71,7 +72,7 @@
                                 <ion-option [value]="country">{{country}}</ion-option>
                             </ion-select> -->
                             <ion-input name="overseasCountryName" [(ngModel)]="overseasCountryName" (ngModelChange)="overseasCountry(overseasCountryName)">
-                            </ion-input> 
+                            </ion-input>
                         </ion-item>
                     </div>
                 </ion-col>
@@ -102,7 +103,17 @@
                     <div class="custom-select-icon-inner"></div>
                 </div>
             </div>
-            <div class="mb">
+            <div class="custom-select mb">
+                <ion-item mode="ios">
+                    <ion-label floating class="custom-float-text">State</ion-label>
+                    <ion-label class="custom-text" (click)="openStateModal()">{{indianState}}
+                    </ion-label>
+                </ion-item>
+                <div class="custom-select-icon">
+                    <div class="custom-select-icon-inner"></div>
+                </div>
+            </div>
+            <!-- <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>State</ion-label>
                     <ion-select name="indianState" [(ngModel)]="indianState" (ngModelChange)="onStateChange(indianState)" [selectOptions]="selectOptions2">
@@ -112,7 +123,7 @@
                         <ion-option value="Bangalore">Bangalore</ion-option>
                     </ion-select>
                 </ion-item>
-            </div>
+            </div> -->
             <ion-row class="mb">
                 <ion-col col-4>
                     <div class="mb-0">
@@ -136,12 +147,12 @@
             </ion-row>
             <div class="mb custom-dropdown">
                 <ion-item mode="ios">
-                    <ion-select name="residential" placeholder="Resident Type" [selectOptions]="selectOptions5">
-                        <ion-option value="Residential/ Business">Residential/ Business</ion-option>
-                        <ion-option value="Residential">Residential</ion-option>
-                        <ion-option value="Business">Business</ion-option>
-                        <ion-option value="Registered Office">Registered Office</ion-option>
-                        <ion-option value="Unspecfied">Unspecfied</ion-option>
+                    <ion-select #residentialType [(ngModel)]="residential" name="residential" placeholder="Resident Type" [selectOptions]="selectOptions5">
+                        <ion-option value="Residential/ Business" (ionSelect)="checkResidential($event)">Residential/ Business</ion-option>
+                        <ion-option value="Residential" (ionSelect)="checkResidential($event)">Residential</ion-option>
+                        <ion-option value="Business" (ionSelect)="checkResidential($event)">Business</ion-option>
+                        <ion-option value="Registered Office" (ionSelect)="checkResidential($event)">Registered Office</ion-option>
+                        <ion-option value="Unspecfied" (ionSelect)="checkResidential($event)">Unspecfied</ion-option>
                     </ion-select>
                 </ion-item>
             </div>

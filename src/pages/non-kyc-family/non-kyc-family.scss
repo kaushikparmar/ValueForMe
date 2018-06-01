@@ -54,7 +54,7 @@ page-non-kyc-family {
                         font : {
                             size : 1.3rem;
                         }
-                        color:rgb(226, 152, 152);
+                        color:rgb(96, 96, 96);
                     }
                     ion-item{
                         margin-bottom: 0;
@@ -80,7 +80,7 @@ page-non-kyc-family {
                         position: absolute;
                         right: 0;
                         bottom: 0;
-                        font-size: 2.4em;
+                        font-size: 2em;
                         color:map-get($colors,primary);
                     }
                     .false{
@@ -94,6 +94,8 @@ page-non-kyc-family {
                         position: absolute;
                         right: 0;
                         margin: 0;
+                        height: 17px;
+                        text-transform: capitalize;
                         bottom: 0.7em;
                         color:rgba(0, 6, 255, 0.71);
                         font : {
@@ -200,7 +202,7 @@ page-non-kyc-family {
                           .switch-selection {
                             position: absolute;
                             z-index: 1;
-                            top: 3px;
+                            top: 4px;
                             left: 6px;
                             display: block;
                             width: 45px;
