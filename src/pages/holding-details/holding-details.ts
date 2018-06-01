@@ -16,8 +16,12 @@ export class HoldingDetailsPage implements OnInit {
   @ViewChild('jointHolderTitle') closeJointHolderTitle;
   @ViewChild('jointBirthCity') closeJointBirthCity;
   @ViewChild('checkNominee') checkNominee;
+  @ViewChild('relationship1') relationship1;
+  @ViewChild('nomineeType1') nomineeType1;
+  @ViewChild('relationship2') relationship2;
+  @ViewChild('nomineeType2') nomineeType2;
   
-
+  
   
   public defaultBank = "ICICI Bank LTD.";
   public accountNo: any = "412739865024";
@@ -147,7 +151,9 @@ export class HoldingDetailsPage implements OnInit {
       datePick: new FormControl(''),
       percentage2: new FormControl(''),
       jointTitle: new FormControl(''),
-      birthCity: new FormControl('')
+      birthCity: new FormControl(''),
+      nomineeRelationship2: new FormControl(''),
+      nomineeType2: new FormControl('')
 
     });
     this.jointHolderDetails.controls['nominee'].setValue('No');
@@ -352,15 +358,29 @@ export class HoldingDetailsPage implements OnInit {
     this.showDetails3 = !this.showDetails3;
   }
 
-  checkRelation() {
-    this.nomineeDetails['nomineeInfo'].nomineeRelationship = this.jointHolderDetails.get('relationship').value;
+  checkRelation(event) {
+    this.nomineeDetails['nomineeInfo'].nomineeRelationship = event;
+    this.jointHolderDetails.controls['relationship'].setValue(event);
+    this.relationship1.close();
   }
+  checkRelation1(event) {
+    this.jointHolderDetails.controls['nomineeRelationship2'].setValue(event);
+    this.relationship2.close();
+  }
+
   getName() {
     this.nomineeDetails['nomineeInfo'].nomineeName =  this.jointHolderDetails.get('nomineeName').value;
   }
-  checkType() {
-    this.nomineeDetails['nomineeInfo'].nomineeType = this.jointHolderDetails.get('nomineeType').value;
+  checkType(event) {
+    this.nomineeDetails['nomineeInfo'].nomineeType = event;
+    this.jointHolderDetails.controls['nomineeType'].setValue(event);
+    this.nomineeType1.close();
   }
+  checkType1(event) {
+    this.jointHolderDetails.controls['nomineeType2'].setValue(event);
+    this.nomineeType2.close();
+  }
+
   dateChanged1() {
     this.nomineeDetails['nomineeInfo'].nomineeDob = this.jointHolderDetails.get('datePick').value;
     this.datePicker1.open();

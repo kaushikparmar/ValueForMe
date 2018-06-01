@@ -295,18 +295,18 @@
                 <div class="custom-select mb">
                     <ion-item mode="ios">
                         <ion-label floating>Nominee 1 Relationship</ion-label>
-                        <ion-select name="relationship" [selectOptions]="selectOptions7" formControlName="relationship" (ionChange)="checkRelation()">
-                            <ion-option value="Wife" selected>Wife</ion-option>
-                            <ion-option value="Husband">Husband</ion-option>
+                        <ion-select #relationship1 name="relationship" [selectOptions]="selectOptions7" formControlName="relationship">
+                            <ion-option value="Wife" (ionSelect)="checkRelation($event)" selected>Wife</ion-option>
+                            <ion-option value="Husband" (ionSelect)="checkRelation($event)" >Husband</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>
                 <div class="custom-select mb">
                     <ion-item mode="ios">
                         <ion-label floating>Select Nominee Type</ion-label>
-                        <ion-select name="nomineeType" [selectOptions]="selectOptions8" formControlName="nomineeType" (ionChange)="checkType(nomineeType)">
-                            <ion-option value="Minor" selected>Minor</ion-option>
-                            <ion-option value="Major">Major</ion-option>
+                        <ion-select #nomineeType1 name="nomineeType" [selectOptions]="selectOptions8" formControlName="nomineeType">
+                            <ion-option value="Minor" (ionSelect)="checkType($event)" selected>Minor</ion-option>
+                            <ion-option value="Major" (ionSelect)="checkType($event)">Major</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>
@@ -334,18 +334,18 @@
                     <div class="custom-select mb">
                         <ion-item mode="ios">
                             <ion-label floating>Nominee 2 Relationship</ion-label>
-                            <ion-select name="relationship2" [selectOptions]="selectOptions7">
-                                <ion-option value="Wife" selected>Wife</ion-option>
-                                <ion-option value="Husband">Husband</ion-option>
+                            <ion-select #relationship2 formControlName="nomineeRelationship2" name="nomineeRelationship2" [selectOptions]="selectOptions7">
+                                <ion-option value="Wife" (ionSelect)="checkRelation1($event)" selected>Wife</ion-option>
+                                <ion-option value="Husband" (ionSelect)="checkRelation1($event)">Husband</ion-option>
                             </ion-select>
                         </ion-item>
                     </div>
                     <div class="custom-select mb">
                         <ion-item mode="ios">
                             <ion-label floating>Select Nominee Type</ion-label>
-                            <ion-select name="nomineeType2" [selectOptions]="selectOptions8" (ionChange)="checkType()">
-                                <ion-option value="Minor" selected>Minor</ion-option>
-                                <ion-option value="Major">Major</ion-option>
+                            <ion-select name="nomineeType2" #nomineeType2 formControlName="nomineeType2" [selectOptions]="selectOptions8" (ionChange)="checkType()">
+                                <ion-option value="Minor" (ionSelect)="checkType1($event)" selected>Minor</ion-option>
+                                <ion-option value="Major" (ionSelect)="checkType1($event)">Major</ion-option>
                             </ion-select>
                         </ion-item>
                     </div>
