@@ -15,7 +15,9 @@ import { DataProvider } from '../providers/data/data';
 import { CameraProvider } from '../providers/camera/camera';
 import { SharedModule } from './shared.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { FileOpener } from '@ionic-native/file-opener';
+import { Network } from '@ionic-native/network';
+
+// import { FileOpener } from '@ionic-native/file-opener';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { FileOpener } from '@ionic-native/file-opener';
     FileTransfer,
     LocalNotifications,
     FileTransferObject,
-    FileOpener,
+    Network,
+    // FileOpener,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     Camera,

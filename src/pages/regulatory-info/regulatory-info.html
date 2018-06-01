@@ -11,9 +11,9 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Birth Country</ion-label>
-                    <ion-select name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace" (ngModelChange)="checkCountry(birthPlace)">
-                        <ion-option value="India" selected>India</ion-option>
-                        <ion-option value="Russia">Russia</ion-option>
+                    <ion-select #birthPlace1 name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace">
+                        <ion-option value="India" selected (ionSelect)="checkCountry($event)">India</ion-option>
+                        <ion-option value="Russia" (ionSelect)="checkCountry($event)">Russia</ion-option>
                     </ion-select>
                 </ion-item>
                 <div class="error" *ngIf="currentMember?.isNRI && birthPlace==='India'">

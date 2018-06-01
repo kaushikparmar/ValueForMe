@@ -14,6 +14,7 @@ page-otp-popup {
                 weight:500;
             }
             color:rgb(83,181,72);
+            
         }
         .otp-block{
             button{
@@ -26,11 +27,13 @@ page-otp-popup {
         }
         .otp-msg{
             p{
-                color:rgb(96,96,96);
+                color:rgba(96,96,96,0.78);
                 font : {
                     size: 1.3rem;
                     weight:500;
                 }
+                width: 160px;
+                margin:auto;
             }
         }
         .item-block .item-inner{

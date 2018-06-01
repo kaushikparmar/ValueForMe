@@ -43,14 +43,17 @@ page-non-kyc-family {
                 }
                 .add-family{
                     position: relative;
-                    height: 34px;
+                    height: 30px;
                     ion-checkbox{
-                        margin-right: 90px !important;
+                        margin-right: 73px !important;
                     }
                     ion-label{
                         margin:0;
                         position: absolute;
                         right: 0;
+                        font : {
+                            size : 1.3rem;
+                        }
                         color:rgb(96,96,96);
                     }
                     ion-item{
@@ -92,7 +95,7 @@ page-non-kyc-family {
                         right: 0;
                         margin: 0;
                         bottom: 0.5em;
-                        color:rgb(0,6,255);
+                        color:rgba(0, 6, 255, 0.71);
                         font : {
                             size :1.4rem;
                             weight:600;
@@ -149,10 +152,10 @@ page-non-kyc-family {
                     }
                     .switch {
                         position: relative;
-                        height: 34px;
-                        width: 113px;
+                        height: 35px;
+                        width: 112px;
                         background: map-get($colors,contentBg);
-                        border:0.55px solid rgb(96,96,96);
+                        border:0.55px solid rgba(96,96,96,0.3);
                         border-radius: 34px;
                         .switch-label {
                             position: relative;
@@ -235,5 +238,6 @@ page-non-kyc-family {
                 }
             }
         }
+        
     }
 }

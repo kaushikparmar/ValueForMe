@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 
@@ -8,7 +8,7 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'regulatory-info.html',
 })
 export class RegulatoryInfoPage {
-
+  @ViewChild('birthPlace1') birthPlace1;
   public selectOptions = {
     title: 'Select Birth Country'
   };
@@ -64,8 +64,10 @@ export class RegulatoryInfoPage {
     this.fatchaDetails['fatchaInfo'].occupation = this.occupation;
     this.fatchaDetails['fatchaInfo'].exposure = this.exposure;
   }
-  checkCountry(place) {
-    this.fatchaDetails['fatchaInfo'].birthPlace = place;
+  checkCountry(event) {
+    this.birthPlace  = event;
+    this.birthPlace1.close();
+    this.fatchaDetails['fatchaInfo'].birthPlace = event;
   }
   checkResident(residence) {
     this.fatchaDetails['fatchaInfo'].residence = residence;

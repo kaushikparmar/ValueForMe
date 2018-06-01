@@ -27,6 +27,7 @@
 /******************global varisbles*******************/
 
 // gloabal css
+
 .error{
     color:red;
     font : {
@@ -63,14 +64,17 @@ ion-header button.bar-button {
     margin-left: 0px;
     width: 100% ;
 }
-
+ion-select .select-placeholder{
+    color:#999 !important;
+    font-size: 1.4rem !important;
+}
 .scroll-content{
     padding-bottom:0;
     //all pages global styling
     .action-btn{
         background: linear-gradient(rgb(25,123,192),rgb(0,63,107));
         text-transform: uppercase;
-        height: 40px;
+        height: 46px;
         color:#fff;
         font : {
             size : 1.4rem;
@@ -110,7 +114,9 @@ ion-navbar{
     }
 }
 
-
+ion-list .mb-30,ion-list .mb{
+    margin-bottom: 20px !important;
+}
 
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
@@ -123,15 +129,29 @@ ion-navbar{
 .item-md.item-input.input-has-focus ion-label[floating]{
     color:map-get($colors,primary);
     width: 100%;
+
 }
 .item.item-input-has-value ion-label[floating],
 .item.input-has-value ion-label[floating]{
     width: 100%;
+    font-size: 1.4rem;
+}
+.item ion-label[floating]{
+    font-size: 1.4rem;
 }
 .item.item-input-has-value ion-label,
 .item.input-has-value ion-label{
-    color:rgb(96,96,96);
+    color:#606060;
+    font-size: 1.4rem;
 }
+// ion-content .scroll-content ion-list .item-ios.item-input-has-value.item-label-floating .text-input,
+// ion-content .scroll-content ion-list .item-ios.item-input-has-focus.item-label-floating .text-input
+// {
+//     padding-bottom: 0px !important;
+// }
+// ion-content .scroll-content ion-list .item-ios.item-label-floating .text-input{
+//     padding-bottom: 6px !important;
+// }
 // ion-item.item.item-label-floating{
 //     font-size: 1.7rem;
 // } 
@@ -172,7 +192,34 @@ ion-modal.otpModal{
             margin: auto;
             bottom: 0;
             width: 90%;
-            height: 400px;
+            height: 290px;
+            .send-otp-btn{
+                button{
+                    width: 120px;
+                    margin: auto;
+                }
+            }
+        }
+    }    
+}
+//custom select popup
+ion-modal.selectPopupModal{
+    background: rgba(0,0,0,0.8);
+    .modal-wrapper{
+        .ion-page {
+            top:0;
+            left:0;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            width: 90%;
+            height: 382px;
+            .send-otp-btn{
+                button{
+                    width: 120px;
+                    margin: auto;
+                }
+            }
         }
     }    
 }

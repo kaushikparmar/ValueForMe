@@ -86,7 +86,7 @@ export class BankDetailsPopupPage {
     for (let i=0;i<6;i++) {
       this.topBankList.push(this.bankDetails[i]);
     }
-    this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'otpModal', true);
+    this.renderer.setElementClass(this.viewCtrl.pageRef().nativeElement, 'selectPopupModal', true);
   }
   public selectBank(bank): void {
     this.viewCtrl.dismiss(bank);
