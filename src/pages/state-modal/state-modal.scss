@@ -1,0 +1,57 @@
+page-state-modal{
+  
+    ion-content{
+        border-radius: 5px;
+        div[ion-fixed]{
+            width: 100%;
+            margin: 0;
+            padding: 0 15px 0 15px;
+        }
+        .scroll-content{
+            padding: 10px 15px 20px;
+            text-align: center;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+        }
+        
+        h4{
+            font : {
+                size :1.8rem;
+            }
+            color:rgb(83,181,72);
+        }
+        .searchbar-md .searchbar-input{
+            box-shadow: none;
+            border-bottom: 1px solid #ccc;
+        }
+        ion-row.searchBlock{
+            ion-col.col{
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                .city-name{
+                    margin-left: 0px;
+                    text-align: left;
+                }
+            }
+        }
+        .city-name{
+            margin:8px 0;
+            color:rgb(96,96,96);
+            font : {
+                size : 1.4rem;
+            }
+            text-overflow: initial;
+            white-space: initial;
+        }
+        .top-city{
+            margin-top: 90px;
+            height: 260px;
+            .scroll-content{
+                padding: 0;
+            }
+        }
+    }
+    
+}
