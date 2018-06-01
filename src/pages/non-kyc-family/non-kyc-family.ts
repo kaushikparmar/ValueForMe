@@ -9,7 +9,9 @@ import 'rxjs/add/operator/debounceTime';
   templateUrl: 'non-kyc-family.html',
 })
 export class NonKycFamilyPage implements OnInit {
-
+  @ViewChild('countryCode') countryCode;
+  @ViewChild('title') title;
+  
   public selectOptions = {
     title: 'Select Title'
   };
@@ -76,6 +78,22 @@ export class NonKycFamilyPage implements OnInit {
   ngOnInit() {
     
   }
+  countryClose(event){
+    this.countryCode.close();
+    this.showOtherCountryIcon = true;
+    for(let icons of this.countryIcon) {
+      if(icons['code'] == event) {
+        this.bindIcon = icons['icon'];
+      }
+    }
+    this.indianCode = event;  
+  }
+
+
+  closeTitle(event) {
+    this.title.close();
+    this.currentMember.title = event;
+  }
 
   checkNRI(flagNRI) {
     if(flagNRI) {
@@ -88,14 +106,14 @@ export class NonKycFamilyPage implements OnInit {
     }
   } 
   
-  checkSelectedCon(myCode) {
-    this.showOtherCountryIcon = true;
-    for(let icons of this.countryIcon) {
-      if(icons['code'] == myCode) {
-        this.bindIcon = icons['icon'];
-      }
-    }
-  }
+  // checkSelectedCon(myCode) {
+  //   this.showOtherCountryIcon = true;
+  //   for(let icons of this.countryIcon) {
+  //     if(icons['code'] == myCode) {
+  //       this.bindIcon = icons['icon'];
+  //     }
+  //   }
+  // }
 
   ionViewDidLoad() {
   }

@@ -93,9 +93,9 @@
                 <div class="birthPlace mb">
                     <ion-item mode="ios">
                         <ion-label floating>Select Place of Birth</ion-label>
-                        <ion-select name="place" [selectOptions]="selectOptions1">
-                            <ion-option value="Ahmedabad" selected>Ahmedabad</ion-option>
-                            <ion-option value="Mumbai">Mumbai</ion-option>
+                        <ion-select #jointBirthCity name="place" formControlName="birthCity" [selectOptions]="selectOptions1">
+                            <ion-option value="Ahmedabad" (ionSelect)="jointBithClose($event)" selected>Ahmedabad</ion-option>
+                            <ion-option value="Mumbai" (ionSelect)="jointBithClose($event)">Mumbai</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>
@@ -278,9 +278,9 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Nominee</ion-label>
-                    <ion-select name="nominee" formControlName="nominee" [selectOptions]="selectOptions5" (ionChange)="checkNomineeSection()">
-                        <ion-option value="Yes">Yes</ion-option>
-                        <ion-option value="No" selected>No</ion-option>
+                    <ion-select #checkNominee name="nominee" formControlName="nominee" [selectOptions]="selectOptions5">
+                        <ion-option value="Yes" (ionSelect)="checkNomineeSection($event)">Yes</ion-option>
+                        <ion-option value="No" (ionSelect)="checkNomineeSection($event)" selected>No</ion-option>
                     </ion-select>
                 </ion-item>
             </div>

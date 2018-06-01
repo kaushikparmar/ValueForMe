@@ -82,8 +82,8 @@
         <div class="country-code">
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
-            <ion-select name="code" [selectOptions]="selectOptions1" (ngModelChange)="checkSelectedCon($event)" [(ngModel)]="indianCode" [disabled]="!currentMember?.isNRI">
-              <ion-option *ngFor="let code of countryCodeArr" [value]="code">{{code}}</ion-option>
+            <ion-select #countryCode name="code" [selectOptions]="selectOptions1" (ngModelChange)="checkSelectedCon($event)" [(ngModel)]="indianCode" [disabled]="!currentMember?.isNRI">
+              <ion-option *ngFor="let code of countryCodeArr" (ionSelect)="countryClose($event)" [value]="code">{{code}}</ion-option>
             </ion-select>
           </ion-item>
           <img src="./assets/imgs/india-flag.png" *ngIf="!currentMember?.isNRI" alt="flag">
@@ -116,9 +116,9 @@
       <div class="member-detail mb">
         <div class="member-title">
           <ion-item mode="ios">
-            <ion-select name="title" placeholder="Title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title" #title="ngModel">
-              <ion-option value="Mr." selected>Mr.</ion-option>
-              <ion-option value="Mrs.">Mrs.</ion-option>
+            <ion-select #title name="title" placeholder="Title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title" #title="ngModel">
+              <ion-option value="Mr." (ionSelect)="closeTitle($event)" selected>Mr.</ion-option>
+              <ion-option value="Mrs." (ionSelect)="closeTitle($event)">Mrs.</ion-option>
             </ion-select>
           </ion-item>
         </div>

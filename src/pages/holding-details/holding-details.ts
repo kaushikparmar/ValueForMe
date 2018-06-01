@@ -14,6 +14,10 @@ export class HoldingDetailsPage implements OnInit {
   @ViewChild('datePicker2') datePicker2;
   @ViewChild('jointHolderClose') closeJointHolder;
   @ViewChild('jointHolderTitle') closeJointHolderTitle;
+  @ViewChild('jointBirthCity') closeJointBirthCity;
+  @ViewChild('checkNominee') checkNominee;
+  
+
   
   public defaultBank = "ICICI Bank LTD.";
   public accountNo: any = "412739865024";
@@ -142,8 +146,8 @@ export class HoldingDetailsPage implements OnInit {
       percentage: new FormControl(''),
       datePick: new FormControl(''),
       percentage2: new FormControl(''),
-      jointTitle: new FormControl('')
-
+      jointTitle: new FormControl(''),
+      birthCity: new FormControl('')
 
     });
     this.jointHolderDetails.controls['nominee'].setValue('No');
@@ -161,12 +165,17 @@ export class HoldingDetailsPage implements OnInit {
     // this.selectInvestor.close();
     // this.investorType = event;
     if(event === 'Joint Holder'){
-      this.jointHolderDetails.controls['jointHolder'].setValue('Joint Holder');
+      this.jointHolderDetails.controls['jointHolder'].setValue(event);
       this.hideJointDetails = true;
       this.closeJointHolder.close();
     }
     if(event === 'Single'){
-      this.jointHolderDetails.controls['jointHolder'].setValue('Single');
+      this.jointHolderDetails.controls['jointHolder'].setValue(event);
+      this.hideJointDetails = false;
+      this.closeJointHolder.close();
+    }
+    if(event === 'Anyone or Survivor'){
+      this.jointHolderDetails.controls['jointHolder'].setValue(event);
       this.hideJointDetails = false;
       this.closeJointHolder.close();
     }
@@ -175,13 +184,21 @@ export class HoldingDetailsPage implements OnInit {
     this.closeJointHolderTitle.close();
     this.jointHolderDetails.controls['jointTitle'].setValue(event);
   }
-
-  checkNomineeSection() {
-    if(this.jointHolderDetails.get('nominee').value === 'Yes'){
+  jointBithClose(event) {
+    this.closeJointBirthCity.close();
+    this.jointHolderDetails.controls['birthCity'].setValue(event);
+  }
+  
+  checkNomineeSection(event) {
+    if(event === 'Yes'){
+      this.jointHolderDetails.controls['nominee'].setValue(event);
       this.hideNomineeSection = true;
+      this.checkNominee.close();
     }
-    if(this.jointHolderDetails.get('nominee').value === 'No'){
+    if(event === 'No'){
+      this.jointHolderDetails.controls['nominee'].setValue(event);
       this.hideNomineeSection = false;
+      this.checkNominee.close();
     }
   }
   
@@ -351,6 +368,7 @@ export class HoldingDetailsPage implements OnInit {
   dateChanged2(){
     this.datePicker2.open();
   }
+  
   checkShare() {
     this.nomineeDetails['nomineeInfo'].nomineePercentage =this.jointHolderDetails.get('percentage').value;
   }
