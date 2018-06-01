@@ -11,7 +11,7 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Birth Country</ion-label>
-                    <ion-select #birthPlace name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace">
+                    <ion-select #birthPlace1 name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace">
                         <ion-option value="India" selected (ionSelect)="checkCountry($event)">India</ion-option>
                         <ion-option value="Russia" (ionSelect)="checkCountry($event)">Russia</ion-option>
                     </ion-select>

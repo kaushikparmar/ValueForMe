@@ -8,7 +8,7 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'regulatory-info.html',
 })
 export class RegulatoryInfoPage {
-  @ViewChild('birthPlace') birthPlace1;
+  @ViewChild('birthPlace1') birthPlace1;
   public selectOptions = {
     title: 'Select Birth Country'
   };
