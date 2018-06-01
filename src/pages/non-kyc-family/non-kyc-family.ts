@@ -176,27 +176,28 @@ export class NonKycFamilyPage implements OnInit {
 
 
   public investorPAN(pan_no): void {
+    let self = this;
     if (pan_no.length === 10 && (this.currentMember.isNewMember === undefined || this.currentMember.isNewMember === false)) {
       this.panSearching = true;
       setTimeout(() => {
       this.ngZone.run(
         () => {
-            if (this.tempCurrentMember && this.tempCurrentMember.pan_no && (this.tempCurrentMember.pan_no.toLowerCase() === pan_no)) {
-              this.currentMember = JSON.parse(JSON.stringify(this.tempCurrentMember));
-              // this.showTrueIcon = true;
-              // this.showFalseIcon = false;
-              this.isPANRight = true;
-              this.panSearching = false;
-              // this.showOtp = false;
+            if (self.tempCurrentMember!==undefined && self.tempCurrentMember.pan_no!==undefined && (self.tempCurrentMember.pan_no.toLowerCase() === pan_no.toLowerCase())) {
+              self.currentMember = JSON.parse(JSON.stringify(self.tempCurrentMember));
+              // self.showTrueIcon = true;
+              // self.showFalseIcon = false;
+              self.isPANRight = true;
+              self.panSearching = false;
+              // self.showOtp = false;
             } else {
-              // this.showFalseIcon = true;
-              // this.showTrueIcon = false;
-              // this.currentMember = {};
-              this.currentMember['familyName'] = this.tempCurrentMember ? this.tempCurrentMember.familyName : "";
-              this.currentMember['isNRI'] = false;
-              this.isPANRight = false;
-              this.panSearching = false;
-              // this.showOtp = true;
+              // self.showFalseIcon = true;
+              // self.showTrueIcon = false;
+              // self.currentMember = {};
+              self.currentMember['familyName'] = self.tempCurrentMember ? self.tempCurrentMember.familyName : "";
+              self.currentMember['isNRI'] = false;
+              self.isPANRight = false;
+              self.panSearching = false;
+              // self.showOtp = true;
             }
         }
       );

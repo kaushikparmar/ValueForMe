@@ -60,21 +60,23 @@
         </ion-item>
         <ion-label class="otp" (click)="sendOTP()">Send OTP</ion-label>
       </div> -->
-
       <div class="contact-no mb">
-        <ion-item mode="ios" *ngIf="isPANRight!==undefined && isPANRight">
+        <!-- <ion-item mode="ios" *ngIf="isPANRight!==undefined && isPANRight">
+          <ion-label floating>Aadhar No.</ion-label>
+          <ion-input type="tel" name="aadharNo" patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
+        </ion-item> *ngIf="isPANRight!==undefined && !isPANRight"-->
+        <ion-item mode="ios">
           <ion-label floating>Aadhar No.</ion-label>
           <ion-input type="tel" name="aadharNo" patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
         </ion-item>
-        <ion-item mode="ios" *ngIf="isPANRight!==undefined && !isPANRight">
-          <ion-label floating>Aadhar No.</ion-label>
-          <ion-input type="tel" name="aadharNo" required patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
-        </ion-item>
-        <button ion-button clear outline mode="md" class="otp" (click)="sendOTP()">Send OTP</button>
+        <button ion-button clear outline mode="md" class="otp" [disabled]="aadharNo?.errors!==null" (click)="sendOTP()">Send OTP</button>
       </div>
       <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.required">
 				Aadhar No is mandatory
       </p>
+      <p class="error" *ngIf="isPANRight!==undefined && !isPANRight">
+          Aadhar No is mandatory
+        </p>
       <p class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.maxLength">
 				Aadhar No should not be more than 12 digits long
       </p>
@@ -86,7 +88,7 @@
         <div class="country-code">
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
-            <ion-select #countryCode name="code" [selectOptions]="selectOptions1" (ngModelChange)="checkSelectedCon($event)" [(ngModel)]="indianCode" [disabled]="!currentMember?.isNRI">
+            <ion-select #countryCode name="code" [selectOptions]="selectOptions1" [(ngModel)]="indianCode" [disabled]="!currentMember?.isNRI">
               <ion-option *ngFor="let code of countryCodeArr" (ionSelect)="countryClose($event)" [value]="code">{{code}}</ion-option>
             </ion-select>
           </ion-item>
