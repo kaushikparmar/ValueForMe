@@ -8,7 +8,7 @@ import { Network } from '@ionic-native/network';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'AddInvestorPage';
+  rootPage:any = 'SplashPage';
 
   constructor(private platform: Platform, 
     public toastCtrl: ToastController,
@@ -22,7 +22,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString('#53b548');
-      this.splashScreen.hide();
+      // this.splashScreen.hide();
       this.listenConnection();
  
     });
