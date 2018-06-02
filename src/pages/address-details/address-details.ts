@@ -126,7 +126,7 @@ export class AddressDetailsPage {
 
   openModal(addressType){
     
-    let openModal=this.modalCtrl.create('AddressDetailsPopupPage',{
+    let openModal=this.modalCtrl.create('AddressDetailsPopupPage',{},{
       showBackdrop: false,
       enableBackdropDismiss: false,
       enterAnimation: 'modal-scale-up-enter',
@@ -144,7 +144,7 @@ export class AddressDetailsPage {
     });
   }
   openBirthCityModal(city) {
-    let openModal=this.modalCtrl.create('BirthPlaceModalPage',
+    let openModal=this.modalCtrl.create('BirthPlaceModalPage',{},
     {
       showBackdrop: false,
       enableBackdropDismiss: false,
@@ -162,7 +162,7 @@ export class AddressDetailsPage {
     this.buttonDisabled = false;
   }
   openStateModal(state) {
-    let openModal=this.modalCtrl.create('StateModalPage',
+    let openModal=this.modalCtrl.create('StateModalPage',{},
       {
         showBackdrop: false,
         enableBackdropDismiss: false,

@@ -71,8 +71,11 @@ page-address-details-popup {
             text-overflow: initial;
             white-space: initial;
         }
-        .top-city{
+        ion-scroll.searchBlock{
             margin-top: 90px;
+        }
+        .top-city{
+            margin-top: 60px;
             height: 260px;
             .scroll-content{
                 padding: 0;

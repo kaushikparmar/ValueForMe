@@ -12,7 +12,7 @@
   </div>
 
 
-  <ion-scroll class="top-bank" scrollY="true">
+  <ion-scroll [ngClass]="{'searchBlock' : (searchBlock === true)}" class="top-bank" scrollY="true">
     <div class="error" *ngIf="topBankList?.length === 0">
       No Banks Found.
     </div>

@@ -134,6 +134,7 @@ ion-list .mb-30,ion-list .mb{
 .item-md.item-input.input-has-focus .item-inner{
     box-shadow:none;
     width: 100%;
+    // padding-bottom: 3px;
 }
 .item-md.item-input.item-input-has-focus ion-label[floating],
 .item-md.item-input.input-has-focus ion-label[floating]{
@@ -154,6 +155,10 @@ ion-list .mb-30,ion-list .mb{
     color:#606060;
     font-size: 1.4rem;
 }
+.item.item-input-has-value .item-inner,
+.item.item-input.item-input-has-focus .item-inner{
+    padding-bottom: 3px !important;
+}
 // ion-content .scroll-content ion-list .item-ios.item-input-has-value.item-label-floating .text-input,
 // ion-content .scroll-content ion-list .item-ios.item-input-has-focus.item-label-floating .text-input
 // {
@@ -171,6 +176,7 @@ ion-list .mb-30,ion-list .mb{
 .list-ios .item-block .item-inner{
     border-bottom:0.55px solid rgb(195,195,195);
     padding-right: 0;
+    padding-bottom: 3px;
 }
 .item-ios{
     padding-left: 0;
@@ -186,7 +192,7 @@ ion-checkbox.checkbox .checkbox-checked{
 }
 ion-checkbox.checkbox .checkbox-checked .checkbox-inner{
     border-color: rgb(96,96,96);
-    top:2px;
+    top:1px;
 }
 // global css end
 
@@ -209,6 +215,22 @@ ion-modal.otpModal{
                     margin: auto;
                 }
             }
+        }
+    }    
+}
+
+//custom download modal
+ion-modal.downloadModal{
+    background: rgba(0,0,0,0.8);
+    .modal-wrapper{
+        .ion-page {
+            top:0;
+            left:0;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            width: 90%;
+            height: 180px;
         }
     }    
 }
@@ -237,10 +259,10 @@ ion-modal.selectPopupModal{
 
 //modal dimsiss global css
 button.dismiss{
-    height: 34px;
-    width:34px;
+    height: 25px;
+    width:25px;
     border-radius: 50%;
-    padding:6px;
+    padding:4px;
     position: absolute;
     top: 0;
     right:0;
@@ -256,3 +278,55 @@ button.dismiss{
 .item.item-md .checkbox-md{
     margin-right:11px;
 }
+// #wrapper{
+//     height: 100%;
+//     z-index: 9999;
+//     position: relative;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     display: flex;
+//     justify-content: center;
+//     /* align-items: center; */
+//     /* height: 400px; */
+//     background: rgba(0,0,0,0.7);
+//     .progress-outer {
+//         width: 96%;
+//         margin: 10px 2%;
+//         padding: 3px;
+//         text-align: center;
+//         background-color: #f4f4f4;
+//         border: 1px solid #dcdcdc;
+//         color: #fff;
+//         border-radius: 20px;
+//         display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     // font-size: 59px;
+//     z-index: 999;
+//     // background: rgba(0,0,0,1);
+//     }
+ 
+//     .progress-inner {
+//         min-width: 15%;
+//         white-space: nowrap;
+//         overflow: hidden;
+//         padding: 5px;
+//         border-radius: 20px;
+//         background-color: map-get($colors, primary);
+//     }
+//     #loader{
+//        display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-size: 59px;
+//     z-index: 999;
+//     background: rgba(0,0,0,1); 
+//     width: 181px;
+//     height: 170px;
+//     margin: auto;
+//     border-radius: 15px;
+//     color: #fff;
+//     }
+// }

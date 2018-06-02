@@ -7,7 +7,7 @@ page-correspondence-address {
             background: map-get($colors,contentBg);
             ion-list{
                 .mb{
-                    margin-bottom: 30px;
+                    margin-bottom: 0px !important;
                 }
                 .mb-0{
                     margin-bottom: 0;
@@ -73,9 +73,10 @@ page-correspondence-address {
                 }
                 .custom-select{
                     position: relative;
+                    margin-bottom:0 !important;
                     .custom-text{
                         margin-top:0;
-                        margin-bottom:6px;
+                        margin-bottom:4px;
                     }
                     .custom-float-text{
                         // font-size: 1.4rem;

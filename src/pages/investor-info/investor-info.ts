@@ -226,8 +226,10 @@ export class InvestorInfoPage {
         this.presentToast("Image uploaded successfully");
         console.log(this.data, "image data");
       }
+      console.log(imageData,"imageData");
       if (imageData === 'No Image Selected') {
         this.presentToast("Image upload error");
+        loading.dismiss();
       }
 
       loading.dismiss();
@@ -274,6 +276,7 @@ export class InvestorInfoPage {
 
     toast.present();
   }
+  
   dismiss() {
       if(this.chosenPicture !== undefined){
           this.chosenPicture = '';

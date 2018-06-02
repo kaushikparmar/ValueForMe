@@ -132,7 +132,12 @@ export class CorrespondenceAddressPage {
     console.log('ionViewDidLoad CorrespondenceAddressPage');
   }
   openIndianModal() {
-    let openModal1 = this.modalCtrl.create('AddressDetailsPopupPage');
+    let openModal1 = this.modalCtrl.create('AddressDetailsPopupPage',{},{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
     openModal1.present();
     openModal1.onDidDismiss(data => {
       if (data !== undefined) {
@@ -143,7 +148,12 @@ export class CorrespondenceAddressPage {
   }
 
   openStateModal(state) {
-    let openModal=this.modalCtrl.create('StateModalPage');
+    let openModal=this.modalCtrl.create('StateModalPage',{},{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
     openModal.present();
     openModal.onDidDismiss( data => {
       if(data !== undefined){

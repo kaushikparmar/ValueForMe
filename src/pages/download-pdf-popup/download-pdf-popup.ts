@@ -1,5 +1,5 @@
-import { Component, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { Component, Renderer, NgZone } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, Platform, AlertController, LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
@@ -19,12 +19,15 @@ export class DownloadPdfPopupPage {
   storageDirectory: string = '';
   //  pdfSrc: string = '../assets/doc/report.pdf';
   pdfUrl: any;
+  public isLoading: boolean = false;
+  public progress: any = 0;
   constructor(
     public navCtrl: NavController,
     public renderer: Renderer,
     private transfer: FileTransfer,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public modal: ModalController,
     private file: File,
     public alertCtrl: AlertController,
     // private fileOpener: FileOpener,
@@ -32,6 +35,7 @@ export class DownloadPdfPopupPage {
     public platform: Platform,
     public data: DataProvider,
     public viewCtrl: ViewController,
+    public ngZone: NgZone,
     public navParams: NavParams) {
     // this.platform.ready().then(() => {
     //   // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -55,15 +59,21 @@ export class DownloadPdfPopupPage {
 
   download() {
     // this.toastMsg.displayToast('File download started', 3000, 'middle');
-    const loading = this.loadingCtrl.create({
-      content: "Downloading..."
-    });
+    // const loading = this.loadingCtrl.create({
+    //   // content: "Downloading...",
+    //   content: `
+    //     <div class="custom-spinner-container">
+    //       <div class="custom-spinner-box">${this.progress}</div>
+    //     </div>`,
+    //     dismissOnPageChange: true
+    // });
 
-    loading.present();
+    // loading.present();
     //   const options: DocumentViewerOptions = {
     //     title: 'My PDF'
     // }
     //   // const imgeLocation = `${cordova.file.applicationDirectory}www/assets/doc/${'report.pdf'}`;
+    this.isLoading = true;
     let pdfLocation = this.pdfUrl;
     //   console.log(pdfLocation);
     //   this.document.viewDocument(pdfLocation, 'application/pdf', options)
@@ -73,31 +83,45 @@ export class DownloadPdfPopupPage {
     } else if (this.platform.is('android')) {
       path = this.file.externalRootDirectory;
     }
+    let self = this;
     const transfer: FileTransferObject = this.transfer.create();
     this.file.createDir(path, 'Valufey', true).then(entry => {
       let pdfFilefath = entry.nativeURL;
       console.log(pdfFilefath, 'pdfFilePath');
       transfer.onProgress((e) => {
-        const prg = (e.lengthComputable) ? Math.round(e.loaded / e.total * 100) : -1;
-        console.log(prg, "progress");
+        self.ngZone.run(()=>{
+          self.progress = (e.lengthComputable) ? Math.round(e.loaded / e.total * 100) : -1;
+        });
       });
+      
       transfer.download(pdfLocation, pdfFilefath + 'Valuey.pdf').then((entry) => {
         let localFileurl = entry.toURL();
         console.log(localFileurl, 'localFileUrl');
-        loading.dismiss();
-        const alertSuccess = this.alertCtrl.create({
-          title: `Download Succeeded!`,
-          subTitle: `File was successfully downloaded to: ${entry.toURL()}`,
-          buttons: [{
-            text: 'OK',
-            role: 'cancel',
-            handler: () => {
-              this.dismiss();
-            }
-          }]
-        });
-
-        alertSuccess.present();
+        this.isLoading = false;
+        this.dismiss();
+        // const alertSuccess = this.alertCtrl.create({
+        //   title: `Download Succeeded!`,
+        //   subTitle: `File was successfully downloaded to: ${entry.toURL()}`,
+        //   buttons: [{
+        //     text: 'OK',
+        //     role: 'cancel',
+        //     handler: () => {
+        //       this.dismiss();
+        //     }
+        //   }]
+        // });
+          const alertSuccess = this.modal.create('DownloadSuccessPage',{'entry':localFileurl},
+          {
+            showBackdrop: false,
+            enableBackdropDismiss: false,
+            enterAnimation: 'modal-scale-up-enter',
+            leaveAnimation: 'modal-scale-up-leave'
+          }
+        )
+          alertSuccess.present();
+          // alertSuccess.onDidDismiss( data => {
+          //   this.dismiss();
+          // });
         this.localNotification.schedule({
           id:1,
           text: 'Valufey pdf file downloaded',
@@ -109,10 +133,19 @@ export class DownloadPdfPopupPage {
         // this.document.viewDocument(localFileurl, 'application/pdf',options);
 
       }, (error) => {
-        const alertSuccess = this.alertCtrl.create({
-          title: `Download Failed!`,
-          buttons: ['Ok']
-        });
+        const alertDanger = this.modal.create('DownloadFailedPage',{},
+        {
+          showBackdrop: false,
+          enableBackdropDismiss: false,
+          enterAnimation: 'modal-scale-up-enter',
+          leaveAnimation: 'modal-scale-up-leave'
+        }
+      )
+        alertDanger.present();
+        this.isLoading = false;
+        // alertDanger.onDidDismiss( data => {
+        //   this.dismiss();
+        // });
         console.log(error);
       });
 

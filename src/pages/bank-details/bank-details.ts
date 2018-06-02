@@ -159,7 +159,12 @@ export class BankDetailsPage implements OnInit {
 
 
   openModal() {
-    let openModal = this.modalCtrl.create('BankDetailsPopupPage');
+    let openModal = this.modalCtrl.create('BankDetailsPopupPage',{},{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
     openModal.present();
     openModal.onDidDismiss(data => {
       if (data !== undefined) {

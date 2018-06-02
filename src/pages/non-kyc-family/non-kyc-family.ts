@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { DataProvider } from '../../providers/data/data';
 import 'rxjs/add/operator/debounceTime';
 
+
 @IonicPage()
 @Component({
   selector: 'page-non-kyc-family',
@@ -73,6 +74,7 @@ export class NonKycFamilyPage implements OnInit {
     public data: DataProvider,
     private ngZone: NgZone
   ) {
+    // this.setCustomTransitions();
   }
 
   ngOnInit() {
@@ -261,7 +263,7 @@ export class NonKycFamilyPage implements OnInit {
   }
 
   sendOTP() {
-    let otpModal = this.modalCtrl.create('NonKycPopupPage',{
+    let otpModal = this.modalCtrl.create('NonKycPopupPage',{},{
       showBackdrop: false,
       enableBackdropDismiss: false,
       enterAnimation: 'modal-scale-up-enter',
@@ -272,7 +274,7 @@ export class NonKycFamilyPage implements OnInit {
   openOTP() {
     this.data.set(this.currentMember);
     this.data.dataSet(this.currentMember);
-    let otp = this.modalCtrl.create('OtpPopupPage',{
+    let otp = this.modalCtrl.create('OtpPopupPage',{},{
       showBackdrop: false,
       enableBackdropDismiss: false,
       enterAnimation: 'modal-scale-up-enter',

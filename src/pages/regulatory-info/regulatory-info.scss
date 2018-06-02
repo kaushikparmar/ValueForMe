@@ -7,7 +7,7 @@ page-regulatory-info {
             background: map-get($colors,contentBg);
             ion-list{
                 .mb{
-                    margin-bottom: 30px;
+                    margin-bottom: 0px !important;
                 }
                 .mb-0{
                     margin-bottom: 0;

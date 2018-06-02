@@ -3,8 +3,7 @@ import { Platform, ToastController,Config } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Network } from '@ionic-native/network';
-import { ModalScaleUpEnterTransition } from '../directives/scale-up-enter.transition';
-import { ModalScaleUpLeaveTransition } from '../directives/scale-up-leave.transition';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -25,13 +24,13 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString('#53b548');
       this.splashScreen.hide();
       this.listenConnection();
-      this.setCustomTransitions();
+ 
     });
   }
-  private setCustomTransitions() {
-    this.config.setTransition('modal-scale-up-leave', ModalScaleUpLeaveTransition);
-    this.config.setTransition('modal-scale-up-enter', ModalScaleUpEnterTransition);
-}
+//   private setCustomTransitions() {
+//     this.config.setTransition('modal-scale-up-leave', ModalScaleUpLeaveTransition);
+//     this.config.setTransition('modal-scale-up-enter', ModalScaleUpEnterTransition);
+// }
 
 
   private listenConnection(): void {

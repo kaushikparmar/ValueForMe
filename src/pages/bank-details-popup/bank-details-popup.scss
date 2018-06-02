@@ -61,8 +61,11 @@ page-bank-details-popup {
                 height: 25px;
             }
         }
-        .top-bank{
+        ion-scroll.searchBlock{
             margin-top: 90px;
+        }
+        .top-bank{
+            margin-top: 60px;
             height: 260px;
             .scroll-content{
                 padding: 0;

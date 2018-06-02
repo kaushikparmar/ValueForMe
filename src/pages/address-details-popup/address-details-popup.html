@@ -10,7 +10,7 @@
   <!-- <button ion-button (click)="dismiss()" class="dismiss">
     <ion-icon name="close"></ion-icon>
   </button> -->
-  <ion-scroll class="top-city" scrollY="true">
+  <ion-scroll [ngClass]="{'searchBlock' : (searchBlock === true)}" class="top-city" scrollY="true">
     <div class="error" *ngIf="topCityList?.length === 0">
       No Cities Found.
     </div>

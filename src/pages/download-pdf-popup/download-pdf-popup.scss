@@ -68,6 +68,34 @@ page-download-pdf-popup {
                     }
                 }   
             }
+            #wrapper{
+                height: 40px;
+            }
+            .progress-outer {
+                width: 96%;
+                margin: 10px 2%;
+                padding: 3px;
+                text-align: center;
+                background-color: #f4f4f4;
+                border: 1px solid #dcdcdc;
+                color: #fff;
+                border-radius: 20px;
+            //     display: flex;
+            // justify-content: center;
+            // align-items: center;
+            // // font-size: 59px;
+            // z-index: 999;
+            // background: rgba(0,0,0,1);
+            }
+         
+            .progress-inner {
+                min-width: 15%;
+                white-space: nowrap;
+                overflow: hidden;
+                padding: 5px;
+                border-radius: 20px;
+                background-color: map-get($colors, primary);
+            }
         }
         
 }

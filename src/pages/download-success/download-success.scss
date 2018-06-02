@@ -1,0 +1,31 @@
+page-download-success {
+    ion-content{
+        border-radius: 5px;
+        .scroll-content{
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            align-items: center;
+            .successful{
+            margin:8px 0;
+            color:rgb(96,96,96);
+            font : {
+                size : 1.4rem;
+            }
+            ion-label{
+                text-overflow: initial;
+                white-space: initial;
+                color:#333;
+                font : {
+                    weight:500;
+                    size : 1.6rem;
+                }
+            }
+            width: 180px;
+            text-overflow: initial;
+            white-space: initial;
+            }
+        }
+        
+    }
+}

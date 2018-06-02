@@ -16,7 +16,8 @@ import { CameraProvider } from '../providers/camera/camera';
 import { SharedModule } from './shared.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Network } from '@ionic-native/network';
-
+import { ModalScaleEnterTransition } from '../directives/scale-up-enter.transition';
+import { ModalScaleLeaveTransition } from '../directives/scale-up-leave.transition';
 // import { FileOpener } from '@ionic-native/file-opener';
 
 @NgModule({
@@ -69,4 +70,14 @@ import { Network } from '@ionic-native/network';
   exports: [
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public config: Config) {
+    this.setCustomTransitions();
+}
+
+private setCustomTransitions() {
+    
+    this.config.setTransition('modal-scale-up-enter', ModalScaleEnterTransition);
+    this.config.setTransition('modal-scale-up-leave', ModalScaleLeaveTransition);
+}
+}
