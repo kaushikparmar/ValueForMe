@@ -6,6 +6,7 @@ page-download-success {
             justify-content: center;
             height: 100%;
             align-items: center;
+            flex-flow: column nowrap;
             .successful{
             margin:8px 0;
             color:rgb(96,96,96);
