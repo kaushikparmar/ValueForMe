@@ -256,8 +256,13 @@ ion-modal.selectPopupModal{
     }    
 }
 
-ion-content .scroll-content ion-list .item-ios.item-label-floating .text-input{
-    outline: none;
+// ion-content .scroll-content ion-list .item-ios.item-label-floating .text-input{
+//     outline:0;
+// }
+.focus-outline [ion-button]:focus, .focus-outline button:focus{
+    outline: 0;
+    border-color:transparent;
+    box-shadow: none;
 }
 //modal dimsiss global css
 button.dismiss{
@@ -275,7 +280,7 @@ button.dismiss{
     }
     ion-icon{
         font-weight: 600;
-        color: #ccc;
+        color: #333;
     }
     background: transparent;
     &.activated{

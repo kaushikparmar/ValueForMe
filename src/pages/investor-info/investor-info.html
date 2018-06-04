@@ -69,11 +69,11 @@
                         <img src="./assets/imgs/cancel-cheque.png" alt="cancel-cheque">
                         <ion-label>Cancelled Cheque</ion-label>
                     </div>
-                    <div class="signature" (click)="changePicture()" *ngIf="chosenPicture">
+                    <div class="signature" (click)="changePicture()" *ngIf="hideUpload">
                         <img src="./assets/imgs/sign.png" alt="sign">
                         <ion-label>Digital Signature</ion-label>
                     </div>
-                    <div class="image-container">
+                    <div class="image-container" *ngIf="chosenPicture">
                         <!-- <ion-label class="upload-text">Uploaded Image:</ion-label> -->
                         <!-- <div class="image-holder"> -->
                             <img [src]="chosenPicture">

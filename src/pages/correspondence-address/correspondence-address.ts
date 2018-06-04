@@ -9,7 +9,7 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class CorrespondenceAddressPage {
   @ViewChild('residentialType') residentialType;
-  public defaultIndianCity = "Mumbai";
+  public defaultIndianCity = "";
   public defaultOverseasCity = "";
   public residential:any;
   public selectOptions = {
