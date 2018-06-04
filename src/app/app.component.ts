@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, ToastController,Config } from 'ionic-angular';
+import { Platform, ToastController,Config, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Network } from '@ionic-native/network';
@@ -8,12 +8,12 @@ import { Network } from '@ionic-native/network';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'SplashPage';
+  // rootPage:any = 'SplashPage';
 
   constructor(private platform: Platform, 
     public toastCtrl: ToastController,
     public config: Config,
-    private network: Network,private statusBar: StatusBar, public splashScreen: SplashScreen) {
+    private network: Network,private statusBar: StatusBar, public modalController: ModalController, public splashScreen: SplashScreen) {
     this.initializeApp();
   }
   initializeApp() {
@@ -22,8 +22,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString('#53b548');
-      // this.splashScreen.hide();
+      this.splashScreen.hide();
+      let splash = this.modalController.create('SplashPage');
+      splash.present();
       this.listenConnection();
+      
  
     });
   }

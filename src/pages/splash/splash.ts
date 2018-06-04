@@ -1,34 +1,47 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
 @IonicPage()
 @Component({
   selector: 'page-splash',
   templateUrl: 'splash.html',
 })
-export class SplashPage {
+export class SplashPage implements OnInit, OnDestroy {
 
   public progress: number = 0;
   public interval: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public splashScreen: SplashScreen
+  ) {
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
+    this.splashScreen.hide();
+ 
+    setTimeout(() => {
+      this.viewCtrl.dismiss();
+      this.navCtrl.setRoot('AddInvestorPage');
+    }, 4000);
     this.interval = setInterval(()=>{
-      if (this.interval !== undefined && this.progress === 100) {
-        clearInterval(this.interval);
-        this.navCtrl.setRoot('AddInvestorPage',null, {animate: true, animation: "transition-ios"});
-      } 
       if (this.progress < 100) {
         this.progress++;
       }
-      
-    }, 20);
+      if (this.progress === 100) {
+        // this.navCtrl.setRoot('AddInvestorPage');
+        clearInterval(this.interval);
+      }
+    }, 40);
   }
 
-  ionViewDidLeave(){
-    
+  ngOnDestroy(){
+    // if (this.interval) {
+    //   clearInterval(this.interval);
+    //   this.interval = undefined;
+    // } 
   }
 
 }
