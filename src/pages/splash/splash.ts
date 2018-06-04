@@ -22,7 +22,6 @@ export class SplashPage {
       } 
       if (this.progress < 100) {
         this.progress++;
-       
       }
       
     }, 20);

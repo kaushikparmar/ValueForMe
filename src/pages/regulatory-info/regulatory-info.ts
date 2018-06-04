@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Modal } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
@@ -16,6 +16,7 @@ export class RegulatoryInfoPage {
   @ViewChild('identfication1') identfication1;
   @ViewChild('occuptaion1') occuptaion1;
   
+  public birthCountry:any;
   public selectOptions = {
     title: 'Select Birth Country'
   };
@@ -64,18 +65,22 @@ export class RegulatoryInfoPage {
   public disableBtn: boolean = true;
   public nriCountry:any;
   public showSection:boolean = false;
-  constructor(public navCtrl: NavController, public data:DataProvider,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public modalCtrl: ModalController,
+    public data:DataProvider,
+    public navParams: NavParams
+  ) {
     this.fatchaDetails['fatchaInfo'].income = this.income;
     this.fatchaDetails['fatchaInfo'].source = this.source;
     this.fatchaDetails['fatchaInfo'].identity = this.identification;
     this.fatchaDetails['fatchaInfo'].occupation = this.occupation;
     this.fatchaDetails['fatchaInfo'].exposure = this.exposure;
   }
-  checkCountry(event) {
-    this.birthPlace  = event;
-    this.birthPlace1.close();
-    this.fatchaDetails['fatchaInfo'].birthPlace = event;
-  }
+  // checkCountry(event) {
+  //   this.birthPlace  = event;
+  //   this.birthPlace1.close();
+  //   this.fatchaDetails['fatchaInfo'].birthPlace = event;
+  // }
   checkResident(event) {
     this.fatchaDetails['fatchaInfo'].residence = event;
     if(event === 'Yes'){
@@ -143,6 +148,40 @@ export class RegulatoryInfoPage {
     if(isChecked){
       this.disableBtn =false;
     } else this.disableBtn =true;
+  }
+  openCountry(){
+    let openModal=this.modalCtrl.create('BirthCountryModalPage',{},{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
+    openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined){
+        this.birthPlace = data;
+        this.fatchaDetails['fatchaInfo'].birthPlace = data;
+        // this.location['indianAddress'].cityName = this.defaultCity;
+        // this.locationDetails['locationInfo'].cityName = this.defaultCity;
+      }
+    });
+  }
+  openNRICountry(){
+    let openModal=this.modalCtrl.create('BirthCountryModalPage',{},{
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
+    openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined){
+        this.nriCountry = data;
+        this.fatchaDetails['fatchaInfo'].nriCountry = data;
+        // this.location['indianAddress'].cityName = this.defaultCity;
+        // this.locationDetails['locationInfo'].cityName = this.defaultCity;
+      }
+    });
   }
   nextPage(){
     this.navCtrl.push('BankDetailsPage');

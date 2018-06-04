@@ -8,7 +8,23 @@
     <form>
         <ion-list mode="ios">
             <ion-label class="holder">Applicant FATCA Info</ion-label>
-            <div class="mb">
+            <div class="custom-select mb">
+                    <ion-item mode="ios">
+                        <ion-label floating class="custom-float-text">Birth Country</ion-label>
+                        <ion-label class="custom-text" (click)="openCountry()">{{birthPlace}}
+                        </ion-label>
+                    </ion-item>
+                    <div class="custom-select-icon">
+                        <div class="custom-select-icon-inner"></div>
+                    </div>
+                </div>
+                <div class="error" *ngIf="currentMember?.isNRI && birthPlace==='India'">
+                        You have already selected NRI previously.
+                    </div>
+                    <div class="error" *ngIf="currentMember?.isNRI===false && birthPlace!=='India'">
+                        You have already selected Individual previously.
+                    </div>
+            <!-- <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Birth Country</ion-label>
                     <ion-select #birthPlace1 name="birthPlace" [selectOptions]="selectOptions" [(ngModel)]="birthPlace">
@@ -22,7 +38,7 @@
                 <div class="error" *ngIf="currentMember?.isNRI===false && birthPlace==='Russia'">
                     You have already selected Individual previously.
                 </div>
-            </div>
+            </div> -->
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Tax Resident Outside India?</ion-label>
@@ -39,12 +55,22 @@
                     </div>
             </div>
             <div class="nri-section" *ngIf="showSection">
-                <div class="mb">
+                <!-- <div class="mb">
                     <ion-item mode="ios">
                         <ion-label floating>Country</ion-label>
                         <ion-input type="text" name="nriCountry" [(ngModel)]="nriCountry" (ngModelChange)="checkNRICountry(nriCountry)"></ion-input>
                     </ion-item>
-                </div>
+                </div> -->
+                <div class="custom-select mb">
+                        <ion-item mode="ios">
+                            <ion-label floating class="custom-float-text">Country</ion-label>
+                            <ion-label class="custom-text" (click)="openNRICountry()">{{nriCountry}}
+                            </ion-label>
+                        </ion-item>
+                        <div class="custom-select-icon">
+                            <div class="custom-select-icon-inner"></div>
+                        </div>
+                    </div>
                 <div class="mb">
                     <ion-item mode="ios">
                         <ion-label floating>TIN No</ion-label>

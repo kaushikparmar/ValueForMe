@@ -64,7 +64,7 @@
                 <div class="member-detail mb">
                     <div class="member-title">
                         <ion-item mode="ios">
-                            <ion-select #jointHolderTitle name="title" [selectOptions]="selectOptions" formControlName="jointTitle">
+                            <ion-select #jointHolderTitle placeholder="Title" name="title" [selectOptions]="selectOptions" formControlName="jointTitle">
                                 <ion-option value="Mr." (ionSelect)="jointTitleClose($event)" selected>Mr.</ion-option>
                                 <ion-option value="Mrs." (ionSelect)="jointTitleClose($event)">Mrs.</ion-option>
                             </ion-select>
@@ -90,7 +90,7 @@
                     </ion-item>
                     <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged($event)">
                 </div>
-                <div class="birthPlace mb">
+                <!-- <div class="birthPlace mb">
                     <ion-item mode="ios">
                         <ion-label floating>Select Place of Birth</ion-label>
                         <ion-select #jointBirthCity name="place" formControlName="birthCity" [selectOptions]="selectOptions1">
@@ -98,6 +98,15 @@
                             <ion-option value="Mumbai" (ionSelect)="jointBithClose($event)">Mumbai</ion-option>
                         </ion-select>
                     </ion-item>
+                </div> -->
+                <div class="custom-select mb">
+                    <ion-item mode="ios">
+                        <ion-label floating class="custom-float-text">Place of Birth</ion-label>
+                        <ion-label class="custom-text" (click)="openBirthCityModal()">{{birthCity}}</ion-label>
+                    </ion-item>
+                    <div class="custom-select-icon">
+                        <div class="custom-select-icon-inner"></div>
+                    </div>
                 </div>
                 <div class="hideDetails" *ngIf="showPanel">
                     <div class="panel panel-1">
@@ -297,7 +306,7 @@
                         <ion-label floating>Nominee 1 Relationship</ion-label>
                         <ion-select #relationship1 name="relationship" [selectOptions]="selectOptions7" formControlName="relationship">
                             <ion-option value="Wife" (ionSelect)="checkRelation($event)" selected>Wife</ion-option>
-                            <ion-option value="Husband" (ionSelect)="checkRelation($event)" >Husband</ion-option>
+                            <ion-option value="Husband" (ionSelect)="checkRelation($event)">Husband</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>
@@ -364,10 +373,10 @@
                     </div>
                 </div>
                 <div class="add-holder">
-                        <button ion-button clear outline mode="md" (click)="addAnotherNominee()">
-                            + Add another Nominee
-                        </button>
-                    </div>
+                    <button ion-button clear outline mode="md" (click)="addAnotherNominee()">
+                        + Add another Nominee
+                    </button>
+                </div>
             </div>
         </ion-list>
     </form>
