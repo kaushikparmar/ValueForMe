@@ -207,7 +207,7 @@ export class NonKycFamilyPage implements OnInit {
     }
     if (this.currentMember.isNewMember === true && pan_no.length === 10) {
       let pan = this.data.filterPanData(pan_no);
-      if (pan !== undefined) {
+      if (pan !== undefined && pan.length !== undefined && pan.length > 0) {
         this.isPANExist = true;
       } else {
         this.isPANExist = false;

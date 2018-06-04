@@ -69,7 +69,7 @@
           <ion-label floating>Aadhar No.</ion-label>
           <ion-input type="tel" name="aadharNo" patternValidate="memberid" [(ngModel)]="currentMember.aadhar_no" maxLen="12" #aadharNo="ngModel"></ion-input>
         </ion-item>
-        <button ion-button clear outline mode="md" class="otp" [disabled]="aadharNo?.errors!==null" (click)="sendOTP()">Send OTP</button>
+        <button ion-button clear outline mode="md" class="otp" [disabled]="!(currentMember.aadhar_no)||(aadharNo.touched && aadharNo.dirty && aadharNo?.errors!==null)" (click)="sendOTP()">Send OTP</button>
       </div>
       <div class="error" *ngIf="aadharNo && aadharNo.touched && aadharNo.dirty && aadharNo?.errors?.required">
 				Aadhar No is mandatory
@@ -119,9 +119,12 @@
       <div class="mb">
         <ion-item mode="ios">
           <ion-label floating>Email ID</ion-label>
-          <ion-input type="email" name="email" #email="ngModel" [(ngModel)]="currentMember.email"></ion-input>
+          <ion-input type="email" name="email" patternValidate="email" #email="ngModel" [(ngModel)]="currentMember.email"></ion-input>
         </ion-item>
       </div>
+      <div class="error" *ngIf="email && email.touched && email.dirty && email?.errors?.invalidPattern">
+				Email is invalid
+			</div>
       <div class="member-detail mb">
         <div class="member-title">
           <ion-item mode="ios">

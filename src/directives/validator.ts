@@ -22,7 +22,7 @@ export class PatternValidate implements Validator {
         "username": "^[a-zA-Z0-9._-]*$",
         "password": "^(?=.*\\d)(?=.*[@#$%^&+=!*])(?=.*[a-z])(?=.*[A-Z]).{8,}$",
         "zipcode": "^[0-9]*$",
-        "memberid": "^[0-9]*$",
+        "memberid": "^([0-9]){12}$",
         "mobile": "^([0-9]){10}$",
         "email": "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$",
         "pan": "^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$"
