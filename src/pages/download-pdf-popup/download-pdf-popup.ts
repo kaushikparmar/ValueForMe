@@ -85,7 +85,7 @@ export class DownloadPdfPopupPage {
     }
     let self = this;
     const transfer: FileTransferObject = this.transfer.create();
-    this.file.createDir(path, 'Valufey', true).then(entry => {
+    this.file.createDir(path, 'Valuefy', true).then(entry => {
       let pdfFilefath = entry.nativeURL;
       console.log(pdfFilefath, 'pdfFilePath');
       transfer.onProgress((e) => {
@@ -94,7 +94,7 @@ export class DownloadPdfPopupPage {
         });
       });
       
-      transfer.download(pdfLocation, pdfFilefath + 'Valuey.pdf').then((entry) => {
+      transfer.download(pdfLocation, pdfFilefath + 'Valuefy.pdf').then((entry) => {
         let localFileurl = entry.toURL();
         console.log(localFileurl, 'localFileUrl');
         this.isLoading = false;
@@ -124,7 +124,7 @@ export class DownloadPdfPopupPage {
           // });
         this.localNotification.schedule({
           id:1,
-          text: 'Valufey pdf file downloaded',
+          text: 'Valuefy pdf file downloaded',
         })
         // const options: DocumentViewerOptions = {
         //   title: 'My PDF',

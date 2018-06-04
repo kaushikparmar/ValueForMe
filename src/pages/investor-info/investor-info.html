@@ -1,63 +1,63 @@
 <ion-header mode="md">
     <ion-navbar>
-      <ion-title>Investor Info 2/5</ion-title>
+        <ion-title>Investor Info 2/5</ion-title>
     </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-      <form #investorForm="ngForm">
-          <ion-list mode="ios">
+</ion-header>
+
+<ion-content padding>
+    <form #investorForm="ngForm">
+        <ion-list mode="ios">
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Marital Status</ion-label>
-                    <ion-select name="status" #maritalSelect [selectOptions]="selectOptions" [(ngModel)]="marital" >
+                    <ion-select name="status" #maritalSelect [selectOptions]="selectOptions" [(ngModel)]="marital">
                         <ion-option value="Single" (ionSelect)="maritalClose($event)" selected>Single</ion-option>
                         <ion-option value="Married" (ionSelect)="maritalClose($event)">Married</ion-option>
                     </ion-select>
-                  </ion-item>
+                </ion-item>
             </div>
             <div class="mb">
-              <ion-item mode="ios">
-                <ion-label floating>Mother's Name</ion-label>
-                <ion-input type="text" name="motherName" [(ngModel)]="mothername" (ngModelChange)="setName(mothername)" value="Anuradha Patel"></ion-input>
-              </ion-item>
+                <ion-item mode="ios">
+                    <ion-label floating>Mother's Name</ion-label>
+                    <ion-input type="text" name="motherName" [(ngModel)]="mothername" (ngModelChange)="setName(mothername)" value="Anuradha Patel"></ion-input>
+                </ion-item>
             </div>
             <ion-row>
-              <ion-col col-6>
-                  <div class="dob mb">
-                      <ion-item mode="ios">
-                        <ion-label floating>Date of Birth</ion-label>
-                        <ion-datetime name="dob" #datePicker displayFormat="MM/DD/YYYY" (ngModelChange)="dateChanged($event)" [(ngModel)]="dob"></ion-datetime>
-                      </ion-item>
-                      <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged(dob)">
-                    </div>
-              </ion-col>
-              <ion-col col-6>
-                  <div class="mb">
-                      <ion-item mode="ios">
-                          <ion-label floating>Gender</ion-label>
-                          <ion-select #genderSelect name="gender" [selectOptions]="selectOptions1" [(ngModel)]="gender">
-                              <ion-option value="Female" (ionSelect)="genderClose($event)" selected>Female</ion-option>
-                              <ion-option value="Male" (ionSelect)="genderClose($event)">Male</ion-option>
-                          </ion-select>
+                <ion-col col-6 class="pl-0">
+                    <div class="dob mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Date of Birth</ion-label>
+                            <ion-datetime name="dob" #datePicker displayFormat="MM/DD/YYYY" (ngModelChange)="dateChanged($event)" [(ngModel)]="dob"></ion-datetime>
                         </ion-item>
-                  </div>
+                        <img src="./assets/imgs/calendar.png" alt="calendar" (click)="dateChanged(dob)">
+                    </div>
+                </ion-col>
+                <ion-col col-6>
+                    <div class="mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Gender</ion-label>
+                            <ion-select #genderSelect name="gender" [selectOptions]="selectOptions1" [(ngModel)]="gender">
+                                <ion-option value="Female" (ionSelect)="genderClose($event)" selected>Female</ion-option>
+                                <ion-option value="Male" (ionSelect)="genderClose($event)">Male</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
                 </ion-col>
             </ion-row>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Investor Type</ion-label>
-                    <ion-select #investorSelect name="investorType" [(ngModel)]="investorType" [selectOptions]="selectOptions2" >
+                    <ion-select #investorSelect name="investorType" [(ngModel)]="investorType" [selectOptions]="selectOptions2">
                         <ion-option value="Individual" (ionSelect)="investorClose($event)">Individual</ion-option>
                         <ion-option value="NRI" (ionSelect)="investorClose($event)">NRI</ion-option>
                     </ion-select>
-                  </ion-item>
-                  <div class="error" *ngIf="currentMember?.isNRI && investorType==='Individual'">
-                      You have already selected NRI previously.
-                  </div>
-                  <div class="error" *ngIf="currentMember?.isNRI===false && investorType==='NRI'">
-                        You have already selected Individual previously.
-                    </div>
+                </ion-item>
+                <div class="error" *ngIf="currentMember?.isNRI && investorType==='Individual'">
+                    You have already selected NRI previously.
+                </div>
+                <div class="error" *ngIf="currentMember?.isNRI===false && investorType==='NRI'">
+                    You have already selected Individual previously.
+                </div>
             </div>
             <!-- <div class="mb">
                     <img [src]="chosenPicture" onerror="this.src='./assets/imgs/cancel-cheque.png'" alt="profile" >
@@ -69,28 +69,28 @@
                         <img src="./assets/imgs/cancel-cheque.png" alt="cancel-cheque">
                         <ion-label>Cancelled Cheque</ion-label>
                     </div>
-                    <div class="signature" (click)="changePicture()">
-                        <img src="./assets/imgs/sign.png" alt="sign" >
+                    <div class="signature" (click)="changePicture()" *ngIf="hideUpload">
+                        <img src="./assets/imgs/sign.png" alt="sign">
                         <ion-label>Digital Signature</ion-label>
                     </div>
-                </div>
-            </div>
-            <div class="image-container" *ngIf="chosenPicture">
-                <ion-label class="upload-text">Uploaded Image:</ion-label>
-                <div class="image-holder">
-                        <img [src]="chosenPicture">
-                        <button ion-button (click)="dismiss()" class="imageDismiss">
+                    <div class="image-container" *ngIf="chosenPicture">
+                        <!-- <ion-label class="upload-text">Uploaded Image:</ion-label> -->
+                        <!-- <div class="image-holder"> -->
+                            <img [src]="chosenPicture">
+                            <button ion-button (click)="dismiss()" class="imageDismiss">
                                 <ion-icon name="close"></ion-icon>
-                        </button>
+                            </button>
+                        </div>
+                    <!-- </div> -->
                 </div>
             </div>
-          </ion-list>
-      </form>
-      <div class="footer-action-btn">
-        <button ion-button round block class="action-btn" 
-            [disabled]="(currentMember?.isNRI===false && investorType==='NRI') || (currentMember?.isNRI && investorType==='Individual')" mode="md" (click)="nextPage()">
-                SUBMIT
-          </button>
-        </div> 
-  </ion-content>
-  
+
+        </ion-list>
+    </form>
+    <div class="footer-action-btn">
+        <button ion-button round block class="action-btn" [disabled]="(currentMember?.isNRI===false && investorType==='NRI') || (currentMember?.isNRI && investorType==='Individual')"
+            mode="md" (click)="nextPage()">
+            SUBMIT
+        </button>
+    </div>
+</ion-content>

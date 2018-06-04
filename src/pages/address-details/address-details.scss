@@ -21,7 +21,7 @@ page-address-details {
                 }
                 .nri-text{
                     color:rgb(14,97,155);
-                    margin:5px 0 5px;
+                    margin:5px 0 0px;
                     font : {
                         size : 1.2rem;
                         weight:500;
@@ -34,7 +34,7 @@ page-address-details {
                         weight:500;
                     }
                     margin-top: 10px;
-                    margin-bottom: 10px;
+                    margin-bottom: 5px;
                 }
                 // .item.item-input-has-value ion-label,
                 // .item.input-has-value ion-label{
@@ -80,6 +80,11 @@ page-address-details {
                             pointer-events: none;
                             color:#000;
                         }
+                    }
+                }
+                .info {
+                    img{
+                        width: 10px;
                     }
                 }
                 .hideDetails{

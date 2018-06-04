@@ -25,13 +25,13 @@
             <div class="mb mb-0">
                 <ion-item mode="ios">
                     <ion-label floating>Address Line 1</ion-label>
-                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar," name="overSeasAddress1" [(ngModel)]="overSeasAddress1" (ngModelChange)="overseasAddress1(overSeasAddress1)"></ion-textarea>
+                    <ion-input value="E 701 Lotus Corporate Park, Laxmi Nagar," name="overSeasAddress1" [(ngModel)]="overSeasAddress1" (ngModelChange)="overseasAddress1(overSeasAddress1)"></ion-input>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Address Line 2</ion-label>
-                    <ion-textarea value="Western Express Highway, Goregaon East," name="overSeasAddress2" [(ngModel)]="overSeasAddress2" (ngModelChange)="overseasAddress2(overSeasAddress2)"></ion-textarea>
+                    <ion-input value="Western Express Highway, Goregaon East," name="overSeasAddress2" [(ngModel)]="overSeasAddress2" (ngModelChange)="overseasAddress2(overSeasAddress2)"></ion-input>
                 </ion-item>
             </div>
             <div class="mb">
@@ -84,13 +84,13 @@
             <div class="mb mb-0">
                 <ion-item mode="ios">
                     <ion-label floating>Address Line 1</ion-label>
-                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar," name="indianAddress1" [(ngModel)]="indianAddress1" (ngModelChange)="indiaAddress1(indianAddress1)"></ion-textarea>
+                    <ion-input value="E 701 Lotus Corporate Park, Laxmi Nagar," name="indianAddress1" [(ngModel)]="indianAddress1" (ngModelChange)="indiaAddress1(indianAddress1)"></ion-input>
                 </ion-item>
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Address Line 2</ion-label>
-                    <ion-textarea value="Western Express Highway, Goregaon East," name="indianAddress2" [(ngModel)]="indianAddress2" (ngModelChange)="indiaAddress2(indianAddress2)"></ion-textarea>
+                    <ion-input value="Western Express Highway, Goregaon East," name="indianAddress2" [(ngModel)]="indianAddress2" (ngModelChange)="indiaAddress2(indianAddress2)"></ion-input>
                 </ion-item>
             </div>
             <div class="custom-select mb">
@@ -145,9 +145,10 @@
                     </div>
                 </ion-col>
             </ion-row>
-            <div class="mb custom-dropdown">
+            <div class="mb">
                 <ion-item mode="ios">
-                    <ion-select #residentialType [(ngModel)]="residential" name="residential" placeholder="Resident Type" [selectOptions]="selectOptions5">
+                    <ion-label floating>Resident Type</ion-label>
+                    <ion-select #residentialType [(ngModel)]="residential" name="residential" [selectOptions]="selectOptions5">
                         <ion-option value="Residential/ Business" (ionSelect)="checkResidential($event)">Residential/ Business</ion-option>
                         <ion-option value="Residential" (ionSelect)="checkResidential($event)">Residential</ion-option>
                         <ion-option value="Business" (ionSelect)="checkResidential($event)">Business</ion-option>
@@ -159,16 +160,16 @@
             <div class="member-detail mb">
                 <div class="member-title">
                     <ion-item mode="ios">
-                        <ion-select name="title" [selectOptions]="selectOptions4">
-                            <ion-option value="Mr." selected>Mr.</ion-option>
+                        <ion-select name="title" placeholder="Title" [selectOptions]="selectOptions4">
+                            <ion-option value="Mr.">Mr.</ion-option>
                             <ion-option value="Mrs.">Mrs.</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>
                 <div class="member-name">
                     <ion-item mode="ios">
-                        <ion-label floating>Name as in KYC</ion-label>
-                        <ion-input type="text" name="memberName" value="Ravindra Salukhe"></ion-input>
+                        <ion-label floating>Father's Name</ion-label>
+                        <ion-input type="text" name="memberName" value=""></ion-input>
                     </ion-item>
                 </div>
             </div>

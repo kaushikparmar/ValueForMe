@@ -84,7 +84,7 @@
 				Aadhar No should be 12 digit number
 			</div>
 
-      <div class="intl-tel-input mb">
+      <div class="intl-tel-input">
         <div class="country-code">
           <ion-item mode="ios">
             <ion-label floating>Mobile No.</ion-label>
@@ -102,11 +102,11 @@
           </ion-item>
         </div>
       </div>
-      <div class="error" *ngIf="mobileNo && mobileNo.touched && mobileNo.dirty && mobileNo?.errors?.invalidPattern">
+      <div class="error mb" *ngIf="mobileNo && mobileNo.touched && mobileNo.dirty && mobileNo?.errors?.invalidPattern">
 				Mobile No should be 10 digit number
 			</div>
       <!-- <ngx-intl-tel-input [(value)]="8733083855"></ngx-intl-tel-input> -->
-      <div class="check-nri mb-0">
+      <div class="check-nri mt-10 mb-0">
         <ion-label>Are you a NRI?</ion-label>
         <div class="switch">
           <input type="radio" class="switch-input" name="toggle" id="yes" [value]="true" [ngClass]="{'nri-checked':currentMember?.isNRI}" [(ngModel)]="currentMember.isNRI" (change)="checkNRI(true)">

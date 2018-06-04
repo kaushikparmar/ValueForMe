@@ -6,12 +6,12 @@ page-your-details {
                 width: 100%;
                 background: map-get($colors,contentBg);
                 form{
-                    margin-bottom: 30px;
+                    margin-bottom: 15px;
                 }
                 .upload-container{
                     text-align: center;
                     .upload-text{
-                        margin:30px 0 30px; 
+                        margin:15px 0 15px; 
                         color:#000;
                         font : {
                             size : 1.6rem;
@@ -20,7 +20,7 @@ page-your-details {
                     }
                 }
                 .download-container{
-                    margin:30px 0  30px;
+                    margin:15px 0  15px;
                 }
                 .separator{
                     height: 1px;
@@ -28,7 +28,7 @@ page-your-details {
                     border-bottom:1px solid rgb(213,213,213);
                 }
                 .pdf-info{
-                    margin-top: 30px;
+                    margin-top: 15px;
                     text-align: center;
                     h5{
                         font : {
@@ -51,14 +51,14 @@ page-your-details {
                         margin:auto;
                         box-shadow: 0 0.3px 1.7px 0 rgb(137,137,137);
                         background: #fff;
-                        height: 150px;
+                        height: 140px;
                         border-radius: 25px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         position: relative;
                         img{
-                            width: 40px;
+                            width: 35px;
                             margin-bottom: 30px;
                         }
                         ion-label{

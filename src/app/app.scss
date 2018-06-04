@@ -256,19 +256,35 @@ ion-modal.selectPopupModal{
     }    
 }
 
-
+// ion-content .scroll-content ion-list .item-ios.item-label-floating .text-input{
+//     outline:0;
+// }
+.focus-outline [ion-button]:focus, .focus-outline button:focus{
+    outline: 0;
+    border-color:transparent;
+    box-shadow: none;
+}
 //modal dimsiss global css
 button.dismiss{
     height: 25px;
     width:25px;
-    border-radius: 50%;
-    padding:4px;
+    // border-radius: 50%;
+    // padding:4px;
     position: absolute;
     top: 0;
     right:0;
-    background: map-get($colors,danger);
+    box-shadow: none;
+    color:map-get($colors,dark);
+    font : {
+        size : 20px;
+    }
+    ion-icon{
+        font-weight: 600;
+        color: #333;
+    }
+    background: transparent;
     &.activated{
-        background: map-get($colors,danger);
+        background: transparent;
     }
 }
 //checkbox
@@ -330,3 +346,8 @@ button.dismiss{
 //     color: #fff;
 //     }
 // }
+// .alert-md .select-alert .single-select-alert{
+    .alert-button-group > .alert-button:nth-child(2){
+        display:none;
+        }
+    // }

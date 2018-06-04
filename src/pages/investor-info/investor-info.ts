@@ -21,6 +21,7 @@ export class InvestorInfoPage {
   @ViewChild('investorSelect') selectInvestor;
   
   chosenPicture: any;
+  public hideUpload: boolean = true;
   public selectOptions = {
     title: 'Marital Status'
   };
@@ -115,6 +116,7 @@ export class InvestorInfoPage {
     let profilePicture = this.data.getter('profilePicture');
     if (profilePicture !== undefined) {
       this.chosenPicture = profilePicture;
+      this.hideUpload = false;
     }
     // this.data.userData.push(this.investoInfoPage);
     // console.log(this.data.userData);
@@ -223,11 +225,13 @@ export class InvestorInfoPage {
         this.chosenPicture = "data:image/jpeg;base64," + imageData;
         console.log(this.chosenPicture, "chosenPictruer");
         this.data.setter('profilePicture', this.chosenPicture);
+        this.hideUpload = false;
         this.presentToast("Image uploaded successfully");
         console.log(this.data, "image data");
       }
       console.log(imageData,"imageData");
       if (imageData === 'No Image Selected') {
+        this.hideUpload = true;
         this.presentToast("Image upload error");
         loading.dismiss();
       }
@@ -250,9 +254,11 @@ export class InvestorInfoPage {
         this.chosenPicture = picture;
         console.log(picture, "picture");
         this.data.setter('profilePicture', picture);
+        this.hideUpload = false;
         this.presentToast("Image uploaded successfully");
       }
       if (picture === 'No Image Selected') {
+        this.hideUpload = true;
         this.presentToast("Image upload error");
       }
 
@@ -281,5 +287,6 @@ export class InvestorInfoPage {
       if(this.chosenPicture !== undefined){
           this.chosenPicture = '';
       }
+      this.hideUpload = true;
   }
 }

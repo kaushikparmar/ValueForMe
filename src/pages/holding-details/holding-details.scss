@@ -132,6 +132,38 @@ page-holding-details {
                         }
                     }
                 }
+                .custom-select{
+                    position: relative;
+                    .custom-text{
+                        margin-top:0;
+                        margin-bottom:6px;
+                    }
+                    .custom-float-text{
+                        // font-size: 1.4rem;
+                        padding-bottom: 5px;
+                        width: 100%;
+                        transform: translate3d(0, 0, 0) scale(0.8);
+                        color: #606060;
+                    }
+                    .custom-select-icon{
+                        position: absolute;
+                        right: 20px;
+                        bottom: 16px;
+                        .custom-select-icon-inner{
+                            left: 5px;
+                            top: 50%;
+                            margin-top: -2px;
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            border-top: 5px solid;
+                            border-right: 5px solid transparent;
+                            border-left: 5px solid transparent;
+                            pointer-events: none;
+                            color:#000;
+                        }
+                    }
+                }
                 .member-detail{
                     display: flex;
                     overflow: hidden;
@@ -141,7 +173,7 @@ page-holding-details {
                         ion-select{
                             max-width: 100%;
                             padding: 11px 11px 6px 0;
-                            height: 56px;
+                            height: 57px;
                             display: flex;
                             align-items: flex-end;
                             .select-icon{
@@ -160,7 +192,8 @@ page-holding-details {
                     img{
                         position: absolute;
                         right: 0;
-                        bottom: 0.8em;
+                        bottom: 1em;
+                        width:10px;
                     }
                     ion-datetime.datetime{
                         padding: 0px 8px 6px 0px;

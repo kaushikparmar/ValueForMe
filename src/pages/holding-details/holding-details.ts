@@ -22,7 +22,7 @@ export class HoldingDetailsPage implements OnInit {
   @ViewChild('nomineeType2') nomineeType2;
   
   
-  
+  public birthCity:any;
   public defaultBank = "ICICI Bank LTD.";
   public accountNo: any = "412739865024";
   public reAccountNo: any = "412739865024";
@@ -100,7 +100,8 @@ export class HoldingDetailsPage implements OnInit {
         'jointHolderName' : '',
         'emailId' : '',
         'dob' : '',
-        'nominee' : ''
+        'nominee' : '',
+        'birthCity':''
       }
   }
 
@@ -151,7 +152,7 @@ export class HoldingDetailsPage implements OnInit {
       datePick: new FormControl(''),
       percentage2: new FormControl(''),
       jointTitle: new FormControl(''),
-      birthCity: new FormControl(''),
+      // birthCity: new FormControl(''),
       nomineeRelationship2: new FormControl(''),
       nomineeType2: new FormControl('')
 
@@ -190,10 +191,10 @@ export class HoldingDetailsPage implements OnInit {
     this.closeJointHolderTitle.close();
     this.jointHolderDetails.controls['jointTitle'].setValue(event);
   }
-  jointBithClose(event) {
-    this.closeJointBirthCity.close();
-    this.jointHolderDetails.controls['birthCity'].setValue(event);
-  }
+  // jointBithClose(event) {
+  //   this.closeJointBirthCity.close();
+  //   this.jointHolderDetails.controls['birthCity'].setValue(event);
+  // }
   
   checkNomineeSection(event) {
     if(event === 'Yes'){
@@ -341,7 +342,23 @@ export class HoldingDetailsPage implements OnInit {
     otpModal.present();
   }
 
-  
+  openBirthCityModal() {
+    let openModal=this.modalCtrl.create('BirthPlaceModalPage',{},
+    {
+      showBackdrop: false,
+      enableBackdropDismiss: false,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
+    });
+    openModal.present();
+    openModal.onDidDismiss( data => {
+      if(data !== undefined){
+        this.birthCity = data;
+        // this.location['indianAddress'].cityName = this.defaultCity;
+        this.jointHolderData['jointHolderInfo'].birthCity = this.birthCity;
+      } 
+    });
+  }
   openPanel1() {
     this.showDetails1 = !this.showDetails1;
     this.showDetails2 = false;

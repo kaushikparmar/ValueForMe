@@ -43,7 +43,7 @@
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Branch Address</ion-label>
-                    <ion-textarea name="branchAddress" formControlName="branchAddress" value="" (ionBlur)="branchaddress()"></ion-textarea>
+                    <ion-input name="branchAddress" formControlName="branchAddress" value="" (ionBlur)="branchaddress()"></ion-input>
                 </ion-item>
             </div>
             <div class="mb" *ngIf="showNRIAccount">
@@ -71,7 +71,7 @@
                         formControlName="accountNumber" (input)="checkAccount(accountNo)" 
                         value="{{accountNo}}" ></ion-input>
                 </ion-item>
-                <ion-item class="error-block" no-lines>
+                <!-- <ion-item class="error-block" no-lines> -->
                         <!-- *ngIf="( bankDetails.get('accountNumber').hasError('required') ) && bankDetails.get('accountNumber').touched" -->
                     <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('required') && bankDetails.get('accountNumber').touched">
                         Account Number is required
@@ -79,21 +79,21 @@
                     <div class="error" *ngIf="bankDetails.get('accountNumber').hasError('maxlength')">
                         Account Number should not be 14 digits long.
                     </div>
-                </ion-item>
+                <!-- </ion-item> -->
             </div>
             <div class="mb">
                 <ion-item mode="ios">
                     <ion-label floating>Re-enter Account Number</ion-label>
                     <ion-input type="tel" name="reAccountNo" [(ngModel)]="reAccountNo" value="{{reAccountNo}}" formControlName="re_accountNumber"></ion-input>
                 </ion-item>
-                <ion-item class="error-block" no-lines *ngIf="( bankDetails.get('re_accountNumber').hasError('equalTo') || bankDetails.get('re_accountNumber').hasError('required') ) && bankDetails.get('re_accountNumber').touched">
+                <!-- <ion-item class="error-block" no-lines *ngIf="( bankDetails.get('re_accountNumber').hasError('equalTo') || bankDetails.get('re_accountNumber').hasError('required') ) && bankDetails.get('re_accountNumber').touched"> -->
                     <div class="error" *ngIf="bankDetails.get('re_accountNumber').hasError('required') && bankDetails.get('re_accountNumber').touched">
                         Re Account Number is required.
                     </div>
                     <div class="error" *ngIf="bankDetails.get('re_accountNumber').hasError('equalTo') && bankDetails.get('re_accountNumber').touched">
                         Account Number Mismatch
                     </div>
-                </ion-item>
+                <!-- </ion-item> -->
             </div>
         </ion-list>
 
