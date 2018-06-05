@@ -36,9 +36,9 @@
                         <ion-spinner mode="md"></ion-spinner>
                     </div>
                 </div>
-                <div class="error" *ngIf="jointHolderDetails.get('holderPan').hasError('validate') || jointHolderDetails.get('holderPan').touched">
+                <!-- <div class="error" *ngIf="jointHolderDetails.get('holderPan').hasError('validate') && jointHolderDetails.get('holderPan').touched">
                     Investor PAN Number should have first five character, four digits and one character at the end. Like, BEADF3944M.
-                </div>
+                </div> -->
                 <div class="error" *ngIf="showPanError">
                     Non KYC Family.
                 </div>
@@ -87,6 +87,12 @@
                         <ion-input type="email" name="email" value="" formControlName="emailId" (ionBlur)="email()"></ion-input>
                     </ion-item>
                 </div>
+                <div class="mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Joint Holder 1 Mobile No</ion-label>
+                            <ion-input type="tel" name="mobileno" value="" formControlName="mobileno" (ionBlur)="phoneno()"></ion-input>
+                        </ion-item>
+                    </div>
                 <div class="dob mb">
                     <ion-item mode="ios">
                         <ion-label floating>Joint Holder 1 Date of Birth</ion-label>
@@ -123,9 +129,9 @@
                             <div class="mb">
                                 <ion-item mode="ios">
                                     <ion-label floating>Select Joint Holder 1 Marital Status</ion-label>
-                                    <ion-select name="Marital" [selectOptions]="selectOptions2">
-                                        <ion-option value="Married" selected>Married</ion-option>
-                                        <ion-option value="Single">Single</ion-option>
+                                    <ion-select #married2 name="Marital" [selectOptions]="selectOptions2" formControlName="jointMarital">
+                                        <ion-option value="Married" (ionSelect)="jointHolderMarital($event)" selected>Married</ion-option>
+                                        <ion-option value="Single" (ionSelect)="jointHolderMarital($event)">Single</ion-option>
                                     </ion-select>
                                 </ion-item>
                             </div>
@@ -133,9 +139,9 @@
                                 <div class="member-title">
                                     <ion-item mode="ios">
                                         <ion-label floating>Title</ion-label>
-                                        <ion-select name="title" [selectOptions]="selectOptions3">
-                                            <ion-option value="Mr." selected>Mr.</ion-option>
-                                            <ion-option value="Mrs.">Mrs.</ion-option>
+                                        <ion-select #jointTitle1 name="jointHolderTitle1" [selectOptions]="selectOptions3" formControlName="jointHolderTitle1">
+                                            <ion-option value="Mr." (ionSelect)="jointHolderTitle1($event)" selected>Mr.</ion-option>
+                                            <ion-option value="Mrs." (ionSelect)="jointHolderTitle1($event)">Mrs.</ion-option>
                                         </ion-select>
                                     </ion-item>
                                 </div>
@@ -150,9 +156,9 @@
                                 <div class="member-title">
                                     <ion-item mode="ios">
                                         <ion-label floating>Title</ion-label>
-                                        <ion-select name="title" [selectOptions]="selectOptions3">
-                                            <ion-option value="Mr.">Mr.</ion-option>
-                                            <ion-option value="Mrs." selected>Mrs.</ion-option>
+                                        <ion-select #jointTitle2 formControlName="jointHolderTitle2" name="jointHolderTitle2" [selectOptions]="selectOptions3">
+                                            <ion-option value="Mr." (ionSelect)="jointHolderTitle2($event)">Mr.</ion-option>
+                                            <ion-option value="Mrs." (ionSelect)="jointHolderTitle2($event)" selected>Mrs.</ion-option>
                                         </ion-select>
                                     </ion-item>
                                 </div>
@@ -167,9 +173,9 @@
                                 <div class="member-title">
                                     <ion-item mode="ios">
                                         <ion-label floating>Title</ion-label>
-                                        <ion-select name="title" [selectOptions]="selectOptions3">
-                                            <ion-option value="Mr." selected>Mr.</ion-option>
-                                            <ion-option value="Mrs.">Mrs.</ion-option>
+                                        <ion-select #jointTitle3 formControlName="jointHolderTitle3" name="jointHolderTitle3" [selectOptions]="selectOptions3">
+                                            <ion-option value="Mr." (ionSelect)="jointHolderTitle3($event)" selected>Mr.</ion-option>
+                                            <ion-option value="Mrs." (ionSelect)="jointHolderTitle3($event)" >Mrs.</ion-option>
                                         </ion-select>
                                     </ion-item>
                                 </div>
@@ -247,9 +253,9 @@
                             <div class="mb">
                                 <ion-item mode="ios">
                                     <ion-label floating>Account Type</ion-label>
-                                    <ion-select name="account" [selectOptions]="selectOptions4">
-                                        <ion-option value="Savings" selected>Savings</ion-option>
-                                        <ion-option value="Internal">Current</ion-option>
+                                    <ion-select #jointHolderAccount formControlName="jointHolderAccount1" name="jointHolderAccount1" [selectOptions]="selectOptions4">
+                                        <ion-option value="Savings" (ionSelect)="jointHolderAccount1($event)">Savings</ion-option>
+                                        <ion-option value="Internal" (ionSelect)="jointHolderAccount1($event)">Current</ion-option>
                                     </ion-select>
                                 </ion-item>
                             </div>
@@ -285,11 +291,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="add-holder">
+                <!-- <div class="add-holder">
                     <button ion-button clear outline mode="md">
                         + Add another Joint Holder
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="mb">
                 <ion-item mode="ios">

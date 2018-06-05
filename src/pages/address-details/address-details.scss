@@ -93,6 +93,27 @@ page-address-details {
                         width: 10px;
                     }
                 }
+                .member-detail{
+                    display: flex;
+                    .member-title{
+                        width: 25%;
+                        ion-select{
+                            max-width: 100%;
+                            padding: 3px 0px 6px 0;
+                            height: 26px;
+                            // display: flex;
+                            // align-items: flex-end;
+                            .select-icon{
+                                position: absolute;
+                                right: 5px;
+                            }
+                        }
+                    }
+                    .member-name{
+                        width: 100%;
+                        margin-left:25px;
+                    }
+                }
                 .hideDetails{
                     ion-label{
                         color:rgba(96,96,96,0.78);

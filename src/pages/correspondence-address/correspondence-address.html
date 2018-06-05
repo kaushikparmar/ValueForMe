@@ -161,9 +161,9 @@
                 <div class="member-title">
                     <ion-item mode="ios">
                         <ion-label floating>Title</ion-label>
-                        <ion-select name="title"  [selectOptions]="selectOptions4">
-                            <ion-option value="Mr.">Mr.</ion-option>
-                            <ion-option value="Mrs.">Mrs.</ion-option>
+                        <ion-select #nriTitle [(ngModel)]="nriTitle1" name="title"  [selectOptions]="selectOptions4">
+                            <ion-option value="Mr." (ionSelect)="checkNRititle($event)">Mr.</ion-option>
+                            <ion-option value="Mrs." (ionSelect)="checkNRititle($event)">Mrs.</ion-option>
                         </ion-select>
                     </ion-item>
                 </div>

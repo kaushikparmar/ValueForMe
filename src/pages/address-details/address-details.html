@@ -152,6 +152,35 @@
                         </div>
                     </ion-col>
                 </ion-row>
+                <div class="mb">
+                        <ion-item mode="ios">
+                            <ion-label floating>Resident Type</ion-label>
+                            <ion-select #residentialType [(ngModel)]="residential" name="residential" [selectOptions]="selectOptions5">
+                                <ion-option value="Residential/ Business" (ionSelect)="checkResidential($event)">Residential/ Business</ion-option>
+                                <ion-option value="Residential" (ionSelect)="checkResidential($event)">Residential</ion-option>
+                                <ion-option value="Business" (ionSelect)="checkResidential($event)">Business</ion-option>
+                                <ion-option value="Registered Office" (ionSelect)="checkResidential($event)">Registered Office</ion-option>
+                                <ion-option value="Unspecfied" (ionSelect)="checkResidential($event)">Unspecfied</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                    <div class="member-detail mb">
+                        <div class="member-title">
+                            <ion-item mode="ios">
+                                <ion-label floating>Title</ion-label>
+                                <ion-select #nriTitle name="title"  [(ngModel)]="nriTitle1" [selectOptions]="selectOptions4">
+                                    <ion-option value="Mr." (ionSelect)="checkNRititle($event)">Mr.</ion-option>
+                                    <ion-option value="Mrs." (ionSelect)="checkNRititle($event)">Mrs.</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                        <div class="member-name">
+                            <ion-item mode="ios">
+                                <ion-label floating>Father's Name</ion-label>
+                                <ion-input type="text" name="memberName" value=""></ion-input>
+                            </ion-item>
+                        </div>
+                    </div>
             </div>
         </ion-list>
     </form>

@@ -8,7 +8,9 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'correspondence-address.html',
 })
 export class CorrespondenceAddressPage {
+  @ViewChild('nriTitle') nriTitle;
   @ViewChild('residentialType') residentialType;
+  public nriTitle1: any;
   public defaultIndianCity = "";
   public defaultOverseasCity = "";
   public residential:any;
@@ -86,7 +88,10 @@ export class CorrespondenceAddressPage {
   public indiaAddress2(indianAddress2): void {
     this.addressDetails['indianAddress'].address2 = indianAddress2;
   }
-  
+  checkNRititle(event){
+    this.nriTitle.close();
+    this.nriTitle1 = event; 
+  }
   public overSeasPincode(pincode): void {
     this.addressDetails['overseasAddress'].pincode = pincode;
   }

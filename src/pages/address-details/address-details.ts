@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 // import { FormGroup, FormControl } from '@angular/forms';
 import { DataProvider } from '../../providers/data/data';
@@ -9,11 +9,22 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'address-details.html',
 })
 export class AddressDetailsPage {
+  
+  @ViewChild('nriTitle') nriTitle;
+  @ViewChild('residentialType') residentialType;
+  public nriTitle1:any;
+  public residential:any;
   public defaultCity: any;
   public permanentCity:any;
   public addressFill: any;
   public selectOptions = {
     title: 'Select Birth Place'
+  };
+  public selectOptions4 = {
+    title: 'Select Title'
+  };
+  public selectOptions5 = {
+    title: 'Select Resident Type'
   };
   public selectOptions1 = {
     title: 'Select City'
@@ -123,6 +134,10 @@ export class AddressDetailsPage {
   checkAddress2(address2) {
     this.locationDetails['locationInfo'].address2 = address2;
   }
+  checkNRititle(event){
+    this.nriTitle.close();
+    this.nriTitle1 = event; 
+  }
 
   openModal(addressType){
     
@@ -160,6 +175,10 @@ export class AddressDetailsPage {
       } 
     });
     this.buttonDisabled = false;
+  }
+  checkResidential(event){
+    this.residential = event;
+    this.residentialType.close();
   }
   openStateModal(state) {
     let openModal=this.modalCtrl.create('StateModalPage',{},

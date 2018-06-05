@@ -92,9 +92,11 @@ page-holding-details {
                     span{
                         position: absolute;
                         right: 0;
-                        // ion-icon{
-                        //     font-size: 2.4em;
-                        // }
+                        ion-icon{
+                            font-size: 1.2em;
+                            color:#333;
+                            font-weight: 600;
+                        }
                     }
                 }
                 .proper-panNo{

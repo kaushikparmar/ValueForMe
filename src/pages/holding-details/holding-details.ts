@@ -22,6 +22,11 @@ export class HoldingDetailsPage implements OnInit {
   @ViewChild('nomineeType1') nomineeType1;
   @ViewChild('relationship2') relationship2;
   @ViewChild('nomineeType2') nomineeType2;
+  @ViewChild('married2') married2;
+  @ViewChild('jointTitle1') jointTitle1;
+  @ViewChild('jointTitle2') jointTitle2;
+  @ViewChild('jointTitle3') jointTitle3;
+  @ViewChild('jointHolderAccount') jointHolderAccount;
   
   
   public birthCity:any;
@@ -101,6 +106,7 @@ export class HoldingDetailsPage implements OnInit {
         'aadharNumber' : '',
         'jointHolderName' : '',
         'emailId' : '',
+        'mobileNo' : '',
         'dob' : '',
         'nominee' : '',
         'birthCity':''
@@ -155,8 +161,9 @@ export class HoldingDetailsPage implements OnInit {
       branchName: new FormControl(''),
       branchAddress: new FormControl(''),
       nominee : new FormControl(''),
-      holderPan : new FormControl('',[this.validate('holderPan')]),
+      holderPan : new FormControl(''),
       emailId: new FormControl(''),
+      mobileno: new FormControl(''),
       aadharNo: new FormControl(''),
       holderName : new FormControl(''),
       dob: new FormControl(''),
@@ -168,9 +175,14 @@ export class HoldingDetailsPage implements OnInit {
       datePick: new FormControl(''),
       percentage2: new FormControl(''),
       jointTitle: new FormControl(''),
+      jointMarital: new FormControl(''),
       // birthCity: new FormControl(''),
       nomineeRelationship2: new FormControl(''),
-      nomineeType2: new FormControl('')
+      nomineeType2: new FormControl(''),
+      jointHolderTitle1: new FormControl(''),
+      jointHolderTitle2: new FormControl(''),
+      jointHolderTitle3: new FormControl(''),
+      jointHolderAccount1: new FormControl('')
 
     });
     this.jointHolderDetails.controls['nominee'].setValue('No');
@@ -204,15 +216,37 @@ export class HoldingDetailsPage implements OnInit {
       this.closeJointHolder.close();
     }
   }
+
   jointTitleClose(event){
     this.closeJointHolderTitle.close();
     this.jointHolderDetails.controls['jointTitle'].setValue(event);
   }
+  
   // jointBithClose(event) {
   //   this.closeJointBirthCity.close();
   //   this.jointHolderDetails.controls['birthCity'].setValue(event);
   // }
-  
+  jointHolderMarital(event){
+    this.jointHolderDetails.controls['jointMarital'].setValue(event);
+    this.married2.close();
+  }
+  jointHolderTitle1(event){
+    this.jointHolderDetails.controls['jointHolderTitle1'].setValue(event);
+    this.jointTitle1.close();
+  }
+  jointHolderTitle2(event){
+    this.jointHolderDetails.controls['jointHolderTitle2'].setValue(event);
+    this.jointTitle2.close();
+  }
+  jointHolderTitle3(event){
+    this.jointHolderDetails.controls['jointHolderTitle3'].setValue(event);
+    this.jointTitle3.close();
+  }
+  jointHolderAccount1(event){
+    this.jointHolderDetails.controls['jointHolderAccount1'].setValue(event);
+    this.jointHolderAccount.close();
+  }
+
   checkNomineeSection(event) {
     if(event === 'Yes'){
       this.jointHolderDetails.controls['nominee'].setValue(event);
@@ -253,20 +287,20 @@ export class HoldingDetailsPage implements OnInit {
     }
   }
 
-  validate(field_name): ValidatorFn {
-      return (control: AbstractControl): {[key: string]: any}|null => {
-    const patternToCompare = new RegExp(this.patterns[field_name], "g");
-    let isValidPattern;
-    console.log('validate',field_name);
-    if (field_name !== undefined && field_name !== null && field_name !== '' && control.value) {
-        isValidPattern = patternToCompare.test(control.value);
-    }
-    if (isValidPattern !== undefined && isValidPattern === false) {
-        return {'invalidPattern': true};
-    } else
-    return null;
-}
-  }
+//   validate(field_name): ValidatorFn {
+//       return (control: AbstractControl): {[key: string]: any}|null => {
+//     const patternToCompare = new RegExp(this.patterns[field_name], "g");
+//     let isValidPattern;
+//     console.log('validate',field_name);
+//     if (field_name !== undefined && field_name !== null && field_name !== '' && control.value) {
+//         isValidPattern = patternToCompare.test(control.value);
+//     }
+//     if (isValidPattern !== undefined && isValidPattern === false) {
+//         return {'invalidPattern': true};
+//     } 
+//     // return null;
+// }
+//   }
 
   equalto(field_name): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
@@ -366,7 +400,9 @@ export class HoldingDetailsPage implements OnInit {
   email() {
     this.jointHolderData['jointHolderInfo'].emailId = this.jointHolderDetails.get('emailId').value;
   }
-  
+  phoneno() {
+    this.jointHolderData['jointHolderInfo'].mobileNo = this.jointHolderDetails.get('mobileno').value;
+  }
   holdername() {
     this.jointHolderData['jointHolderInfo'].jointHolderName = this.jointHolderDetails.get('holderName').value;
   }
