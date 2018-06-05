@@ -86,18 +86,26 @@ page-holding-details {
                         size : 1.6rem;
                         weight:500;
                     }
+                    position: relative;
                     margin-top: 20px;
                     margin-bottom: 10px;
+                    span{
+                        position: absolute;
+                        right: 0;
+                        // ion-icon{
+                        //     font-size: 2.4em;
+                        // }
+                    }
                 }
                 .proper-panNo{
                     position: relative;
                     ion-icon{
                         position: absolute;
                         right: 0;
-                        font-size: 2.4em;
+                        font-size: 2em;
                         &.false{
                             color:red;
-                            bottom: 10px;
+                            bottom: 0;
                         }
                         &.true{
                             bottom: 0;
@@ -172,10 +180,10 @@ page-holding-details {
                         min-width: 20%;
                         ion-select{
                             max-width: 100%;
-                            padding: 11px 11px 6px 0;
-                            height: 57px;
-                            display: flex;
-                            align-items: flex-end;
+                            padding: 3px 0px 6px 0;
+                            height: 26px;
+                            // display: flex;
+                            // align-items: flex-end;
                             .select-icon{
                                 position: absolute;
                                 right: 5px;
@@ -191,7 +199,7 @@ page-holding-details {
                     position: relative;
                     img{
                         position: absolute;
-                        right: 0;
+                        right: 5px;
                         bottom: 1em;
                         width:10px;
                     }

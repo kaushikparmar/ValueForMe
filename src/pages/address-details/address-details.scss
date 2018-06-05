@@ -9,6 +9,12 @@ page-address-details {
                 .mb{
                     margin-bottom: 0px !important;
                 }
+                .pl-0{
+                    padding-left: 0 !important;
+                }
+                .pr-0{
+                    padding-right: 0 !important;
+                }
                 .mb-0{
                     margin-bottom: 0;
                 }
@@ -24,7 +30,7 @@ page-address-details {
                     margin:5px 0 0px;
                     font : {
                         size : 1.2rem;
-                        weight:500;
+                        // weight:500;
                     }
                 }
                 .header{
@@ -91,8 +97,8 @@ page-address-details {
                     ion-label{
                         color:rgba(96,96,96,0.78);
                         font : {
-                            size : 1.3rem;
-                            weight:500;
+                            size : 1.2rem;
+                            // weight:500;
                         }
                         text-overflow: initial;
                         white-space: initial;

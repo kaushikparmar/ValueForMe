@@ -55,7 +55,7 @@
                 </ion-item>
             </div>
             <ion-row>
-                <ion-col col-4>
+                <ion-col col-4 class="pl-0">
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Pincode</ion-label>
@@ -64,7 +64,7 @@
                         </ion-item>
                     </div>
                 </ion-col>
-                <ion-col col-8>
+                <ion-col col-8 class="pr-0">
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Country</ion-label>
@@ -125,7 +125,7 @@
                 </ion-item>
             </div> -->
             <ion-row class="mb">
-                <ion-col col-4>
+                <ion-col col-4 class="pl-0">
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Pincode</ion-label>
@@ -133,7 +133,7 @@
                         </ion-item>
                     </div>
                 </ion-col>
-                <ion-col col-8>
+                <ion-col col-8 class="pr-0">
                     <div class="mb-0">
                         <ion-item mode="ios">
                             <ion-label floating>Country</ion-label>
@@ -160,7 +160,8 @@
             <div class="member-detail mb">
                 <div class="member-title">
                     <ion-item mode="ios">
-                        <ion-select name="title" placeholder="Title" [selectOptions]="selectOptions4">
+                        <ion-label floating>Title</ion-label>
+                        <ion-select name="title"  [selectOptions]="selectOptions4">
                             <ion-option value="Mr.">Mr.</ion-option>
                             <ion-option value="Mrs.">Mrs.</ion-option>
                         </ion-select>

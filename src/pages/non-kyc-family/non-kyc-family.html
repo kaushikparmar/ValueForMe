@@ -128,7 +128,8 @@
       <div class="member-detail mb">
         <div class="member-title">
           <ion-item mode="ios">
-            <ion-select #title name="title" placeholder="Title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title" #title="ngModel">
+            <ion-label floating>Title</ion-label>
+            <ion-select #title name="title" [selectOptions]="selectOptions" [(ngModel)]="currentMember.title" #title="ngModel">
               <ion-option value="Mr." (ionSelect)="closeTitle($event)" selected>Mr.</ion-option>
               <ion-option value="Mrs." (ionSelect)="closeTitle($event)">Mrs.</ion-option>
             </ion-select>

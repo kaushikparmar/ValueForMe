@@ -8,16 +8,18 @@ page-your-details {
                 form{
                     margin-bottom: 15px;
                 }
+                .upload-text{
+                    margin:15px 0 15px; 
+                    color:#000;
+                    text-align: center;
+                    font : {
+                        size : 1.6rem;
+                        weight:500;
+                    }
+                }
                 .upload-container{
                     text-align: center;
-                    .upload-text{
-                        margin:15px 0 15px; 
-                        color:#000;
-                        font : {
-                            size : 1.6rem;
-                            weight:500;
-                        }
-                    }
+                    
                 }
                 .download-container{
                     margin:15px 0  15px;
@@ -47,11 +49,11 @@ page-your-details {
                 .pdf-section{
                     display: flex;
                     div{
-                        width: 180px;
+                        width: 150px;
                         margin:auto;
                         box-shadow: 0 0.3px 1.7px 0 rgb(137,137,137);
                         background: #fff;
-                        height: 140px;
+                        height: 150px;
                         border-radius: 25px;
                         display: flex;
                         justify-content: center;

@@ -2,6 +2,8 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Form } from 'ionic-angular';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { DataProvider } from '../../providers/data/data';
+// import { PatternValidate } from '../../directives/validator';
+
 
 @IonicPage()
 @Component({
@@ -109,9 +111,13 @@ export class HoldingDetailsPage implements OnInit {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public data: DataProvider,
+    // public pattern: PatternValidate,
     public navParams: NavParams) {
-  }
 
+      this.nomineeDetails['nomineeInfo'].nomineePercentage = '100';
+     
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad HoldingDetailsPage');
   }
@@ -121,7 +127,17 @@ export class HoldingDetailsPage implements OnInit {
       'panNo' : 'BFTHD4619M'
     }
   ]
-
+  private patterns: any = {
+    "firstname": "^[a-zA-Z'.,\\s]+(^.)?[\\s]*$",
+    "lastname": "^[a-zA-Z'.,\\s]+(^.)?[\\s]*$",
+    "username": "^[a-zA-Z0-9._-]*$",
+    "password": "^(?=.*\\d)(?=.*[@#$%^&+=!*])(?=.*[a-z])(?=.*[A-Z]).{8,}$",
+    "zipcode": "^[0-9]*$",
+    "memberid": "^[0-9]*$",
+    "mobile": "^([0-9]){10}$",
+    "email": "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$",
+    "pan": "^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$"
+}
   public accountDetails: any = [
     {
       'ifsc': 'ICIC0001238',
@@ -139,7 +155,7 @@ export class HoldingDetailsPage implements OnInit {
       branchName: new FormControl(''),
       branchAddress: new FormControl(''),
       nominee : new FormControl(''),
-      holderPan : new FormControl(''),
+      holderPan : new FormControl('',[this.validate('holderPan')]),
       emailId: new FormControl(''),
       aadharNo: new FormControl(''),
       holderName : new FormControl(''),
@@ -159,6 +175,7 @@ export class HoldingDetailsPage implements OnInit {
     });
     this.jointHolderDetails.controls['nominee'].setValue('No');
     this.jointHolderDetails.controls['jointHolder'].setValue('Single');
+    
   }
   // checkJointHolder() {
   //   if(this.jointHolderDetails.get('jointHolder').value === 'Joint Holder'){
@@ -235,6 +252,22 @@ export class HoldingDetailsPage implements OnInit {
       }
     }
   }
+
+  validate(field_name): ValidatorFn {
+      return (control: AbstractControl): {[key: string]: any}|null => {
+    const patternToCompare = new RegExp(this.patterns[field_name], "g");
+    let isValidPattern;
+    console.log('validate',field_name);
+    if (field_name !== undefined && field_name !== null && field_name !== '' && control.value) {
+        isValidPattern = patternToCompare.test(control.value);
+    }
+    if (isValidPattern !== undefined && isValidPattern === false) {
+        return {'invalidPattern': true};
+    } else
+    return null;
+}
+  }
+
   equalto(field_name): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
       let input = control.value;
@@ -423,6 +456,9 @@ export class HoldingDetailsPage implements OnInit {
     this.data.dataSet(this.jointHolderData);
     this.data.dataSet(this.nomineeDetails);
     console.log(this.data);
+  }
+  toggle(){
+    this.showSecondNominee = false;
   }
 
   public addAnotherNominee() : void {

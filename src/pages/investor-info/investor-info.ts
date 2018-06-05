@@ -233,7 +233,6 @@ export class InvestorInfoPage {
       if (imageData === 'No Image Selected') {
         this.hideUpload = true;
         this.presentToast("Image upload error");
-        loading.dismiss();
       }
 
       loading.dismiss();

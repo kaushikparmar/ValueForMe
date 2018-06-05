@@ -25,7 +25,7 @@
             </div>
             <div class="joint-holder" *ngIf="hideJointDetails">
                 <ion-label class="holder">Joint holder 1 Details</ion-label>
-                <div class="proper-panNo mb">
+                <div class="proper-panNo mb-0">
                     <ion-item mode="ios">
                         <ion-label floating>Joint Holder PAN No.</ion-label>
                         <ion-input type="text" name="holderPan" formControlName="holderPan" (input)="checkPan()"></ion-input>
@@ -35,9 +35,12 @@
                     <div class="spinner-container" *ngIf="checkPanno">
                         <ion-spinner mode="md"></ion-spinner>
                     </div>
-                    <div class="error" *ngIf="showPanError">
-                        Non KYC Family.
-                    </div>
+                </div>
+                <div class="error" *ngIf="jointHolderDetails.get('holderPan').hasError('validate') || jointHolderDetails.get('holderPan').touched">
+                    Investor PAN Number should have first five character, four digits and one character at the end. Like, BEADF3944M.
+                </div>
+                <div class="error" *ngIf="showPanError">
+                    Non KYC Family.
                 </div>
                 <!-- <div class="contact-no mb" *ngIf="showPanError">
                         <ion-item mode="ios">
@@ -64,7 +67,8 @@
                 <div class="member-detail mb">
                     <div class="member-title">
                         <ion-item mode="ios">
-                            <ion-select #jointHolderTitle placeholder="Title" name="title" [selectOptions]="selectOptions" formControlName="jointTitle">
+                            <ion-label floating>Title</ion-label>
+                            <ion-select #jointHolderTitle name="title" [selectOptions]="selectOptions" formControlName="jointTitle">
                                 <ion-option value="Mr." (ionSelect)="jointTitleClose($event)" selected>Mr.</ion-option>
                                 <ion-option value="Mrs." (ionSelect)="jointTitleClose($event)">Mrs.</ion-option>
                             </ion-select>
@@ -128,6 +132,7 @@
                             <div class="member-detail mb">
                                 <div class="member-title">
                                     <ion-item mode="ios">
+                                        <ion-label floating>Title</ion-label>
                                         <ion-select name="title" [selectOptions]="selectOptions3">
                                             <ion-option value="Mr." selected>Mr.</ion-option>
                                             <ion-option value="Mrs.">Mrs.</ion-option>
@@ -144,6 +149,7 @@
                             <div class="member-detail mb">
                                 <div class="member-title">
                                     <ion-item mode="ios">
+                                        <ion-label floating>Title</ion-label>
                                         <ion-select name="title" [selectOptions]="selectOptions3">
                                             <ion-option value="Mr.">Mr.</ion-option>
                                             <ion-option value="Mrs." selected>Mrs.</ion-option>
@@ -160,6 +166,7 @@
                             <div class="member-detail mb">
                                 <div class="member-title">
                                     <ion-item mode="ios">
+                                        <ion-label floating>Title</ion-label>
                                         <ion-select name="title" [selectOptions]="selectOptions3">
                                             <ion-option value="Mr." selected>Mr.</ion-option>
                                             <ion-option value="Mrs.">Mrs.</ion-option>
@@ -185,13 +192,13 @@
                             <div class="mb">
                                 <ion-item mode="ios">
                                     <ion-label floating>Address Line 1</ion-label>
-                                    <ion-textarea value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-textarea>
+                                    <ion-input value="E 701 Lotus Corporate Park, Laxmi Nagar,"></ion-input>
                                 </ion-item>
                             </div>
                             <div class="mb">
                                 <ion-item mode="ios">
                                     <ion-label floating>Address Line 2</ion-label>
-                                    <ion-textarea value="Western Express Highway, Goregaon East,"></ion-textarea>
+                                    <ion-input value="Western Express Highway, Goregaon East,"></ion-input>
                                 </ion-item>
                             </div>
                         </div>
@@ -234,7 +241,7 @@
                             <div class="mb">
                                 <ion-item mode="ios">
                                     <ion-label floating>Branch Address</ion-label>
-                                    <ion-textarea name="branchAddress" formControlName="branchAddress" value=""></ion-textarea>
+                                    <ion-input name="branchAddress" formControlName="branchAddress" value=""></ion-input>
                                 </ion-item>
                             </div>
                             <div class="mb">
@@ -333,7 +340,11 @@
                     </ion-item>
                 </div>
                 <div class="second-nominee" *ngIf="showSecondNominee">
-                    <ion-label class="holder">Nominee 2 Details</ion-label>
+                    <ion-label class="holder">Nominee 2 Details
+                        <span class="removeField" (click)="toggle()">
+                            <ion-icon name="ios-remove-outline" color="primary"></ion-icon>
+                        </span>
+                    </ion-label>
                     <div class="mb">
                         <ion-item mode="ios">
                             <ion-label floating>Nominee 2 Name</ion-label>

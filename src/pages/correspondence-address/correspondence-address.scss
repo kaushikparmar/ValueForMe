@@ -12,6 +12,12 @@ page-correspondence-address {
                 .mb-0{
                     margin-bottom: 0;
                 }
+                .pl-0{
+                    padding-left: 0 !important;
+                }
+                .pr-0{
+                    padding-right: 0 !important;
+                }
                 ion-item{
                     background: map-get($colors,contentBg);
                 }
@@ -24,7 +30,6 @@ page-correspondence-address {
                     margin:5px 0 5px;
                     font : {
                         size : 1.2rem;
-                        weight:500;
                     }
                 }
                 .member-detail{
@@ -33,10 +38,10 @@ page-correspondence-address {
                         width: 25%;
                         ion-select{
                             max-width: 100%;
-                            padding: 11px 11px 6px 0;
-                            height: 56px;
-                            display: flex;
-                            align-items: flex-end;
+                            padding: 3px 0px 6px 0;
+                            height: 26px;
+                            // display: flex;
+                            // align-items: flex-end;
                             .select-icon{
                                 position: absolute;
                                 right: 5px;

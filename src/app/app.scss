@@ -259,6 +259,9 @@ ion-modal.selectPopupModal{
 // ion-content .scroll-content ion-list .item-ios.item-label-floating .text-input{
 //     outline:0;
 // }
+ion-content .scroll-content ion-list .custom-select{
+    min-height: 45px !important;
+}
 .focus-outline [ion-button]:focus, .focus-outline button:focus{
     outline: 0;
     border-color:transparent;
